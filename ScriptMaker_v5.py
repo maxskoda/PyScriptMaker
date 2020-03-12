@@ -371,13 +371,21 @@ class App(QtWidgets.QWidget):
     def onOpenFile(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "",\
+        fileName, _ = QFileDialog.getOpenFileName(self,"Open Script File...", "",\
                                                   "OpenGenie Files (*.gcl);;All Files (*);;Python Files (*.py)", options=options)
         if fileName:
             self.fileEdit.setText(fileName)
+            return fileName
         
     def onPrintTree(self):
-        f= open(self.fileEdit.text(),"w+")
+        if os.path.isfile(self.fileEdit.text()):
+            f = open(self.fileEdit.text(),"w+")
+        else:
+            f = self.onOpenFile()
+            if os.path.isfile(self.fileEdit.text()):
+                f = open(self.fileEdit.text(), "w+")
+            else:
+                return
         args = []
         for col in range(self.sampleTable.columnCount()):            
             if self.sampleTable.item(0,col).checkState()  == Qt.Checked:
@@ -472,7 +480,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
         openAct.setStatusTip('Open script')
         openAct.triggered.connect(self.openScript)
 
-        saveAct = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Save', self)        
+        saveAct = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Save as...', self)
         saveAct.setShortcut('Ctrl+S')
         saveAct.setStatusTip('Save script')
         saveAct.triggered.connect(self.saveScript)
@@ -532,7 +540,14 @@ class MyMainWindow(QtWidgets.QMainWindow):
         
     def saveScript(self):
         print("Saved.")
-        f= open("json_test_save.json","w+")
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(self,"Save ScriptMaker state...", "",\
+                                                  "MaxScript Files (*.json);;All Files (*)", options=options)
+        if fileName:
+            f = open(fileName, "w+")
+        else:
+            return
         outString = "{\"Samples\": ["
         ## get defined samples from table:
         for row in range(1,self.form_widget.sampleTable.rowCount()):

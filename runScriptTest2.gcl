@@ -13,20 +13,26 @@ experimentsettings
           sample[1].title = "S1"
     sample[1].translation = 100
          sample[1].height = 1
-     sample[1].phi_offset = 0.1
+     sample[1].phi_offset = 0.0
             sample[1].psi = 1
 #====================================
           sample[2].title = "S2"
     sample[2].translation = 200
          sample[2].height = 2
-     sample[2].phi_offset = 2
+     sample[2].phi_offset = 0.0
             sample[2].psi = 2
 #====================================
           sample[3].title = "S3"
     sample[3].translation = 300
          sample[3].height = 3
-     sample[3].phi_offset = 0.3
+     sample[3].phi_offset = 0.0
             sample[3].psi = 3
+#====================================
+          sample[4].title = "S4"
+    sample[4].translation = 400
+         sample[4].height = 4
+     sample[4].phi_offset = 0.0
+            sample[4].psi = 4
 #====================================
 #====================================
 
@@ -34,55 +40,53 @@ experimentsettings
 #Script body begins here:
 #====================================
 
-##### Sample 2
-sample[2].subtitle = "H2O"
-runTime = runAngles(sample[2],0.7,5.0)
-runTime = runAngles(sample[2],2.3,25.0)
-
-runTime = inject(2, "D2O",1.5,15.0)
-
 ##### Sample 1
-sample[1].subtitle = "H2O"
+sample[1].subtitle = "D2O"
 runTime = runAngles(sample[1],0.7,5.0)
-runTime = runAngles(sample[1],2.3,25.0)
+runTime = runAngles(sample[1],2.3,20.0)
 
-runTime = inject(1, "D2O",1.5,15.0)
+runTime = contrastChange(1,0,100,0,0,1.5,15.0)
 
 ##### Sample 2
 sample[2].subtitle = "D2O"
-runTime = runAngles(sample[2],0.5,10.0)
-runTime = runAngles(sample[2],1.2,15.0)
-runTime = runAngles(sample[2],2.3,25.0)
-
-runTime = contrastChange(2,0,100,0,0,1.5,15)
-
-runTime = transmission(sample[2], "Si", 20,20,20,20,20,53.0,20,5)
-
-##### Sample 2
-sample[2].subtitle = "H2O"
 runTime = runAngles(sample[2],0.7,5.0)
-runTime = runAngles(sample[2],2.3,25.0)
+runTime = runAngles(sample[2],2.3,20.0)
 
-runTime = inject(2, "D2O",1.5,15.0)
-
-##### Sample 1
-sample[1].subtitle = "H2O"
-runTime = runAngles(sample[1],0.7,5.0)
-runTime = runAngles(sample[1],2.3,25.0)
-
-runTime = inject(1, "D2O",1.5,15.0)
-
-runTime = contrastChange(1,100,0,0,0,1.5,15)
+runTime = contrastChange(2,0,100,0,0,1.5,15.0)
 
 ##### Sample 3
 sample[3].subtitle = "D2O"
-runTime = runAngles(sample[3],0.5,10.0)
-runTime = runAngles(sample[3],1.2,15.0)
-runTime = runAngles(sample[3],2.3,25.0)
+runTime = runAngles(sample[3],0.7,5.0)
+runTime = runAngles(sample[3],2.3,20.0)
 
-runTime = contrastChange(3,0,100,0,0,1.5,15)
+runTime = contrastChange(3,0,100,0,0,1.5,15.0)
 
-runTime = transmission(sample[3], "Si", 20,20,20,20,20,53.0,20,5)
+##### Sample 4
+sample[4].subtitle = "D2O"
+runTime = runAngles(sample[4],0.7,5.0)
+runTime = runAngles(sample[4],2.3,20.0)
+
+runTime = contrastChange(4,0,100,0,0,1.5,15.0)
+
+##### Sample 1
+sample[1].subtitle = "H2O"
+runTime = runAngles(sample[1],0.7,15.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+##### Sample 2
+sample[2].subtitle = "H2O"
+runTime = runAngles(sample[2],0.7,15.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+##### Sample 3
+sample[3].subtitle = "H2O"
+runTime = runAngles(sample[3],0.7,15.0)
+runTime = runAngles(sample[3],2.3,20.0)
+
+##### Sample 4
+sample[4].subtitle = "H2O"
+runTime = runAngles(sample[4],0.7,15.0)
+runTime = runAngles(sample[4],2.3,20.0)
 
 ENDPROCEDURE
 
@@ -93,35 +97,45 @@ GLOBAL S1 S2 S3 S4 S5 S6 S7 sample
 #====================================
 s1=fields(); s2=fields(); s3=fields(); s4=fields(); s5=fields(); s6=fields(); s7=fields()
 #====================================
-     s1.phi_offset = 0.1
+     s1.phi_offset = 0.0
             s1.psi = 1
       s1.footprint = 60
      s1.resolution = 0.03
-s1.coarse_nomirror = 1
+s1.coarse_nomirror = 0
          s1.height = 1
           s1.title = "S1"
        s1.subtitle = ""
     s1.translation = 100
 #====================================
-     s2.phi_offset = 2
+     s2.phi_offset = 0.0
             s2.psi = 2
       s2.footprint = 60
      s2.resolution = 0.03
-s2.coarse_nomirror = 2
+s2.coarse_nomirror = 0
          s2.height = 2
           s2.title = "S2"
        s2.subtitle = ""
     s2.translation = 200
 #====================================
-     s3.phi_offset = 0.3
+     s3.phi_offset = 0.0
             s3.psi = 3
       s3.footprint = 60
      s3.resolution = 0.03
-s3.coarse_nomirror = 3
+s3.coarse_nomirror = 0
          s3.height = 3
           s3.title = "S3"
        s3.subtitle = ""
     s3.translation = 300
+#====================================
+     s4.phi_offset = 0.0
+            s4.psi = 4
+      s4.footprint = 60
+     s4.resolution = 0.03
+s4.coarse_nomirror = 0
+         s4.height = 4
+          s4.title = "S4"
+       s4.subtitle = ""
+    s4.translation = 400
 #====================================
 sample=dimensions(7)
 sample[1]=s1; sample[2]=s2; sample[3]=s3; sample[4]=s4; sample[5]=s5; sample[6]=s6; sample[7]=s7
