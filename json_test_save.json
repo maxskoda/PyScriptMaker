@@ -1,0 +1,444 @@
+{"Samples": [["S1", "100", "1", "1", "1", "1", "1", "1", "1"],
+["S2", "200", "2", "2", "2", "2", "2", "2", "2"],
+[],
+[],
+[],
+[],
+[]],
+
+
+"Action":[
+{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "Subtitle",
+            "value": "H2O"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "5.0",
+                "25.0"
+            ]
+        }
+    ]
+},{
+    "Inject": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "Solution",
+            "value": "D2O"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        }
+    ]
+},{
+    "ContrastChange": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "concA",
+            "value": "100"
+        },
+        {
+            "label": "concB",
+            "value": "0"
+        },
+        {
+            "label": "concC",
+            "value": "0"
+        },
+        {
+            "label": "concD",
+            "value": "0"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "Subtitle",
+            "value": "D2O"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.5",
+                "1.2",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "10.0",
+                "15.0",
+                "25.0"
+            ]
+        }
+    ]
+},{
+    "ContrastChange": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "concA",
+            "value": "0"
+        },
+        {
+            "label": "concB",
+            "value": "100"
+        },
+        {
+            "label": "concC",
+            "value": "0"
+        },
+        {
+            "label": "concD",
+            "value": "0"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15"
+        }
+    ]
+},{
+    "Transmission": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "Subtitle",
+            "value": "Si"
+        },
+        {
+            "label": "uAmps",
+            "value": "20"
+        },
+        {
+            "label": "s1vg",
+            "value": "20"
+        },
+        {
+            "label": "s2vg",
+            "value": "20"
+        },
+        {
+            "label": "s1hg",
+            "value": "20"
+        },
+        {
+            "label": "s1hg",
+            "value": "20"
+        },
+        {
+            "label": "height_offset",
+            "value": "20"
+        },
+        {
+            "label": "sm_angle",
+            "value": "5"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "Subtitle",
+            "value": "H2O"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "5.0",
+                "25.0"
+            ]
+        }
+    ]
+},{
+    "Inject": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "Solution",
+            "value": "D2O"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "Subtitle",
+            "value": "H2O"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "5.0",
+                "25.0"
+            ]
+        }
+    ]
+},{
+    "Inject": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "Solution",
+            "value": "D2O"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        }
+    ]
+},{
+    "ContrastChange": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "concA",
+            "value": "100"
+        },
+        {
+            "label": "concB",
+            "value": "0"
+        },
+        {
+            "label": "concC",
+            "value": "0"
+        },
+        {
+            "label": "concD",
+            "value": "0"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "Subtitle",
+            "value": "D2O"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.5",
+                "1.2",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "10.0",
+                "15.0",
+                "25.0"
+            ]
+        }
+    ]
+},{
+    "ContrastChange": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "concA",
+            "value": "0"
+        },
+        {
+            "label": "concB",
+            "value": "100"
+        },
+        {
+            "label": "concC",
+            "value": "0"
+        },
+        {
+            "label": "concD",
+            "value": "0"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15"
+        }
+    ]
+},{
+    "Transmission": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "Subtitle",
+            "value": "Si"
+        },
+        {
+            "label": "uAmps",
+            "value": "20"
+        },
+        {
+            "label": "s1vg",
+            "value": "20"
+        },
+        {
+            "label": "s2vg",
+            "value": "20"
+        },
+        {
+            "label": "s1hg",
+            "value": "20"
+        },
+        {
+            "label": "s1hg",
+            "value": "20"
+        },
+        {
+            "label": "height_offset",
+            "value": "20"
+        },
+        {
+            "label": "sm_angle",
+            "value": "5"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "Subtitle",
+            "value": "H2O"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "5.0",
+                "25.0"
+            ]
+        }
+    ]
+},{
+    "Inject": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "Solution",
+            "value": "D2O"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        }
+    ]
+}]
+}

@@ -1,0 +1,130 @@
+FORWARD experimentsettings
+
+PROCEDURE runscript
+GLOBAL runtime
+LOCAL ii
+
+CHANGE NPERIODS=1
+cset monitor 1
+experimentsettings
+#====================================
+#These should be changed with each sample change:
+#====================================
+          sample[1].title = "S1"
+    sample[1].translation = 100
+         sample[1].height = 1
+     sample[1].phi_offset = 1
+            sample[1].psi = 1
+#====================================
+          sample[2].title = "S2"
+    sample[2].translation = 200
+         sample[2].height = 2
+     sample[2].phi_offset = 2
+            sample[2].psi = 2
+#====================================
+          sample[3].title = "S3"
+    sample[3].translation = 300
+         sample[3].height = 3
+     sample[3].phi_offset = 3
+            sample[3].psi = 3
+#====================================
+#====================================
+
+#====================================
+#Script body begins here:
+#====================================
+
+##### Sample 1
+sample[1].subtitle = "H2O"
+runTime = runAngles(sample[1],0.7,5.0)
+runTime = runAngles(sample[1],2.3,25.0)
+
+runTime = inject(1, "D2O",1.5,15.0)
+
+runTime = contrastChange(1,100,0,0,0,1.5,15)
+
+##### Sample 2
+sample[2].subtitle = "D2O"
+runTime = runAngles(sample[2],0.5,10.0)
+runTime = runAngles(sample[2],1.2,15.0)
+runTime = runAngles(sample[2],2.3,25.0)
+
+runTime = contrastChange(2,0,100,0,0,1.5,15)
+
+runTime = transmission(sample[1], "Si", 20,20,20,20,20,53.0,20,5)
+
+##### Sample 2
+sample[2].subtitle = "H2O"
+runTime = runAngles(sample[2],0.7,5.0)
+runTime = runAngles(sample[2],2.3,25.0)
+
+runTime = inject(2, "D2O",1.5,15.0)
+
+##### Sample 1
+sample[1].subtitle = "H2O"
+runTime = runAngles(sample[1],0.7,5.0)
+runTime = runAngles(sample[1],2.3,25.0)
+
+runTime = inject(1, "D2O",1.5,15.0)
+
+runTime = contrastChange(1,100,0,0,0,1.5,15)
+
+##### Sample 2
+sample[2].subtitle = "D2O"
+runTime = runAngles(sample[2],0.5,10.0)
+runTime = runAngles(sample[2],1.2,15.0)
+runTime = runAngles(sample[2],2.3,25.0)
+
+runTime = contrastChange(2,0,100,0,0,1.5,15)
+
+runTime = transmission(sample[1], "Si", 20,20,20,20,20,53.0,20,5)
+
+##### Sample 3
+sample[3].subtitle = "H2O"
+runTime = runAngles(sample[3],0.7,5.0)
+runTime = runAngles(sample[3],2.3,25.0)
+
+runTime = inject(3, "D2O",1.5,15.0)
+
+ENDPROCEDURE
+
+PROCEDURE experimentsettings
+GLOBAL S1 S2 S3 S4 S5 S6 S7 sample
+#====================================
+#Generic settings for all samples which do not need to be changed during experiment:
+#====================================
+s1=fields(); s2=fields(); s3=fields(); s4=fields(); s5=fields(); s6=fields(); s7=fields()
+#====================================
+     s1.phi_offset = 1
+            s1.psi = 1
+      s1.footprint = 1
+     s1.resolution = 1
+s1.coarse_nomirror = 1
+         s1.height = 1
+          s1.title = "S1"
+       s1.subtitle = ""
+    s1.translation = 100
+#====================================
+     s2.phi_offset = 2
+            s2.psi = 2
+      s2.footprint = 2
+     s2.resolution = 2
+s2.coarse_nomirror = 2
+         s2.height = 2
+          s2.title = "S2"
+       s2.subtitle = ""
+    s2.translation = 200
+#====================================
+     s3.phi_offset = 3
+            s3.psi = 3
+      s3.footprint = 3
+     s3.resolution = 3
+s3.coarse_nomirror = 3
+         s3.height = 3
+          s3.title = "S3"
+       s3.subtitle = ""
+    s3.translation = 300
+#====================================
+sample=dimensions(7)
+sample[1]=s1; sample[2]=s2; sample[3]=s3; sample[4]=s4; sample[5]=s5; sample[6]=s6; sample[7]=s7
+ENDPROCEDURE
