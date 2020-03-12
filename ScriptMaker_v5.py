@@ -32,7 +32,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
     def __init__(self, parent = None):
         super(myStandardItemModel, self).__init__(parent)
         #self.populate('C:/Users/ktd43279/Documents/build-Reorderable_tree-Desktop-Debug/debug/actionList2.json')
-        self.populate('json_test.json')
+        self.populate('INTER_4Samples_2Contrasts.json')
 
     def flags(self, index):
         defaultFlags =  QtCore.Qt.ItemIsEnabled | super(myStandardItemModel, self).flags(index)

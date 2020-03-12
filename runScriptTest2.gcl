@@ -40,6 +40,24 @@ experimentsettings
 #Script body begins here:
 #====================================
 
+runTime = contrastChange(1,0,100,0,0,1.5,15.0)
+
+runTime = contrastChange(2,0,100,0,0,1.5,15.0)
+
+runTime = contrastChange(3,0,100,0,0,1.5,15.0)
+
+runTime = contrastChange(4,0,100,0,0,1.5,15.0)
+
+##### Sample 2
+sample[2].subtitle = "H2O"
+runTime = runAngles(sample[2],0.7,15.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+##### Sample 4
+sample[4].subtitle = "H2O"
+runTime = runAngles(sample[4],0.7,15.0)
+runTime = runAngles(sample[4],2.3,20.0)
+
 ##### Sample 1
 sample[1].subtitle = "D2O"
 runTime = runAngles(sample[1],0.7,5.0)
