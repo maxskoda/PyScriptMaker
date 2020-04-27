@@ -26,7 +26,7 @@ import NRActions
 # define name string for dynamic import of action classes:
 myActions = "NRActions"
 
-HORIZONTAL_HEADERS = ("Action", "Paramters", "Ok", "")
+HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "")
 
 
 class myStandardItemModel(QtGui.QStandardItemModel):
@@ -246,7 +246,7 @@ class Tree(QtWidgets.QTreeView):
         self.sub_menu = QtWidgets.QMenu("Insert Action")
         self.menu.addMenu(self.sub_menu)
 
-        deleteAction = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Delete rowsss', )
+        deleteAction = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Delete row(s)', )
         #deleteAction = self.menu.addAction("Delete Row(s)", self.del_action)
         deleteAction.setShortcut(QKeySequence("Del"))
         deleteAction.triggered.connect(self.del_action)
