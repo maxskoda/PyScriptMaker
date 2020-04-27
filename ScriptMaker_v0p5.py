@@ -33,7 +33,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
     def __init__(self, parent = None):
         super(myStandardItemModel, self).__init__(parent)
         #self.populate('C:/Users/ktd43279/Documents/build-Reorderable_tree-Desktop-Debug/debug/actionList2.json')
-        self.populate('INTER_4Samples_2Contrasts.json')
+        #self.populate('INTER_4Samples_2Contrasts_test.json')
 
     def flags(self, index):
         defaultFlags =  QtCore.Qt.ItemIsEnabled | super(myStandardItemModel, self).flags(index)
@@ -511,7 +511,24 @@ class MyMainWindow(QtWidgets.QMainWindow):
         
         
         QtWidgets.qApp.installEventFilter(self)
-      
+
+        # Open default file
+        fileName = "INTER_4Samples_2Contrasts_test.json"
+        self.form_widget.view.model.populate(fileName)
+        with open(fileName) as json_file:
+            data = json.load(json_file)
+
+            for row, samp in enumerate(data['Samples'], start=1):
+                if len(samp):
+                    for col in range(self.form_widget.sampleTable.columnCount()):
+                        self.form_widget.sampleTable.item(row, col).setText(samp[col])
+
+        rows = self.form_widget.view.model.rowCount()
+        for i in range(rows):
+            self.form_widget.view.showSummary(self.form_widget.view.model.index(i, 0))
+        self.form_widget.view.resizeColumnToContents(0)
+        self.form_widget.fileEdit.setText('runScriptTest2.gcl')
+        ############################
         
     def openScript(self):
         print("Opening...")

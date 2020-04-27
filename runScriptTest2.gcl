@@ -34,6 +34,12 @@ experimentsettings
      sample[4].phi_offset = 0.0
             sample[4].psi = 4
 #====================================
+          sample[5].title = "S5"
+    sample[5].translation = 500
+         sample[5].height = 5
+     sample[5].phi_offset = 0.5
+            sample[5].psi = 5
+#====================================
 #====================================
 
 #====================================
@@ -136,6 +142,16 @@ s4.coarse_nomirror = 0
           s4.title = "S4"
        s4.subtitle = ""
     s4.translation = 400
+#====================================
+     s5.phi_offset = 0.5
+            s5.psi = 5
+      s5.footprint = 60
+     s5.resolution = 0.05
+s5.coarse_nomirror = 50
+         s5.height = 5
+          s5.title = "S5"
+       s5.subtitle = ""
+    s5.translation = 500
 #====================================
 sample=dimensions(7)
 sample[1]=s1; sample[2]=s2; sample[3]=s3; sample[4]=s4; sample[5]=s5; sample[6]=s6; sample[7]=s7
