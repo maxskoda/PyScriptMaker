@@ -11,7 +11,8 @@ import os.path
 from PyQt5.QtCore import (QAbstractItemModel, QFile, QIODevice,
          QItemSelectionModel, QModelIndex, Qt, QDataStream, QVariant)
 from PyQt5 import QtGui, QtCore, QtWidgets
-from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, 
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut,
     QComboBox, QApplication, QTreeWidget, qApp, QFileDialog)
 
 from functools import partial
@@ -116,8 +117,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
                         val = QtGui.QStandardItem(values)
                         val.setFlags(item.flags() & ~QtCore.Qt.ItemIsDragEnabled)
                         item.appendRow([par,val])
-                                      
-                       
+
 
 
 
@@ -162,7 +162,7 @@ class actionListWidget(QtWidgets.QListWidget):
     def __init__(self, type, parent=None):
         super(actionListWidget, self).__init__(parent)
         self.setDragEnabled(True)
-        self.addItems(["RunAngle","ConrastChange", "Transmission"])
+        self.addItems(NRActions.actions)#["RunAngle","ConrastChange", "Transmission"])
         
         mimeData = QtCore.QMimeData()
         mimeData.setText("NR_Action")
@@ -185,7 +185,7 @@ class Tree(QtWidgets.QTreeView):
         self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove|QtWidgets.QAbstractItemView.DragDrop)
         self.setDragEnabled(True)
         self.setAcceptDrops(True)
-        
+
         
         self.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.resizeColumnToContents(0)        
@@ -201,8 +201,11 @@ class Tree(QtWidgets.QTreeView):
 
         for i in range(rows):
             self.showSummary(self.model.index(i,0))
+
+        self.shortcut = QShortcut(QKeySequence("Del"), self)
+        self.shortcut.activated.connect(self.del_action)
     
-   
+
 
     def showSummary(self, index):      
         it = self.model.getRootItem(index.row(), index.column())
@@ -236,28 +239,36 @@ class Tree(QtWidgets.QTreeView):
         self.model.invisibleRootItem().child(index.row(),1).setText("")
  
         
-    def openMenu(self, position): 
+    def openMenu(self, position):
         self.menu = QtWidgets.QMenu()
         index = self.indexAt(position)
          
         self.sub_menu = QtWidgets.QMenu("Insert Action")
         self.menu.addMenu(self.sub_menu)
-        deleteAction = self.menu.addAction("Delete Row") 
 
-        #insertAction = menu.addAction("Insert action")
-        actions = NRActions.actions  #["RunAngles", "ContrastChange", "SetJulabo"]
+        deleteAction = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Delete rowsss', )
+        #deleteAction = self.menu.addAction("Delete Row(s)", self.del_action)
+        deleteAction.setShortcut(QKeySequence("Del"))
+        deleteAction.triggered.connect(self.del_action)
+        self.menu.addAction(deleteAction)
+
+
+        actions = NRActions.actions
         for name in actions:
             action = self.sub_menu.addAction(name)
-            #action.setData(Person(name=name))
             action.triggered.connect(partial(self.menu_action, action, index))
 
-        
         action = self.menu.exec_(self.viewport().mapToGlobal(position))
         
         if action == deleteAction:
-            for items in self.selectionModel().selectedRows():
-                self.model.takeRow(items.row())
+            pass
+            #for items in self.selectionModel().selectedRows():
+             #   self.model.takeRow(items.row())
 
+    def del_action(self):
+        print("pressed")
+        for items in self.selectionModel().selectedRows():
+            self.model.takeRow(items.row())
 
     def menu_action(self, item, index):        
         item2 = QtGui.QStandardItem("")
@@ -508,17 +519,16 @@ class MyMainWindow(QtWidgets.QMainWindow):
                                            QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel, QMessageBox.Cancel)
         if buttonReply == QMessageBox.Yes:
             print('Yes clicked.')
+            self.saveScript()
         if buttonReply == QMessageBox.No:
             print('No clicked.')
         if buttonReply == QMessageBox.Cancel:
-            print('Cancel')
-        
+            return
         
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self,"QFileDialog.getOpenFileName()", "",\
+        fileName, _ = QFileDialog.getOpenFileName(self,"Open saved ScriptMaker state", "",\
                                                   "MaxScript Files (*.json);;All Files (*)", options=options)
-
 
         for row in range(self.form_widget.view.model.invisibleRootItem().rowCount()):
             delrow = self.form_widget.view.model.takeRow(row)

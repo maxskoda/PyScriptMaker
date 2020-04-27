@@ -218,7 +218,7 @@ class Transmission():
         self.s2vg = node.child(3,1).text()
         self.s1hg = node.child(4,1).text()
         self.s2hg = node.child(5,1).text()
-        self.s4vg = node.child(6,1).text()
+        self.s4hg = node.child(6,1).text()
         self.height_offset = node.child(7,1).text()
         self.sm_angle = node.child(8,1).text()
         return self
@@ -261,25 +261,35 @@ class Transmission():
         return outString+")\n"
  
 class SetJulabo():
-    def __init__(self, Temperature=20.0, lowLimit="", highLimit=""):
+    def __init__(self, Temperature="20.0", lowLimit="", highLimit=""):
         self.Sample = "" # dummy
         self.temperature = Temperature 
         self.lowLimit = lowLimit
         self.highLimit = highLimit
         
     def makeAction(self, node):
-        print(node.child(0,1).text())
-        
+        self.Sample = node.child(0, 1).text()
+        self.temperature = node.child(1, 1).text()
+        self.lowLimit = node.child(2, 1).text()
+        self.highLimit = node.child(3, 1).text()
+        return self
+
     def isValid(self):
-        if (0.0 < self.temperature < 90.0):
+        if (0.0 < float(self.temperature) < 90.0) and self.lowLimit == "" and self.highLimit == "":
+            return True
+        elif (0.0 < float(self.temperature) < 90.0) and (float(self.lowLimit) < float(self.temperature) < float(self.highLimit)):
             return True
         else:
             return False
         
     def summary(self):
-        return '{}'.format(self.temperature)
+        if self.lowLimit == "" and self.highLimit == "":
+            return '{}'.format(self.temperature)
+        else:
+            return '{} (min={}, max={})'.format(self.temperature, self.lowLimit, self.highLimit)
         
     def stringLine(self, sampleNumber):
+        print(str(self.lowLimit), self.highLimit)
         if str(self.lowLimit) == "" and str(self.highLimit == ""):
             outString = "cset/nocontrol Julabo_WB = " + str(self.temperature) + "\n"
         else:
