@@ -8,11 +8,11 @@ import json
 import os.path
 
 
-from PyQt5.QtCore import (QAbstractItemModel, QFile, QIODevice,
+from PyQt5.QtCore import (QAbstractItemModel, QFile, QIODevice, pyqtSlot,
          QItemSelectionModel, QModelIndex, Qt, QDataStream, QVariant)
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut,
+from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut, QAbstractItemDelegate, QListWidgetItem,
     QComboBox, QApplication, QTreeWidget, qApp, QFileDialog)
 
 from functools import partial
@@ -126,13 +126,17 @@ class ComboBoxDelegate(QtWidgets.QItemDelegate):
         super(ComboBoxDelegate, self).__init__(parent)
         self.items = []
 
+    # def paint(self, painter, option, index):
+    #     if isinstance(self.parent(), QtWidgets.QAbstractItemView):
+    #         self.openPersistentEditor(index)
+    #     super(ComboBoxDelegate, self).paint(painter, option, index)
+
     def setItems(self, items):
         self.items = items
 
     def createEditor(self, parent, option, index):       
         row = index.row()
         if row == 0 and index.parent().row() >= 0:# not the very first row
-            #print(index.parent().row())
             editor = QtWidgets.QComboBox(parent)
             editor.addItems(self.items)
             return editor
@@ -141,21 +145,27 @@ class ComboBoxDelegate(QtWidgets.QItemDelegate):
 
     def setEditorData(self, editor, index):        
         if index.column() == 1 and index.parent().row() >= 0 and index.row() == 0: #just to be sure that we have a QCombobox
-            editor.setCurrentIndex(editor.findText(index.data(QtCore.Qt.DisplayRole), QtCore.Qt.MatchFixedString))           
+            #editor.setCurrentIndex(0)
+            for it in self.items:
+                print(it)
+            editor.setCurrentIndex(editor.findText(index.data(QtCore.Qt.DisplayRole), QtCore.Qt.MatchFixedString))
         else:
             QtWidgets.QItemDelegate.setEditorData(self, editor, index)
 
-        
+
     def setModelData(self, editor, model, index):
         row = index.row()
         if row == 0 and index.parent().row() >= 0:
             model.setData(index, editor.currentText(), QtCore.Qt.DisplayRole)
+            editor.setCurrentIndex(editor.findText(editor.currentText()))
         else:
             QtWidgets.QItemDelegate.setModelData(self, editor, model, index)
 
 
     def updateEditorGeometry(self, editor, option, index):
         editor.setGeometry(option.rect)
+
+
 
 ### probably not needed any more: 
 class actionListWidget(QtWidgets.QListWidget):
@@ -180,6 +190,7 @@ class Tree(QtWidgets.QTreeView):
         
         self.delegate = ComboBoxDelegate()
         self.setItemDelegateForColumn(1, self.delegate)
+        self.openPersistentEditor(self.model.index(1, 1))
         
         self.setEditTriggers(QtWidgets.QAbstractItemView.CurrentChanged)
         self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove|QtWidgets.QAbstractItemView.DragDrop)
@@ -475,6 +486,7 @@ class App(QtWidgets.QWidget):
             else:
                 return()
             self.view.delegate.setItems(sampleList)
+
             
         
 

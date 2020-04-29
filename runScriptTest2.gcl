@@ -46,19 +46,21 @@ experimentsettings
 #Script body begins here:
 #====================================
 
+##### Sample 2
+sample[2].subtitle = "D2O"
+runTime = runAngles(sample[2],0.7,5.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+runTime = transmission(sample[2], "Si", 20,1.0,0.5,50,30,53.0,20,5)
+
+runTime = contrastChange(2,0,100,0,0,1.5,15.0)
+
 ##### Sample 1
 sample[1].subtitle = "D2O"
 runTime = runAngles(sample[1],0.7,5.0)
 runTime = runAngles(sample[1],2.3,20.0)
 
 runTime = contrastChange(1,0,100,0,0,1.5,15.0)
-
-##### Sample 2
-sample[2].subtitle = "D2O"
-runTime = runAngles(sample[2],0.7,5.0)
-runTime = runAngles(sample[2],2.3,20.0)
-
-runTime = contrastChange(2,0,100,0,0,1.5,15.0)
 
 ##### Sample 3
 sample[3].subtitle = "D2O"
@@ -147,7 +149,7 @@ s4.coarse_nomirror = 0
             s5.psi = 5
       s5.footprint = 60
      s5.resolution = 0.05
-s5.coarse_nomirror = 50
+s5.coarse_nomirror = 5
          s5.height = 5
           s5.title = "S5"
        s5.subtitle = ""
