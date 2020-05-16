@@ -166,20 +166,6 @@ class ComboBoxDelegate(QtWidgets.QItemDelegate):
         else:
             QtWidgets.QItemDelegate.paint(self, painter, option, index)
 
-    # def setEditorData(self, editor, index):
-    #     if index.column() == 1 and index.parent().row() >= 0 and index.row() == 0:  # just to be sure that we have a QCombobox
-    #         currInd = editor.findText(editor.currentText())
-    #         editor.clear()
-    #         list = []
-    #         #print("Delegate: ", self.pModel._data)
-    #         for item in self.pModel.getData():
-    #             list.append(item[0])
-    #         self.items = list
-    #         editor.addItems(self.items)
-    #         editor.setCurrentIndex(currInd)
-    #     else:
-    #         QtWidgets.QItemDelegate.setEditorData(self, editor, index)
-
     def setModelData(self, editor, model, index):
         row = index.row()
         if row == 0 and index.parent().row() >= 0:
@@ -765,11 +751,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
             self.form_widget.view.tableModel._data = data['Samples']
             self.form_widget.view.tableModel.layoutChanged.emit()
 
-            # for row, samp in enumerate(data['Samples'],start=1):
-            #     if len(samp):
-            #         for col in range(self.form_widget.sampleTable.columnCount()):
-            #             self.form_widget. sampleTable.item(row,col).setText(samp[col])
-        
+
         rows = self.form_widget.view.model.rowCount()
         for i in range(rows):
             self.form_widget.view.showSummary(self.form_widget.view.model.index(i,0))
@@ -795,17 +777,6 @@ class MyMainWindow(QtWidgets.QMainWindow):
             outString += r + ",\n"
         outString = outString[:-2] + "],\n"
 
-        # for row in range(len()):
-        #     sampleRow=[]
-        #     for col in range(self.form_widget.sampleTable.model().columnCount(QModelIndex)):
-        #         item = self.form_widget.sampleTable.item(row,col)
-        #         if item.text() != "":
-        #             sampleRow.append(item.text())
-        #     outString += json.dumps(sampleRow)
-        #     if row < self.form_widget.sampleTable.rowCount()-1:
-        #         outString += ",\n"
-        #     else:
-        #         outString += "],\n"
         print(outString)
         outString += "\n\n\"Action\":[\n"
         for row in range(self.form_widget.view.model.invisibleRootItem().rowCount()):
