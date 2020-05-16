@@ -258,6 +258,25 @@
         }
     ]
 },{
+    "Inject": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "Solution",
+            "value": "SMW"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        }
+    ]
+},{
     "RunAngles": [
         {
             "label": "Sample",
@@ -283,6 +302,25 @@
         }
     ]
 },{
+    "Inject": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "Solution",
+            "value": "SMW"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        }
+    ]
+},{
     "RunAngles": [
         {
             "label": "Sample",
@@ -305,6 +343,25 @@
                 "15.0",
                 "20.0"
             ]
+        }
+    ]
+},{
+    "Inject": [
+        {
+            "label": "Sample",
+            "value": "S3"
+        },
+        {
+            "label": "Solution",
+            "value": "SMW"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
         }
     ]
 },{
@@ -336,11 +393,11 @@
     "Inject": [
         {
             "label": "Sample",
-            "value": "S1"
+            "value": "S4"
         },
         {
             "label": "Solution",
-            "value": "H2O"
+            "value": "SMW"
         },
         {
             "label": "Flow",
@@ -349,6 +406,106 @@
         {
             "label": "Volume",
             "value": "15.0"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S1"
+        },
+        {
+            "label": "Subtitle",
+            "value": "SMW"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "15.0",
+                "20.0"
+            ]
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S2"
+        },
+        {
+            "label": "Subtitle",
+            "value": "SMW"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "15.0",
+                "20.0"
+            ]
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S3"
+        },
+        {
+            "label": "Subtitle",
+            "value": "SMW"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "15.0",
+                "20.0"
+            ]
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S4"
+        },
+        {
+            "label": "Subtitle",
+            "value": "SMW"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "15.0",
+                "20.0"
+            ]
         }
     ]
 }]

@@ -342,7 +342,7 @@ class Tree(QtWidgets.QTreeView):
         self.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.resizeColumnToContents(0)        
         self.setAlternatingRowColors(True)
-        self.resize(self.sizeHint().height(), self.minimumHeight())    
+        # self.resize(self.sizeHint().height(), self.minimumHeight())
         
         self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.openMenu)
@@ -770,7 +770,6 @@ class MyMainWindow(QtWidgets.QMainWindow):
         ## get defined samples from table:
         data = self.form_widget.sampleTable.model().getData()
 
-        sampleRow = []
         for row in data:
             r = str([''.join(x) for x in row])
             r = str(r).replace("\'", "\"")
