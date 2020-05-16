@@ -161,6 +161,18 @@ class ComboBoxDelegate(QtWidgets.QItemDelegate):
         else:
             QtWidgets.QItemDelegate.setModelData(self, editor, model, index)
 
+    def updateCombo(self):
+        if isinstance(self.sender(), TableModel):
+            for ind in self.editor:
+                self.currentIndex = self.editor[ind].findText(self.editor[ind].currentText())
+                self.editor[ind].clear()
+                list = []
+                for item in self.pModel._data:
+                    list.append(item[0])
+                self.items = list
+                self.editor[ind].addItems(self.items)
+                self.editor[ind].setCurrentIndex(self.currentIndex)
+            print(" ")
 
     def updateEditorGeometry(self, editor, option, index):
         editor.setGeometry(option.rect)
