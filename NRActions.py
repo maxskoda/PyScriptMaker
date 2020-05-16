@@ -93,7 +93,7 @@ class RunAngles():
         res = dict(zip(self.Angles, self.uAmps))
         outString = self.Sample + " " +\
                     self.Subtitle +\
-                    "," + str(res)                    
+                    "\t" + str(res)
         return outString
         
     def isValid(self):

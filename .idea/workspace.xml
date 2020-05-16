@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -27,7 +34,28 @@
       <recent name="C:\Users\ktd43279\Documents\GitHub\PyScriptMaker" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ScriptMaker_v0p5">
+  <component name="RunManager" selected="Python.ScriptMaker_v0p71">
+    <configuration name="EditableTree_v1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyScriptMaker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EditableTree_v1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="ScriptMaker_v0p5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -49,7 +77,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ScriptMaker_v5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="ScriptMaker_v0p6_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -61,7 +89,70 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v5.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\ktd43279\Documents\GitHub\PyScriptMaker\ScriptMaker_v0p6_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ScriptMaker_v0p71" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyScriptMaker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p71.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ScriptMaker_v0p72" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyScriptMaker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p72.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ui_mainwindow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyScriptMaker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ui_mainwindow.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -72,8 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ScriptMaker_v0p71" />
+        <item itemvalue="Python.EditableTree_v1" />
+        <item itemvalue="Python.ui_mainwindow" />
+        <item itemvalue="Python.ScriptMaker_v0p72" />
         <item itemvalue="Python.ScriptMaker_v0p5" />
-        <item itemvalue="Python.ScriptMaker_v5" />
       </list>
     </recent_temporary>
   </component>
@@ -95,57 +189,87 @@
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="414" y="234" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1160/-1024.0.1024.1240@0.0.1920.1160" timestamp="1584034571085" />
-    <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1584035164245">
+    <state x="740" y="334" key="FileChooserDialogImpl" timestamp="1589459618751">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="740" y="334" key="FileChooserDialogImpl/0.0.1920.1160/-1024.0.1024.1240@0.0.1920.1160" timestamp="1584035164245" />
+    <state x="740" y="334" key="FileChooserDialogImpl/0.0.1920.1160@0.0.1920.1160" timestamp="1589459618751" />
     <state x="826" y="473" key="Github.ShareDialog" timestamp="1584034649436">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="826" y="473" key="Github.ShareDialog/0.0.1920.1160/-1024.0.1024.1240@0.0.1920.1160" timestamp="1584034649436" />
-    <state width="1899" height="117" key="GridCell.Tab.0.bottom" timestamp="1588151143324">
+    <state width="1899" height="140" key="GridCell.Tab.0.bottom" timestamp="1589633301525">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1579" height="117" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1584635592073" />
+    <state width="1579" height="140" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1589379396650" />
     <state width="1899" height="191" key="GridCell.Tab.0.bottom/0.0.1920.1160/-1024.0.1024.1240@0.0.1920.1160" timestamp="1584035659532" />
-    <state width="1899" height="117" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1588151143324" />
-    <state width="1899" height="117" key="GridCell.Tab.0.center" timestamp="1588151143324">
+    <state width="1899" height="140" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1589633301525" />
+    <state width="1899" height="140" key="GridCell.Tab.0.center" timestamp="1589633301525">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1579" height="117" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1584635592073" />
+    <state width="1579" height="140" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1589379396649" />
     <state width="1899" height="191" key="GridCell.Tab.0.center/0.0.1920.1160/-1024.0.1024.1240@0.0.1920.1160" timestamp="1584035659532" />
-    <state width="1899" height="117" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1588151143324" />
-    <state width="1899" height="117" key="GridCell.Tab.0.left" timestamp="1588151143323">
+    <state width="1899" height="140" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1589633301525" />
+    <state width="1899" height="140" key="GridCell.Tab.0.left" timestamp="1589633301525">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1579" height="117" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1584635592073" />
+    <state width="1579" height="140" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1589379396649" />
     <state width="1899" height="191" key="GridCell.Tab.0.left/0.0.1920.1160/-1024.0.1024.1240@0.0.1920.1160" timestamp="1584035659532" />
-    <state width="1899" height="117" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1588151143323" />
-    <state width="1899" height="117" key="GridCell.Tab.0.right" timestamp="1588151143324">
+    <state width="1899" height="140" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1589633301525" />
+    <state width="1899" height="140" key="GridCell.Tab.0.right" timestamp="1589633301525">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
-    <state width="1579" height="117" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1584635592073" />
+    <state width="1579" height="140" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1589379396650" />
     <state width="1899" height="191" key="GridCell.Tab.0.right/0.0.1920.1160/-1024.0.1024.1240@0.0.1920.1160" timestamp="1584035659532" />
-    <state width="1899" height="117" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1588151143324" />
-    <state width="1579" height="276" key="GridCell.Tab.1.bottom" timestamp="1584055733375">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1899" height="140" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1589633301525" />
+    <state width="1899" height="210" key="GridCell.Tab.1.bottom" timestamp="1589632688035">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1579" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1584055733375" />
-    <state width="1579" height="276" key="GridCell.Tab.1.center" timestamp="1584055733375">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1899" height="210" key="GridCell.Tab.1.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1589632688035" />
+    <state width="1899" height="210" key="GridCell.Tab.1.center" timestamp="1589632688035">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1579" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1584055733375" />
-    <state width="1579" height="276" key="GridCell.Tab.1.left" timestamp="1584055733375">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1899" height="210" key="GridCell.Tab.1.center/0.0.1920.1160@0.0.1920.1160" timestamp="1589632688035" />
+    <state width="1899" height="210" key="GridCell.Tab.1.left" timestamp="1589632688035">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1579" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1584055733375" />
-    <state width="1579" height="276" key="GridCell.Tab.1.right" timestamp="1584055733375">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1899" height="210" key="GridCell.Tab.1.left/0.0.1920.1160@0.0.1920.1160" timestamp="1589632688035" />
+    <state width="1899" height="210" key="GridCell.Tab.1.right" timestamp="1589632688035">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1579" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1584055733375" />
+    <state width="1899" height="210" key="GridCell.Tab.1.right/0.0.1920.1160@0.0.1920.1160" timestamp="1589632688035" />
     <state x="643" y="183" key="SettingsEditor" timestamp="1584035198374">
       <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state x="643" y="183" key="SettingsEditor/0.0.1920.1160/-1024.0.1024.1240@0.0.1920.1160" timestamp="1584035198374" />
+    <state x="623" y="255" key="search.everywhere.popup" timestamp="1589215177583">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="623" y="255" key="search.everywhere.popup/0.0.1920.1160@0.0.1920.1160" timestamp="1589215177583" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ScriptMaker_v0p7_test.py</url>
+          <line>198</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ScriptMaker_v0p72.py</url>
+          <line>648</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ui_mainwindow.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
