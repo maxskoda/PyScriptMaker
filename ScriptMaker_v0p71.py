@@ -777,7 +777,6 @@ class MyMainWindow(QtWidgets.QMainWindow):
             outString += r + ",\n"
         outString = outString[:-2] + "],\n"
 
-        print(outString)
         outString += "\n\n\"Action\":[\n"
         for row in range(self.form_widget.view.model.invisibleRootItem().rowCount()):
             it = self.form_widget.view.model.item(row)
