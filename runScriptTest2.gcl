@@ -73,48 +73,20 @@ sample[1].subtitle = "H2O"
 runTime = runAngles(sample[1],0.7,15.0)
 runTime = runAngles(sample[1],2.3,20.0)
 
-runTime = inject(1, "SMW",1.5,15.0)
-
 ##### Sample 2
 sample[2].subtitle = "H2O"
 runTime = runAngles(sample[2],0.7,15.0)
 runTime = runAngles(sample[2],2.3,20.0)
-
-runTime = inject(2, "SMW",1.5,15.0)
 
 ##### Sample 3
 sample[3].subtitle = "H2O"
 runTime = runAngles(sample[3],0.7,15.0)
 runTime = runAngles(sample[3],2.3,20.0)
 
-runTime = inject(3, "SMW",1.5,15.0)
-
 ##### Sample 4
 sample[4].subtitle = "H2O"
 runTime = runAngles(sample[4],0.7,15.0)
 runTime = runAngles(sample[4],2.3,20.0)
-
-runTime = inject(4, "SMW",1.5,15.0)
-
-##### Sample 1
-sample[1].subtitle = "SMW"
-runTime = runAngles(sample[1],0.7,15.0)
-runTime = runAngles(sample[1],2.3,20.0)
-
-##### Sample 2
-sample[2].subtitle = "SMW"
-runTime = runAngles(sample[2],0.7,15.0)
-runTime = runAngles(sample[2],2.3,20.0)
-
-##### Sample 3
-sample[3].subtitle = "SMW"
-runTime = runAngles(sample[3],0.7,15.0)
-runTime = runAngles(sample[3],2.3,20.0)
-
-##### Sample 3
-sample[3].subtitle = "SMW"
-runTime = runAngles(sample[3],0.7,15.0)
-runTime = runAngles(sample[3],2.3,20.0)
 
 ENDPROCEDURE
 

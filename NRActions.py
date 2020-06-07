@@ -6,7 +6,9 @@ Created on Thu Feb 27 21:30:47 2020
 """
 import json
 
-# actions list items need to match class names:
+# instruments
+instruments = ["INTER", "SURF", "PolRef", "OffSpec", "CRISP"]
+# actions list items need to match method names:
 actions = ["RunAngles", "Inject", "ContrastChange", "Transmission", "SetJulabo"]
 
 def writeHeader(samples, args=[]):
@@ -82,7 +84,7 @@ class RunAngles():
         self.Angles = []
         for i in tempAngles:
             self.Angles.append(float(i))
-            
+
         tempAmps = node.child(3,1).text().split(",")
         self.uAmps = []
         for i in tempAmps:
@@ -116,6 +118,12 @@ class RunAngles():
                        { "label": "Angles", "value": ['{:.1f}'.format(x) for x in self.Angles]},\
                        { "label": "uAmps", "value": ['{}'.format(x) for x in self.uAmps]}]}
         return json.dumps(rdict, indent=4)
+
+    def calcTime(self, inst):
+        if inst in ["INTER", "POLREF", "OFFSPEC"]:
+            return sum(self.uAmps) / 40.0 * 60
+        else:
+            return sum(self.uAmps) / 180.0 * 60
 
 class Inject():
     def __init__(self, Sample="", Solution="D2O", Flow=1.5, Volume=15.0):

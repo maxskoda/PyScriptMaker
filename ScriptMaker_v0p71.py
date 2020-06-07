@@ -6,7 +6,7 @@ Created on Thu May 12 09:09:50 2020
 """
 import json
 import os.path
-
+import zmq
 
 from PyQt5.QtCore import (QAbstractItemModel, QFile, QIODevice, pyqtSlot, QSortFilterProxyModel,
          QItemSelectionModel, QModelIndex, Qt, QDataStream, QVariant)
@@ -14,17 +14,17 @@ from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut, QAbstractItemDelegate, QListWidgetItem,
     QComboBox, QApplication, QTreeWidget, qApp, QFileDialog, QAbstractItemView, QStyledItemDelegate, QDoubleSpinBox,
-                             QSpinBox)
+                             QSpinBox, QLCDNumber, QSizePolicy)
 
 from functools import partial
 import numpy as np
 
-#import NRActions
 # Standard import
 import importlib
 
 # import custom 'actions' file
 import NRActions
+
 # define name string for dynamic import of action classes:
 myActions = "NRActions"
 
@@ -185,10 +185,11 @@ class ComboBoxDelegate(QtWidgets.QItemDelegate):
                 try:
                     currentIndex = self.editor[ind].findText(self.editor[ind].currentText())
                 except RuntimeError:
-                    print("oops")
+                    #print("oops")
                     indToDelete.append(ind)
                 else:
-                    print(currentIndex)
+                    pass
+                    # print(currentIndex)
             print(indToDelete)
             for ind in indToDelete:
                 del self.editor[ind]
@@ -298,7 +299,7 @@ class TableModel(QtCore.QAbstractTableModel):
             return str(section+1)
 
 class Tree(QtWidgets.QTreeView):
-    def __init__(self, type, parent=None):
+    def __init__(self, parent=None):
         super(Tree, self).__init__(parent)
         
         self.model = myStandardItemModel()
@@ -321,17 +322,11 @@ class Tree(QtWidgets.QTreeView):
                                        "Psi", "Footprint", "Resolution", "Coarse_noMirror", "Switch"]
         self.tableModel = TableModel(sampleTable, self.headerLabels_sampTable)
 
-        # self.proxyModel = ProxyModel()
-        # self.proxyModel.setFilterKeyColumn(0)
-        # self.proxyModel.setSourceModel(self.tableModel)
-        #
-        # self.delegate = ComboBoxDelegate(self.proxyModel)#sampleTable[:,0].tolist())
-        # self.delegate.setMyModel(self.proxyModel)
-        # self.setItemDelegateForColumn(1, self.delegate)
         self.delegate = ComboBoxDelegate(self, sampleTable)
         self.setItemDelegateForColumn(1, self.delegate)
         self.tableModel.dataChanged.connect(self.delegate.updateCombo)
         self.tableModel.dataChanged.connect(self.updateSummary)
+        self.model.dataChanged.connect(self.updateRuntime)
 
         #self.setEditTriggers(QtWidgets.QAbstractItemView.AllEditTriggers)#CurrentChanged)
         self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove|QtWidgets.QAbstractItemView.DragDrop)
@@ -355,20 +350,57 @@ class Tree(QtWidgets.QTreeView):
 
         self.updateSummary()
 
+        # define shortcuts
+        self.menu = QtWidgets.QMenu()
+        self.sub_menu = QtWidgets.QMenu("Insert Action")
+        self.menu.addMenu(self.sub_menu)
+        actions = NRActions.actions
+        for name in actions:
+            shortcut = "Ctrl+" + name[0].lower()
+            action = self.sub_menu.addAction(name)
+            #action.setShortcut(QtGui.QKeySequence(shortcut))
+            short = QtWidgets.QShortcut(QtGui.QKeySequence(shortcut), self)
+            short.activated.connect(partial(self.menu_action, action))
+            action.triggered.connect(partial(self.menu_action, action))
+
+    def updateRuntime(self):
+        self.totalTime = 0.0
+        for row in range(self.model.rowCount()):
+            try:
+                it = self.model.getRootItem(row, 0)
+                clName = it.text()
+                MyClass = getattr(importlib.import_module(myActions), clName)
+                # Instantiate the class (pass arguments to the constructor, if needed)
+                tempAction = MyClass()
+                tempAction.makeAction(it)
+            except AttributeError as err:
+                print("makeAction method undefined in ", tempAction)
+            try:
+                self.rtime = tempAction.calcTime(self.parent().parent().instrumentSelector.currentText())
+                self.totalTime += self.rtime
+            except AttributeError:
+                pass
+        self.parent().parent().runTime.setText("{:02d}h {:02d}min".format(int(divmod(self.totalTime, 60)[0]), int(divmod(self.totalTime, 60)[1])))
+
     def updateSummary(self):
         for row in range(self.model.rowCount()):
             self.showSummary(self.model.index(row, 0))
 
+
     def showSummary(self, index):
         it = self.model.getRootItem(index.row(), index.column())
 
-        colors = ["black", "red", "blue", "brown", "orange", "darkviolet", "salmon", "lavender"]
+        colors = ["black", "red", "blue", "green", "orange", "darkviolet", "salmon", "lavender"]
 
         clName = it.text()
         MyClass = getattr(importlib.import_module(myActions), clName)
         # Instantiate the class (pass arguments to the constructor, if needed)
         tempAction = MyClass()
-        tempAction.makeAction(it)
+
+        try:
+            tempAction.makeAction(it)
+        except AttributeError as err:
+            print("makeAction method undefined in ", tempAction)
 
         if len(self.delegate.items) and it.child(0,1).text() in self.delegate.items:
             colorIndex = self.delegate.items.index(it.child(0,1).text())
@@ -377,14 +409,20 @@ class Tree(QtWidgets.QTreeView):
         
         self.model.invisibleRootItem().child(index.row(),1).setText(tempAction.summary())#setText(shortText)
         self.resizeColumnToContents(1)
-#        tstr = tempAction.summary()
-        if tempAction.isValid():
-            self.model.invisibleRootItem().child(index.row(),2).\
-                        setBackground(QtGui.QColor(QtGui.QColor("green")))
-        else:
-            self.model.invisibleRootItem().child(index.row(),2).\
-                        setBackground(QtGui.QColor(QtGui.QColor("red")))
-        return tempAction.summary()#shortText
+
+        # self.updateRuntime(index)
+        try:
+            if tempAction.isValid():
+                self.model.invisibleRootItem().child(index.row(),2).\
+                            setBackground(QtGui.QColor(QtGui.QColor("green")))
+            else:
+                self.model.invisibleRootItem().child(index.row(),2).\
+                            setBackground(QtGui.QColor(QtGui.QColor("red")))
+
+        except AttributeError as err:
+            print("isValid method undefined in ", tempAction)
+
+        #return self.rtime, tempAction.summary()  # shortText
         del tempAction
         
     def removeSummary(self, index):
@@ -392,30 +430,24 @@ class Tree(QtWidgets.QTreeView):
  
         
     def openMenu(self, position):
-        self.menu = QtWidgets.QMenu()
+        # self.menu = QtWidgets.QMenu()
         index = self.indexAt(position)
          
-        self.sub_menu = QtWidgets.QMenu("Insert Action")
-        self.menu.addMenu(self.sub_menu)
+        # self.sub_menu = QtWidgets.QMenu("Insert Action")
+        # self.menu.addMenu(self.sub_menu)
 
         deleteAction = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Delete row(s)', )
         #deleteAction = self.menu.addAction("Delete Row(s)", self.del_action)
         deleteAction.setShortcut(QKeySequence("Del"))
         deleteAction.triggered.connect(self.del_action)
         self.menu.addAction(deleteAction)
-
-
-        actions = NRActions.actions
-        for name in actions:
-            action = self.sub_menu.addAction(name)
-            action.triggered.connect(partial(self.menu_action, action, index))
-
         action = self.menu.exec_(self.viewport().mapToGlobal(position))
         
         if action == deleteAction:
             pass
             #for items in self.selectionModel().selectedRows():
              #   self.model.takeRow(items.row())
+
 
     def del_action(self):
         # for items in self.selectionModel().selectedRows():
@@ -431,17 +463,18 @@ class Tree(QtWidgets.QTreeView):
             self.model.removeRow(index.row())
 
 
-    def menu_action(self, item, index):        
+    def menu_action(self, item):
         item2 = QtGui.QStandardItem("")
         item = QtGui.QStandardItem(item.text())
         itemCheck = QtGui.QStandardItem("")
         rowNumberItem = QtGui.QStandardItem("")
-        #print(item.text())
+        # override index temporarily test
+        index = self.selectedIndexes()[0]
+
         clName = item.text()
         MyClass = getattr(importlib.import_module(myActions), clName)
         # Instantiate the class (pass arguments to the constructor, if needed)
         actionItem = MyClass()
-            
         item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
                                   & ~QtCore.Qt.ItemIsDropEnabled\
                                   & ~QtCore.Qt.ItemIsDragEnabled)
@@ -471,7 +504,6 @@ class App(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(App, self).__init__(parent)
 
-        
         self.view = Tree(self)
         
         rows = self.view.model.rowCount()
@@ -493,14 +525,26 @@ class App(QtWidgets.QWidget):
         self.dataGroupBox.setLayout(dataLayout)
         
         mainLayout = QtWidgets.QVBoxLayout()
-        
+
+        self.instrumentSelector = QtWidgets.QComboBox()
+        self.instrumentSelector.addItems(NRActions.instruments)
+
         buttonLayout = QtWidgets.QHBoxLayout()
+        buttonLayout.addWidget(self.instrumentSelector)
         self.printTreeButton = QtWidgets.QPushButton("Output script")
+        self.printTreeButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.printTreeButton.clicked.connect(self.onPrintTree)
         buttonLayout.addWidget(self.printTreeButton)
         self.printSamplesButton = QtWidgets.QPushButton("Print samples")
         self.printSamplesButton.clicked.connect(self.onPrintSamples)
-        buttonLayout.addWidget(self.printSamplesButton)
+        # buttonLayout.addWidget(self.printSamplesButton)
+        self.timeLabel = QLabel("Duration:~ ")
+        self.timeLabel.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+        self.timeLabel.setFont(QtGui.QFont("Arial", 12, QtGui.QFont.Black))
+        self.runTime = QLabel("00:00")
+        self.runTime.setFont(QtGui.QFont("Arial", 12, QtGui.QFont.Black))
+        buttonLayout.addWidget(self.timeLabel)
+        buttonLayout.addWidget(self.runTime)
         
         self.fileLabel = QtWidgets.QLabel("Script file: ")
         self.fileEdit = QtWidgets.QLineEdit()
@@ -745,7 +789,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.form_widget.view.model.populate(fileName)
         with open(fileName) as json_file:
             data = json.load(json_file)
-            print(len(data['Samples']))
+            #print(len(data['Samples']))
             tableModel = TableModel(data['Samples'], self.form_widget.view.headerLabels_sampTable)
             self.form_widget.view.tableModel.layoutAboutToBeChanged.emit()
             self.form_widget.view.tableModel._data = data['Samples']
