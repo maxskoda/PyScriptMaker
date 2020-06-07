@@ -5,6 +5,9 @@ Created on Thu Feb 27 21:30:47 2020
 @author: Maximilian Skoda
 """
 import json
+from datetime import datetime
+
+
 
 # instruments
 instruments = ["INTER", "SURF", "PolRef", "OffSpec", "CRISP"]
@@ -12,8 +15,13 @@ instruments = ["INTER", "SURF", "PolRef", "OffSpec", "CRISP"]
 actions = ["RunAngles", "Inject", "ContrastChange", "Transmission", "SetJulabo"]
 
 def writeHeader(samples, args=[]):
+    now = datetime.now()
+    current_time = now.strftime("%d/%m/%Y, at %H:%M:%S")
     ## for OpenGenie
-    outString = "FORWARD experimentsettings\n\n" + \
+    outString = "### This script was generated on " + current_time + "\n" + \
+                "### with ScriptMaker (c) Maximilian Skoda 2020 \n" + \
+                "### Enjoy and use at your own risk. \n\n" + \
+                "FORWARD experimentsettings\n\n" + \
                 "PROCEDURE runscript\n"+\
                 "GLOBAL runtime\n"+\
                 "LOCAL ii\n\n"+\

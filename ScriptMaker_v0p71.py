@@ -531,7 +531,8 @@ class App(QtWidgets.QWidget):
 
         buttonLayout = QtWidgets.QHBoxLayout()
         buttonLayout.addWidget(self.instrumentSelector)
-        self.printTreeButton = QtWidgets.QPushButton("Output script")
+        self.printTreeButton = QtWidgets.QPushButton("Output script (Ctrl + p)", self)
+        self.printTreeButton.setShortcut('Ctrl+p')
         self.printTreeButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.printTreeButton.clicked.connect(self.onPrintTree)
         buttonLayout.addWidget(self.printTreeButton)
