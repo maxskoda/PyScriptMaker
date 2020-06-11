@@ -167,7 +167,10 @@ class Inject():
                    { "label": "Flow", "value": str(self.flow)},\
                    { "label": "Volume", "value": str(self.volume)}]
             }
-        return json.dumps(rdict, indent=4)        
+        return json.dumps(rdict, indent=4)
+
+    def calcTime(self, inst):
+        return 0 ### needts to change if "wait" implemented
 
 class ContrastChange():
     def __init__(self, Sample="", concA=100, concB=0, concC=0, concD=0, Flow=1.0, Volume=10.0):
@@ -214,6 +217,9 @@ class ContrastChange():
             }
         return json.dumps(rdict, indent=4)
 
+    def calcTime(self, inst):
+        return 0 ### needts to change if "wait" implemented
+
 class Transmission():
     def __init__(self, s1vg=1.0 ,s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
         self.Sample = Sample 
@@ -230,13 +236,14 @@ class Transmission():
     def makeAction(self, node):
         self.Sample = node.child(0,1).text()
         self.Subtitle = node.child(1,1).text()
-        self.s1vg = node.child(2,1).text()
-        self.s2vg = node.child(3,1).text()
-        self.s1hg = node.child(4,1).text()
-        self.s2hg = node.child(5,1).text()
-        self.s4hg = node.child(6,1).text()
-        self.height_offset = node.child(7,1).text()
-        self.sm_angle = node.child(8,1).text()
+        self.s1vg = float(node.child(2,1).text())
+        self.s2vg = float(node.child(3,1).text())
+        self.s1hg = float(node.child(4,1).text())
+        self.s2hg = float(node.child(5,1).text())
+        self.s4hg = float(node.child(6,1).text())
+        self.uAmps = float(node.child(7, 1).text())
+        self.height_offset = float(node.child(8,1).text())
+        self.sm_angle = float(node.child(9,1).text())
         return self
 
     def summary(self):
@@ -275,6 +282,12 @@ class Transmission():
             outString += "," + str(self.sm_angle)
                                                 
         return outString+")\n"
+
+    def calcTime(self, inst):
+        if inst in ["INTER", "POLREF", "OFFSPEC"]:
+            return self.uAmps / 40.0 * 60
+        else:
+            return self.uAmps / 180.0 * 60
  
 class SetJulabo():
     def __init__(self, Temperature="20.0", lowLimit="", highLimit=""):
@@ -341,4 +354,4 @@ class NRsample(object):
 
 
 if __name__ == '__main__':
-    print('HERE')
+    print('This is the NR actions module.')

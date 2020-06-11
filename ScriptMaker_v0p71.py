@@ -58,7 +58,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
         return items
 
     def headerData(self, column, orientation, role):
-        if (orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole):
+        if orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
             try:
                 return QtCore.QVariant(HORIZONTAL_HEADERS[column])
             except IndexError:
@@ -78,15 +78,13 @@ class myStandardItemModel(QtGui.QStandardItemModel):
         if os.path.isfile(file):
             with open(file) as json_file:
                 data = json.load(json_file)
-            #keys_list=data['Action']
-            #print(keys_list[0].values())
             for p in data['Action']:
                 parentItem = self.invisibleRootItem()
                 parentItem.setFlags(parentItem.flags() & ~QtCore.Qt.ItemIsEditable & ~QtCore.Qt.ItemIsDropEnabled)
                 
                 if isinstance(p, dict):
                     for key in p.keys():
-                        #rowNoItem = QtGui.QStandardItem("")
+                        # rowNoItem = QtGui.QStandardItem("")
                         item2 = QtGui.QStandardItem("")
                         item = QtGui.QStandardItem(key)
                         itemCheck = QtGui.QStandardItem("")
@@ -102,7 +100,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
                         lastItem.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
                                                    & ~QtCore.Qt.ItemIsDropEnabled\
                                                    & ~QtCore.Qt.ItemIsDragEnabled)
-                    parentItem.appendRow([item,item2,itemCheck,lastItem])
+                    parentItem.appendRow([item, item2, itemCheck, lastItem])
 
                     for it in p.get(next(iter(p))):
                         par = QtGui.QStandardItem(it.get('label'))
@@ -511,7 +509,8 @@ class App(QtWidgets.QWidget):
             self.view.showSummary(self.view.model.index(i,0))
             
         # set the font
-        font = QtGui.QFont("AnyStyle", 10.5)
+        myFont = "Verdana" # Consolas ok
+        font = QtGui.QFont(myFont, 10.5)
         self.view.setFont(font)
 
         self.dataGroupBox = QtWidgets.QGroupBox("NR Script")
@@ -528,10 +527,12 @@ class App(QtWidgets.QWidget):
 
         self.instrumentSelector = QtWidgets.QComboBox()
         self.instrumentSelector.addItems(NRActions.instruments)
+        self.instrumentSelector.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
 
         buttonLayout = QtWidgets.QHBoxLayout()
         buttonLayout.addWidget(self.instrumentSelector)
         self.printTreeButton = QtWidgets.QPushButton("Output script (Ctrl + p)", self)
+        self.printTreeButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.printTreeButton.setShortcut('Ctrl+p')
         self.printTreeButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.printTreeButton.clicked.connect(self.onPrintTree)
@@ -541,9 +542,9 @@ class App(QtWidgets.QWidget):
         # buttonLayout.addWidget(self.printSamplesButton)
         self.timeLabel = QLabel("Duration:~ ")
         self.timeLabel.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
-        self.timeLabel.setFont(QtGui.QFont("Arial", 12, QtGui.QFont.Black))
+        self.timeLabel.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.runTime = QLabel("00:00")
-        self.runTime.setFont(QtGui.QFont("Arial", 12, QtGui.QFont.Black))
+        self.runTime.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         buttonLayout.addWidget(self.timeLabel)
         buttonLayout.addWidget(self.runTime)
         

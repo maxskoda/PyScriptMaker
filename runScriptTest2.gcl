@@ -1,4 +1,4 @@
-### This script was generated on 07/06/2020, at 15:56:50
+### This script was generated on 11/06/2020, at 18:01:23
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -14,7 +14,7 @@ experimentsettings
 #====================================
 #These should be changed with each sample change:
 #====================================
-          sample[1].title = "Samp1"
+          sample[1].title = "S1"
     sample[1].translation = 100
          sample[1].height = 1
      sample[1].phi_offset = 1
@@ -92,6 +92,8 @@ sample[4].subtitle = "H2O"
 runTime = runAngles(sample[4],0.7,15.0)
 runTime = runAngles(sample[4],2.3,20.0)
 
+cset/control Julabo_WB = 20.0 lowLimit=19 highLimit=21
+
 ENDPROCEDURE
 
 PROCEDURE experimentsettings
@@ -107,7 +109,7 @@ s1=fields(); s2=fields(); s3=fields(); s4=fields(); s5=fields(); s6=fields(); s7
      s1.resolution = 1
 s1.coarse_nomirror = 1
          s1.height = 1
-          s1.title = "Samp1"
+          s1.title = "S1"
        s1.subtitle = ""
     s1.translation = 100
 #====================================
