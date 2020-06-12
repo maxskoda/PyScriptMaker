@@ -214,12 +214,13 @@ class SpinBoxDelegate(QStyledItemDelegate):
             spinBox = QSpinBox(parent)
         else:
             spinBox = QDoubleSpinBox(parent)
+            spinBox.setDecimals(3)
         spinBox.setMinimum(self.min)
         spinBox.setMaximum(self.max)
         return spinBox
 
     def setEditorData(self, spinBox, index):
-        print(index.model().data(index, QtCore.Qt.EditRole))
+        # print(index.model().data(index, QtCore.Qt.EditRole))
         value = index.model().data(index, QtCore.Qt.EditRole)
         try:
             spinBox.setValue(float(value))
@@ -674,7 +675,7 @@ class App(QtWidgets.QWidget):
                 sampleDict = {}
                 for col in range(self.view.tableModel.columnCount(QModelIndex)):
                     sampleDict[self.view.tableModel.headerData(col, Qt.Horizontal, Qt.DisplayRole)] = self.view.tableModel.getData()[row][col]
-                    print(sampleDict)
+                    # print(sampleDict)
                 samples.append(sampleDict)
         return samples
 
