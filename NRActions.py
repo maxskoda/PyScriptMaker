@@ -12,7 +12,7 @@ from datetime import datetime
 # instruments
 instruments = ["INTER", "SURF", "PolRef", "OffSpec", "CRISP"]
 # actions list items need to match method names:
-actions = ["RunAngles", "Inject", "ContrastChange", "Transmission", "SetJulabo"]
+actions = ["RunAngles", "Inject", "ContrastChange", "Transmission", "GoToPressure", "SetJulabo"]
 
 def writeHeader(samples, args=[]):
     now = datetime.now()
@@ -107,10 +107,12 @@ class RunAngles():
         return outString
         
     def isValid(self):
-        if len(self.Angles) == len(self.uAmps):
-            return True
+        if len(self.Angles) != len(self.uAmps):
+            return [False, "Number of Angles is not the same as number of uAmps."]
+        elif any(i > 5 for i in self.Angles):
+            return [False, "One of the angles might be too high."]
         else:
-            return False
+            return [True]
         
     def stringLine(self, sampleNumber):
         outString = "##### Sample " + str(sampleNumber) + "\n"
@@ -133,6 +135,9 @@ class RunAngles():
         else:
             return sum(self.uAmps) / 180.0 * 60
 
+    def toolTip(self):
+        return "Number of Angles and uAmps entries need to be the same."
+
 class Inject():
     def __init__(self, Sample="", Solution="D2O", Flow=1.5, Volume=15.0):
         self.Sample = Sample #model.item(row).child(0,1).text()
@@ -149,9 +154,9 @@ class Inject():
 
     def isValid(self):
         if str(self.solution).upper() in ["D2O", "H2O", "SMW", "SiCM", "SYRINGE_A", "SYRINGE_B"]:
-            return True
+            return [True]
         else:
-            return False
+            return [False]
         
     def summary(self):    
         return '{}, {}, {}, {}'.format(self.Sample, self.solution, self.flow, self.volume)
@@ -171,6 +176,9 @@ class Inject():
 
     def calcTime(self, inst):
         return 0 ### needts to change if "wait" implemented
+
+    def toolTip(self):
+        return "Valid input: D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B. HPLC: A - D2O, B - H2O"
 
 class ContrastChange():
     def __init__(self, Sample="", concA=100, concB=0, concC=0, concD=0, Flow=1.0, Volume=10.0):
@@ -194,9 +202,9 @@ class ContrastChange():
 
     def isValid(self):
         if float(self.concA) + float(self.concB) + float(self.concC) + float(self.concD) == 100:
-            return True
+            return [True]
         else:
-            return False
+            return [False, "Concentrations do not add up to 100!"]
         
     def summary(self):    
         return '{}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.concA, self.concB, self.concC, self.concD, self.flow, self.volume)
@@ -219,6 +227,9 @@ class ContrastChange():
 
     def calcTime(self, inst):
         return 0 ### needts to change if "wait" implemented
+
+    def toolTip(self):
+        return "Concentrations in % and need to add up to 100."
 
 class Transmission():
     def __init__(self, s1vg=1.0 ,s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
@@ -247,14 +258,14 @@ class Transmission():
         return self
 
     def summary(self):
-        outString = self.Sample + " " +\
-                    self.Subtitle + " " +\
-                    self.s1vg + " "
+        # outString = self.Sample + " " +\
+        #             self.Subtitle + " " +\
+        #             self.s1vg + " "
                     
         return '{}, {}, {}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.Subtitle, self.uAmps, self.s1vg, self.s2vg, self.s1hg, self.s2hg, self.height_offset, self.sm_angle)
         
     def isValid(self):
-        return True
+        return [True]
         """
         if len(self.Angles) == len(self.uAmps):
             return True
@@ -289,13 +300,37 @@ class Transmission():
         else:
             return self.uAmps / 180.0 * 60
  
+class GoToPressure():
+    def __init__(self, pressure=20.0, speed=15.0):
+        self.Sample = "" # dummy
+        self.pressure = pressure
+        self.speed = speed # [cm^2/min]
+
+        
+    def makeAction(self, node):
+        self.Sample = node.child(0, 1).text()
+        self.pressure = node.child(1, 1).text()
+        self.speed = node.child(2, 1).text()
+        return self
+
+    def isValid(self):
+        return [True]
+        
+    def summary(self):
+        return 'p={} mN,  speed={} cm^2/min'.format(self.pressure, self.speed)
+        
+    def stringLine(self, sampleNumber):
+        outString = "runTime = goToPressure(" + str(self.pressure) + ", " + str(self.speed) + ")\n"
+        return outString
+
+
 class SetJulabo():
     def __init__(self, Temperature="20.0", lowLimit="", highLimit=""):
-        self.Sample = "" # dummy
-        self.temperature = Temperature 
+        self.Sample = ""  # dummy
+        self.temperature = Temperature
         self.lowLimit = lowLimit
         self.highLimit = highLimit
-        
+
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
         self.temperature = node.child(1, 1).text()
@@ -305,25 +340,26 @@ class SetJulabo():
 
     def isValid(self):
         if (0.0 < float(self.temperature) < 90.0) and self.lowLimit == "" and self.highLimit == "":
-            return True
-        elif (0.0 < float(self.temperature) < 90.0) and (float(self.lowLimit) < float(self.temperature) < float(self.highLimit)):
-            return True
+            return [True]
+        elif (0.0 < float(self.temperature) < 90.0) and (
+                float(self.lowLimit) < float(self.temperature) < float(self.highLimit)):
+            return [True]
         else:
-            return False
-        
+            return [False]
+
     def summary(self):
         if self.lowLimit == "" and self.highLimit == "":
             return '{}'.format(self.temperature)
         else:
             return '{} (min={}, max={})'.format(self.temperature, self.lowLimit, self.highLimit)
-        
+
     def stringLine(self, sampleNumber):
         print(str(self.lowLimit), self.highLimit)
         if str(self.lowLimit) == "" and str(self.highLimit == ""):
             outString = "cset/nocontrol Julabo_WB = " + str(self.temperature) + "\n"
         else:
-            outString = "cset/control Julabo_WB = " + str(self.temperature) +\
-                        " lowLimit=" + str(self.lowLimit) +\
+            outString = "cset/control Julabo_WB = " + str(self.temperature) + \
+                        " lowLimit=" + str(self.lowLimit) + \
                         " highLimit=" + str(self.highLimit) + "\n"
         return outString
 

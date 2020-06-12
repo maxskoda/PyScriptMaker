@@ -28,7 +28,7 @@ import NRActions
 # define name string for dynamic import of action classes:
 myActions = "NRActions"
 
-HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "")
+HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row Number")
 
 
 class myStandardItemModel(QtGui.QStandardItemModel):
@@ -89,8 +89,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
                         item = QtGui.QStandardItem(key)
                         itemCheck = QtGui.QStandardItem("")
                         lastItem = QtGui.QStandardItem("")
-                        
-                        
+
                         item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
                                                    & ~QtCore.Qt.ItemIsDropEnabled\
                                                    & ~QtCore.Qt.ItemIsDragEnabled)
@@ -203,21 +202,6 @@ class ComboBoxDelegate(QtWidgets.QItemDelegate):
                 self.editor[ind].setCurrentIndex(currentIndex)
 
 
-
-### probably not needed any more: 
-class actionListWidget(QtWidgets.QListWidget):
-    def __init__(self, type, parent=None):
-        super(actionListWidget, self).__init__(parent)
-        self.setDragEnabled(True)
-        self.addItems(NRActions.actions)#["RunAngle","ConrastChange", "Transmission"])
-        
-        mimeData = QtCore.QMimeData()
-        mimeData.setText("NR_Action")
-        
-        self.setMaximumWidth(self.sizeHintForColumn(0)+20)
-        self.setMinimumWidth(self.sizeHintForColumn(0)+10)
-
-
 class SpinBoxDelegate(QStyledItemDelegate):
     def __init__(self, min, max, intOnly=False, parent=None):
         super(SpinBoxDelegate, self).__init__(parent)
@@ -245,7 +229,6 @@ class SpinBoxDelegate(QStyledItemDelegate):
     def setModelData(self, spinBox, model, index):
         spinBox.interpretText()
         value = spinBox.value()
-
         model.setData(index, value, QtCore.Qt.EditRole)
 
 
@@ -327,7 +310,7 @@ class Tree(QtWidgets.QTreeView):
         self.model.dataChanged.connect(self.updateRuntime)
 
         #self.setEditTriggers(QtWidgets.QAbstractItemView.AllEditTriggers)#CurrentChanged)
-        self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove|QtWidgets.QAbstractItemView.DragDrop)
+        self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove | QtWidgets.QAbstractItemView.DragDrop)
         self.setDragEnabled(True)
         self.setAcceptDrops(True)
 
@@ -335,6 +318,9 @@ class Tree(QtWidgets.QTreeView):
         self.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.resizeColumnToContents(0)        
         self.setAlternatingRowColors(True)
+        font = QtGui.QFont("Verdana", 10.5)
+        font.setWeight(QtGui.QFont.Bold)
+        self.header().setFont(font)
         # self.resize(self.sizeHint().height(), self.minimumHeight())
         
         self.setContextMenuPolicy(Qt.CustomContextMenu)
@@ -363,14 +349,17 @@ class Tree(QtWidgets.QTreeView):
 
     def updateRuntime(self):
         self.totalTime = 0.0
+
         for row in range(self.model.rowCount()):
             try:
+                self.model.item(row, 3).setText(str(row + 1))
                 it = self.model.getRootItem(row, 0)
                 clName = it.text()
                 MyClass = getattr(importlib.import_module(myActions), clName)
                 # Instantiate the class (pass arguments to the constructor, if needed)
                 tempAction = MyClass()
                 tempAction.makeAction(it)
+                it.setToolTip(tempAction.toolTip())
             except AttributeError as err:
                 print("makeAction method undefined in ", tempAction)
             try:
@@ -410,12 +399,14 @@ class Tree(QtWidgets.QTreeView):
 
         # self.updateRuntime(index)
         try:
-            if tempAction.isValid():
+            if tempAction.isValid()[0]:
                 self.model.invisibleRootItem().child(index.row(),2).\
                             setBackground(QtGui.QColor(QtGui.QColor("green")))
             else:
                 self.model.invisibleRootItem().child(index.row(),2).\
                             setBackground(QtGui.QColor(QtGui.QColor("red")))
+                item = self.model.getRootItem(index.row(), 2)
+                item.setToolTip(tempAction.isValid()[1])
 
         except AttributeError as err:
             print("isValid method undefined in ", tempAction)
@@ -516,8 +507,7 @@ class App(QtWidgets.QWidget):
         self.dataGroupBox = QtWidgets.QGroupBox("NR Script")
         dataLayout = QtWidgets.QHBoxLayout()
                
-        actionList = actionListWidget(self)
-              
+
         #dataLayout.addWidget(actionList)
         dataLayout.addWidget(self.view)
         

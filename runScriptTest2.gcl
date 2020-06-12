@@ -1,4 +1,4 @@
-### This script was generated on 11/06/2020, at 18:01:23
+### This script was generated on 12/06/2020, at 16:24:04
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -49,6 +49,8 @@ sample[1].subtitle = "D2O"
 runTime = runAngles(sample[1],0.7,5.0)
 runTime = runAngles(sample[1],2.3,20.0)
 
+runTime = goToPressure(20.0, 15.0)
+
 runTime = contrastChange(1,0,100,0,0,1.5,15.0)
 
 ##### Sample 2
@@ -91,8 +93,6 @@ runTime = runAngles(sample[3],2.3,20.0)
 sample[4].subtitle = "H2O"
 runTime = runAngles(sample[4],0.7,15.0)
 runTime = runAngles(sample[4],2.3,20.0)
-
-cset/control Julabo_WB = 20.0 lowLimit=19 highLimit=21
 
 ENDPROCEDURE
 
