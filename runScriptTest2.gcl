@@ -1,4 +1,4 @@
-### This script was generated on 12/06/2020, at 16:38:58
+### This script was generated on 27/06/2020, at 21:42:57
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -49,28 +49,28 @@ sample[1].subtitle = "D2O"
 runTime = runAngles(sample[1],0.7,5.0)
 runTime = runAngles(sample[1],2.3,20.0)
 
-runTime = contrastChange(1,0,100,0,0,1.5,15.0)
+runTime = inject(1, "H2O",1.5,15.0)
 
 ##### Sample 2
 sample[2].subtitle = "D2O"
 runTime = runAngles(sample[2],0.7,5.0)
 runTime = runAngles(sample[2],2.3,20.0)
 
-runTime = contrastChange(2,0,100,0,0,1.5,15.0)
+runTime = inject(2, "H2O",1.5,15.0)
 
 ##### Sample 3
 sample[3].subtitle = "D2O"
 runTime = runAngles(sample[3],0.7,5.0)
 runTime = runAngles(sample[3],2.3,20.0)
 
-runTime = contrastChange(3,0,100,0,0,1.5,15.0)
+runTime = inject(3, "H2O",1.5,15.0)
 
 ##### Sample 4
 sample[4].subtitle = "D2O"
 runTime = runAngles(sample[4],0.7,5.0)
 runTime = runAngles(sample[4],2.3,20.0)
 
-runTime = contrastChange(4,0,100,0,0,1.5,15.0)
+runTime = inject(4, "H2O",1.5,15.0)
 
 ##### Sample 1
 sample[1].subtitle = "H2O"

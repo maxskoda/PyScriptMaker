@@ -14,6 +14,21 @@ instruments = ["INTER", "SURF", "PolRef", "OffSpec", "CRISP"]
 # actions list items need to match method names:
 actions = ["RunAngles", "Inject", "ContrastChange", "Transmission", "GoToPressure", "SetJulabo"]
 
+
+def isfloat(value):
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
+
+def tofloat(value):
+    try:
+        float(value)
+        return float(value)
+    except ValueError:
+        return "NaN"
+
 def writeHeader(samples, args=[]):
     now = datetime.now()
     current_time = now.strftime("%d/%m/%Y, at %H:%M:%S")
@@ -83,20 +98,17 @@ class RunAngles():
         self.Subtitle = Subtitle #model.item(row).child(1,1).text()
         self.Angles = Angles #model.item(row).child(2,1).text()
         self.uAmps = uAmps #model.item(row).child(3,1).text()
-        
+
     def makeAction(self, node):
-        self.Sample = node.child(0,1).text()
-        self.Subtitle = node.child(1,1).text()
+        self.Sample = node.child(0, 1).text()
+        self.Subtitle = node.child(1, 1).text()
 
-        tempAngles = node.child(2,1).text().split(",")
-        self.Angles = []
-        for i in tempAngles:
-            self.Angles.append(float(i))
+        tempAngles = node.child(2, 1).text().split(",")
+        self.Angles = [float(a) for a in tempAngles if isfloat(a)]
 
-        tempAmps = node.child(3,1).text().split(",")
-        self.uAmps = []
-        for i in tempAmps:
-            self.uAmps.append(float(i))
+
+        tempAmps = node.child(3, 1).text().split(",")
+        self.uAmps = [float(a) for a in tempAmps if isfloat(a)]
         return self
 
     def summary(self):
@@ -108,11 +120,13 @@ class RunAngles():
         
     def isValid(self):
         if len(self.Angles) != len(self.uAmps):
-            return [False, "Number of Angles is not the same as number of uAmps."]
+            return [False, "Number of Angles is not the same as number of uAmps or empty."]
         elif any(i > 5 for i in self.Angles):
             return [False, "One of the angles might be too high."]
+        elif len(self.Angles) == 0:
+            return [False, "Please enter at least on angle/uAmp pair."]
         else:
-            return [True]
+            return [True, "All good!"]
         
     def stringLine(self, sampleNumber):
         outString = "##### Sample " + str(sampleNumber) + "\n"
@@ -142,28 +156,29 @@ class Inject():
     def __init__(self, Sample="", Solution="D2O", Flow=1.5, Volume=15.0):
         self.Sample = Sample #model.item(row).child(0,1).text()
         self.solution = Solution
-        self.flow = Flow
-        self.volume = Volume
+        self.flow = tofloat(Flow)
+        self.volume = tofloat(Volume)
         
     def makeAction(self, node):
-        self.Sample = node.child(0,1).text()
-        self.solution = node.child(1,1).text()
-        self.flow = node.child(2,1).text()
-        self.volume = node.child(3,1).text()        
+        self.Sample = node.child(0, 1).text()
+        self.solution = node.child(1, 1).text()
+        self.flow = tofloat(node.child(2, 1).text())
+        self.volume = tofloat(node.child(3, 1).text())
         return self
 
     def isValid(self):
-        if str(self.solution).upper() in ["D2O", "H2O", "SMW", "SiCM", "SYRINGE_A", "SYRINGE_B"]:
-            return [True]
+        if str(self.solution).upper() in \
+                ["D2O", "H2O", "SMW", "SiCM", "SYRINGE_A", "SYRINGE_B"]:
+            return [True, "All good!"]
         else:
-            return [False]
+            return [False, "Requested liquid not valid. Must be D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B"]
         
-    def summary(self):    
+    def summary(self):
         return '{}, {}, {}, {}'.format(self.Sample, self.solution, self.flow, self.volume)
         
     def stringLine(self, sampleNumber):
         outString = "runTime = inject(" + str(sampleNumber) + ", \"" + self.solution + \
-                        "\"," + self.flow + "," + self.volume + ")\n"
+                        "\"," + str(self.flow) + "," + str(self.volume) + ")\n"
         return outString
     
     def makeJSON(self):
@@ -201,10 +216,13 @@ class ContrastChange():
         return self
 
     def isValid(self):
-        if float(self.concA) + float(self.concB) + float(self.concC) + float(self.concD) == 100:
-            return [True]
+        if isfloat(self.concA) and isfloat(self.concB) and isfloat(self.concC) and isfloat(self.concD):
+            if float(self.concA) + float(self.concB) + float(self.concC) + float(self.concD) == 100:
+                return [True]
+            else:
+                return [False, "Concentrations do not add up to 100!"]
         else:
-            return [False, "Concentrations do not add up to 100!"]
+            return [False, "Please enter numbers."]
         
     def summary(self):    
         return '{}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.concA, self.concB, self.concC, self.concD, self.flow, self.volume)
@@ -235,7 +253,7 @@ class Transmission():
     def __init__(self, s1vg=1.0 ,s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
         self.Sample = Sample 
         self.Subtitle = Subtitle 
-        self.s1vg = s1vg
+        self.s1vg = tofloat(s1vg)
         self.s2vg = s2vg
         self.s1hg = s1hg
         self.s2hg = s2hg
@@ -245,16 +263,16 @@ class Transmission():
         self.sm_angle = sm_angle
         
     def makeAction(self, node):
-        self.Sample = node.child(0,1).text()
-        self.Subtitle = node.child(1,1).text()
-        self.s1vg = float(node.child(2,1).text())
-        self.s2vg = float(node.child(3,1).text())
-        self.s1hg = float(node.child(4,1).text())
-        self.s2hg = float(node.child(5,1).text())
-        self.s4hg = float(node.child(6,1).text())
-        self.uAmps = float(node.child(7, 1).text())
-        self.height_offset = float(node.child(8,1).text())
-        self.sm_angle = float(node.child(9,1).text())
+        self.Sample = node.child(0, 1).text()
+        self.Subtitle = node.child(1, 1).text()
+        self.s1vg = tofloat(node.child(2, 1).text())
+        self.s2vg = tofloat(node.child(3, 1).text())
+        self.s1hg = tofloat(node.child(4, 1).text())
+        self.s2hg = tofloat(node.child(5, 1).text())
+        self.s4hg = tofloat(node.child(6, 1).text())
+        self.uAmps = tofloat(node.child(7, 1).text())
+        self.height_offset = tofloat(node.child(8, 1).text())
+        self.sm_angle = tofloat(node.child(9, 1).text())
         return self
 
     def summary(self):
@@ -265,13 +283,13 @@ class Transmission():
         return '{}, {}, {}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.Subtitle, self.uAmps, self.s1vg, self.s2vg, self.s1hg, self.s2hg, self.height_offset, self.sm_angle)
         
     def isValid(self):
+        for attr in self.__dict__:
+            print(attr)
+            if attr == "NaN" or attr == "nan":
+                return [False, "Check values! One is not a number."]
+                break
         return [True]
-        """
-        if len(self.Angles) == len(self.uAmps):
-            return True
-        else:
-            return False
-        """
+
     def makeJSON(self):
         rdict = {"Transmission": [{ "label": "Sample", "value": str(self.Sample) },\
                        { "label": "Subtitle", "value": str(self.Subtitle) },\
@@ -299,18 +317,21 @@ class Transmission():
             return self.uAmps / 40.0 * 60
         else:
             return self.uAmps / 180.0 * 60
+
+    def toolTip(self):
+        pass
  
 class GoToPressure():
     def __init__(self, pressure=20.0, speed=15.0):
-        self.Sample = "" # dummy
+        # self.Sample = "" # dummy
         self.pressure = pressure
         self.speed = speed # [cm^2/min]
 
         
     def makeAction(self, node):
-        self.Sample = node.child(0, 1).text()
-        self.pressure = node.child(1, 1).text()
-        self.speed = node.child(2, 1).text()
+        # self.Sample = node.child(0, 1).text()
+        self.pressure = node.child(0, 1).text()
+        self.speed = node.child(1, 1).text()
         return self
 
     def isValid(self):
@@ -322,6 +343,9 @@ class GoToPressure():
     def stringLine(self, sampleNumber):
         outString = "runTime = goToPressure(" + str(self.pressure) + ", " + str(self.speed) + ")\n"
         return outString
+
+    def toolTip(self):
+        pass
 
 
 class SetJulabo():
@@ -362,6 +386,9 @@ class SetJulabo():
                         " lowLimit=" + str(self.lowLimit) + \
                         " highLimit=" + str(self.highLimit) + "\n"
         return outString
+
+    def toolTip(self):
+        pass
 
 class IterRegistry(type):
     def __iter__(cls):
