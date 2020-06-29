@@ -6,13 +6,14 @@ Created on Thu Feb 27 21:30:47 2020
 """
 import json
 from datetime import datetime
+import ScriptActionClass as ScriptActionClass
 
 
 
 # instruments
 instruments = ["INTER", "SURF", "PolRef", "OffSpec", "CRISP"]
-# actions list items need to match method names:
-actions = ["RunAngles", "Inject", "ContrastChange", "Transmission", "GoToPressure", "SetJulabo"]
+# actions list items need to match method names (obsolete due to abstract class:
+# actions = ["RunAngles", "Inject", "ContrastChange", "Transmission", "GoToPressure", "SetJulabo"]
 
 
 def isfloat(value):
@@ -92,8 +93,8 @@ def writeFooter(samples):
     outString += "ENDPROCEDURE\n"                                
     return outString
 
-class RunAngles():
-    def __init__(self, Sample="", Subtitle="", Angles=[0.7,2.3], uAmps=[5,20]):
+class RunAngles(ScriptActionClass.ActionClass):
+    def __init__(self, Sample="", Subtitle="", Angles=[0.7, 2.3], uAmps=[5, 20]):
         self.Sample = Sample #model.item(row).child(0,1).text()
         self.Subtitle = Subtitle #model.item(row).child(1,1).text()
         self.Angles = Angles #model.item(row).child(2,1).text()
@@ -152,7 +153,7 @@ class RunAngles():
     def toolTip(self):
         return "Number of Angles and uAmps entries need to be the same."
 
-class Inject():
+class Inject(ScriptActionClass.ActionClass):
     def __init__(self, Sample="", Solution="D2O", Flow=1.5, Volume=15.0):
         self.Sample = Sample #model.item(row).child(0,1).text()
         self.solution = Solution
@@ -195,7 +196,7 @@ class Inject():
     def toolTip(self):
         return "Valid input: D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B. HPLC: A - D2O, B - H2O"
 
-class ContrastChange():
+class ContrastChange(ScriptActionClass.ActionClass):
     def __init__(self, Sample="", concA=100, concB=0, concC=0, concD=0, Flow=1.0, Volume=10.0):
         self.Sample = Sample #model.item(row).child(0,1).text()
         self.concA = concA
@@ -249,7 +250,7 @@ class ContrastChange():
     def toolTip(self):
         return "Concentrations in % and need to add up to 100."
 
-class Transmission():
+class Transmission(ScriptActionClass.ActionClass):
     def __init__(self, s1vg=1.0 ,s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
         self.Sample = Sample 
         self.Subtitle = Subtitle 
@@ -321,7 +322,7 @@ class Transmission():
     def toolTip(self):
         pass
  
-class GoToPressure():
+class GoToPressure(ScriptActionClass.ActionClass):
     def __init__(self, pressure=20.0, speed=15.0):
         # self.Sample = "" # dummy
         self.pressure = pressure
@@ -344,11 +345,18 @@ class GoToPressure():
         outString = "runTime = goToPressure(" + str(self.pressure) + ", " + str(self.speed) + ")\n"
         return outString
 
+    def calcTime(self, inst):
+        # NEED TO THINK ABOUT HOW TO ESTIMATE TIME!!!!
+        return 0
+
+    def makeJSON(self):
+        pass
+
     def toolTip(self):
         pass
 
 
-class SetJulabo():
+class SetJulabo(ScriptActionClass.ActionClass):
     def __init__(self, Temperature="20.0", lowLimit="", highLimit=""):
         self.Sample = ""  # dummy
         self.temperature = Temperature
@@ -387,6 +395,13 @@ class SetJulabo():
                         " highLimit=" + str(self.highLimit) + "\n"
         return outString
 
+    def calcTime(self, inst):
+        # NEED TO THINJK ABOUT HOW TO ESTIMATE TIME
+        return 0
+
+    def makeJSON(self):
+        pass
+
     def toolTip(self):
         pass
 
@@ -417,4 +432,6 @@ class NRsample(object):
 
 
 if __name__ == '__main__':
-    print('This is the NR actions module.')
+    print('This is the NR actions module.\n\nDefined actions are: ')
+    actions = [cls.__name__ for cls in ScriptActionClass.ActionClass.__subclasses__()]
+    print(actions)

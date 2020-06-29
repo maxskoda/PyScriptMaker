@@ -1,4 +1,4 @@
-### This script was generated on 27/06/2020, at 21:42:57
+### This script was generated on 29/06/2020, at 14:03:52
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -14,7 +14,7 @@ experimentsettings
 #====================================
 #These should be changed with each sample change:
 #====================================
-          sample[1].title = "S1"
+          sample[1].title = "Sample 1"
     sample[1].translation = 100
          sample[1].height = 1
      sample[1].phi_offset = 1
@@ -45,7 +45,161 @@ experimentsettings
 #====================================
 
 ##### Sample 1
-sample[1].subtitle = "D2O"
+sample[1].subtitle = "D2O + protein 5 mg/mL"
+runTime = runAngles(sample[1],0.7,5.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+runTime = inject(1, "H2O",1.5,15.0)
+
+##### Sample 2
+sample[2].subtitle = "D2O"
+runTime = runAngles(sample[2],0.7,5.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+runTime = inject(2, "H2O",1.5,15.0)
+
+##### Sample 3
+sample[3].subtitle = "D2O"
+runTime = runAngles(sample[3],0.7,5.0)
+runTime = runAngles(sample[3],2.3,20.0)
+
+runTime = inject(3, "H2O",1.5,15.0)
+
+##### Sample 4
+sample[4].subtitle = "D2O"
+runTime = runAngles(sample[4],0.7,5.0)
+runTime = runAngles(sample[4],2.3,20.0)
+
+runTime = inject(4, "H2O",1.5,15.0)
+
+##### Sample 1
+sample[1].subtitle = "H2O"
+runTime = runAngles(sample[1],0.7,15.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+##### Sample 2
+sample[2].subtitle = "H2O"
+runTime = runAngles(sample[2],0.7,15.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+##### Sample 3
+sample[3].subtitle = "H2O"
+runTime = runAngles(sample[3],0.7,15.0)
+runTime = runAngles(sample[3],2.3,20.0)
+
+##### Sample 4
+sample[4].subtitle = "H2O"
+runTime = runAngles(sample[4],0.7,15.0)
+runTime = runAngles(sample[4],2.3,20.0)
+
+##### Sample 1
+sample[1].subtitle = "D2O + protein 5 mg/mL rerun"
+runTime = runAngles(sample[1],0.7,5.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+##### Sample 1
+sample[1].subtitle = "D2O + protein 5 mg/mL"
+runTime = runAngles(sample[1],0.7,5.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+runTime = inject(1, "H2O",1.5,15.0)
+
+##### Sample 2
+sample[2].subtitle = "D2O"
+runTime = runAngles(sample[2],0.7,5.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+runTime = inject(2, "H2O",1.5,15.0)
+
+##### Sample 3
+sample[3].subtitle = "D2O"
+runTime = runAngles(sample[3],0.7,5.0)
+runTime = runAngles(sample[3],2.3,20.0)
+
+runTime = inject(3, "H2O",1.5,15.0)
+
+##### Sample 4
+sample[4].subtitle = "D2O"
+runTime = runAngles(sample[4],0.7,5.0)
+runTime = runAngles(sample[4],2.3,20.0)
+
+runTime = inject(4, "H2O",1.5,15.0)
+
+##### Sample 1
+sample[1].subtitle = "H2O"
+runTime = runAngles(sample[1],0.7,15.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+##### Sample 2
+sample[2].subtitle = "H2O"
+runTime = runAngles(sample[2],0.7,15.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+##### Sample 3
+sample[3].subtitle = "H2O"
+runTime = runAngles(sample[3],0.7,15.0)
+runTime = runAngles(sample[3],2.3,20.0)
+
+##### Sample 4
+sample[4].subtitle = "H2O"
+runTime = runAngles(sample[4],0.7,15.0)
+runTime = runAngles(sample[4],2.3,20.0)
+
+##### Sample 1
+sample[1].subtitle = "D2O + protein 5 mg/mL"
+runTime = runAngles(sample[1],0.7,5.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+runTime = inject(1, "H2O",1.5,15.0)
+
+##### Sample 2
+sample[2].subtitle = "D2O"
+runTime = runAngles(sample[2],0.7,5.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+runTime = inject(2, "H2O",1.5,15.0)
+
+##### Sample 3
+sample[3].subtitle = "D2O"
+runTime = runAngles(sample[3],0.7,5.0)
+runTime = runAngles(sample[3],2.3,20.0)
+
+runTime = inject(3, "H2O",1.5,15.0)
+
+##### Sample 4
+sample[4].subtitle = "D2O"
+runTime = runAngles(sample[4],0.7,5.0)
+runTime = runAngles(sample[4],2.3,20.0)
+
+runTime = inject(4, "H2O",1.5,15.0)
+
+##### Sample 1
+sample[1].subtitle = "H2O"
+runTime = runAngles(sample[1],0.7,15.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+##### Sample 2
+sample[2].subtitle = "H2O"
+runTime = runAngles(sample[2],0.7,15.0)
+runTime = runAngles(sample[2],2.3,20.0)
+
+##### Sample 3
+sample[3].subtitle = "H2O"
+runTime = runAngles(sample[3],0.7,15.0)
+runTime = runAngles(sample[3],2.3,20.0)
+
+##### Sample 4
+sample[4].subtitle = "H2O"
+runTime = runAngles(sample[4],0.7,15.0)
+runTime = runAngles(sample[4],2.3,20.0)
+
+##### Sample 1
+sample[1].subtitle = "D2O + protein 5 mg/mL rerun"
+runTime = runAngles(sample[1],0.7,5.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+##### Sample 1
+sample[1].subtitle = "D2O + protein 5 mg/mL"
 runTime = runAngles(sample[1],0.7,5.0)
 runTime = runAngles(sample[1],2.3,20.0)
 
@@ -107,7 +261,7 @@ s1=fields(); s2=fields(); s3=fields(); s4=fields(); s5=fields(); s6=fields(); s7
      s1.resolution = 1
 s1.coarse_nomirror = 1
          s1.height = 1
-          s1.title = "S1"
+          s1.title = "Sample 1"
        s1.subtitle = ""
     s1.translation = 100
 #====================================

@@ -69,7 +69,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
         return self.item(row,col).text()
     
     def getRootItem(self, row, col):
-        return self.item(row,col)
+        return self.item(row, col)
     
     def setMyText(self, index, text):
         self.item(index.row(), index.column()).setText(text)
@@ -330,14 +330,13 @@ class Tree(QtWidgets.QTreeView):
         self.setDragEnabled(True)
         self.setAcceptDrops(True)
 
-        
         self.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.resizeColumnToContents(0)        
         self.setAlternatingRowColors(True)
         font = QtGui.QFont("Verdana", 10.5)
         font.setWeight(QtGui.QFont.Bold)
         self.header().setFont(font)
-        # self.resize(self.sizeHint().height(), self.minimumHeight())
+        self.resize(self.sizeHint().height(), self.minimumHeight())
         
         self.setContextMenuPolicy(Qt.CustomContextMenu)
         self.customContextMenuRequested.connect(self.openMenu)
@@ -354,7 +353,8 @@ class Tree(QtWidgets.QTreeView):
         self.menu = QtWidgets.QMenu()
         self.sub_menu = QtWidgets.QMenu("Insert Action")
         self.menu.addMenu(self.sub_menu)
-        actions = NRActions.actions
+        # actions = NRActions.actions
+        actions = [cls.__name__ for cls in NRActions.ScriptActionClass.ActionClass.__subclasses__()]
         for name in actions:
             shortcut = "Ctrl+" + name[0].lower()
             action = self.sub_menu.addAction(name)
@@ -577,7 +577,7 @@ class App(QtWidgets.QWidget):
         sampleLayout = QtWidgets.QHBoxLayout()
 
         self.sampleTable = QtWidgets.QTableView()
-        # Delegates for enterin correct numbers --- THIS IS NR SPECIFIC ##################################
+        # Delegates for entering correct numbers --- THIS IS NR SPECIFIC ##################################
         self.transDelegate = SpinBoxDelegate(-600.0, 600.0)
         self.sampleTable.setItemDelegateForColumn(1, self.transDelegate)
 
@@ -622,7 +622,7 @@ class App(QtWidgets.QWidget):
         self.vbox_samples = QtWidgets.QVBoxLayout()
 
         # checkbox to hide table
-        self.b = QtWidgets.QCheckBox("Hide/Show Sample Table",self)
+        self.b = QtWidgets.QCheckBox("Hide/Show Sample Table", self)
         self.b.stateChanged.connect(self.clickBox)
         mainLayout.addWidget(self.dataGroupBox)
         mainLayout.addWidget(self.sampleTableGroupBox)
@@ -635,7 +635,7 @@ class App(QtWidgets.QWidget):
         self.setLayout(mainLayout)
         
         self.view.resizeColumnToContents(0)
-        #self.view.resizeColumnToContents(2)
+        self.view.resizeColumnToContents(2)
         self.view.header().resizeSection(2, 5)
         
         self.show()
@@ -778,6 +778,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
         # Open default file
         fileName = "INTER_4Samples_2Contrasts_inject.json"
         self.form_widget.view.model.populate(fileName)
+        for col in range(self.form_widget.view.model.columnCount()):
+            self.form_widget.view.resizeColumnToContents(col)
 
         with open(fileName) as json_file:
             data = json.load(json_file)
