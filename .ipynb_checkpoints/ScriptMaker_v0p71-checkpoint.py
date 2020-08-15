@@ -286,7 +286,7 @@ class TableModel(QtCore.QAbstractTableModel):
         for row in range(self.view.model.rowCount()):
             if self.view.model.item(row, 0).child(0, 0).text() == "Sample":
                 # print(self.view.model.item(row, 0).child(0, 1).updateCombo())
-                self.view.updateSummary()
+                self.view.update_summary()
 
 
     def headerData(self, section, orientation, role):

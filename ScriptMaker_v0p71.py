@@ -9,7 +9,7 @@ import os.path
 import zmq
 
 from PyQt5.QtCore import (QAbstractItemModel, QFile, QIODevice, pyqtSlot, QSortFilterProxyModel,
-         QItemSelectionModel, QModelIndex, Qt, QDataStream, QVariant)
+                          QModelIndex, Qt, QDataStream, QVariant)
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut, QAbstractItemDelegate, QListWidgetItem,
@@ -17,7 +17,7 @@ from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut, QAbstractI
                              QSpinBox, QLCDNumber, QSizePolicy)
 
 from functools import partial
-import numpy as np
+# import numpy as np
 
 # Standard import
 import importlib
@@ -286,7 +286,7 @@ class TableModel(QtCore.QAbstractTableModel):
         for row in range(self.view.model.rowCount()):
             if self.view.model.item(row, 0).child(0, 0).text() == "Sample":
                 # print(self.view.model.item(row, 0).child(0, 1).updateCombo())
-                self.view.updateSummary()
+                self.view.update_summary()
 
 
     def headerData(self, section, orientation, role):
@@ -322,8 +322,8 @@ class Tree(QtWidgets.QTreeView):
         self.delegate = ComboBoxDelegate(self, sampleTable)
         self.setItemDelegateForColumn(1, self.delegate)
         self.tableModel.dataChanged.connect(self.delegate.updateCombo)
-        self.tableModel.dataChanged.connect(self.updateSummary)
-        self.model.dataChanged.connect(self.updateRuntime)
+        self.tableModel.dataChanged.connect(self.update_summary)
+        self.model.dataChanged.connect(self.update_runtime)
 
         #self.setEditTriggers(QtWidgets.QAbstractItemView.AllEditTriggers)#CurrentChanged)
         self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove | QtWidgets.QAbstractItemView.DragDrop)
@@ -339,15 +339,15 @@ class Tree(QtWidgets.QTreeView):
         self.resize(self.sizeHint().height(), self.minimumHeight())
         
         self.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.customContextMenuRequested.connect(self.openMenu)
+        self.customContextMenuRequested.connect(self.open_menu)
         
-        self.collapsed.connect(self.showSummary)
-        self.expanded.connect(self.removeSummary)  
+        self.collapsed.connect(self.show_summary)
+        self.expanded.connect(self.remove_summary)
 
         self.shortcut = QShortcut(QKeySequence("Del"), self)
         self.shortcut.activated.connect(self.del_action)
 
-        self.updateSummary()
+        self.update_summary()
 
         # define shortcuts
         self.menu = QtWidgets.QMenu()
@@ -363,7 +363,7 @@ class Tree(QtWidgets.QTreeView):
             short.activated.connect(partial(self.menu_action, action))
             action.triggered.connect(partial(self.menu_action, action))
 
-    def updateRuntime(self):
+    def update_runtime(self):
         self.totalTime = 0.0
 
         for row in range(self.model.rowCount()):
@@ -387,12 +387,12 @@ class Tree(QtWidgets.QTreeView):
         # update window title to indicate unsaved changes:
         self.parent().parent().parent().setWindowModified(True)
 
-    def updateSummary(self):
+    def update_summary(self):
         for row in range(self.model.rowCount()):
-            self.showSummary(self.model.index(row, 0))
+            self.show_summary(self.model.index(row, 0))
 
 
-    def showSummary(self, index):
+    def show_summary(self, index):
         it = self.model.getRootItem(index.row(), index.column())
 
         colors = ["black", "red", "blue", "green", "orange", "darkviolet", "salmon", "lavender"]
@@ -434,11 +434,11 @@ class Tree(QtWidgets.QTreeView):
         #return self.rtime, tempAction.summary()  # shortText
         del tempAction
         
-    def removeSummary(self, index):
+    def remove_summary(self, index):
         self.model.invisibleRootItem().child(index.row(),1).setText("")
  
         
-    def openMenu(self, position):
+    def open_menu(self, position):
         # self.menu = QtWidgets.QMenu()
         index = self.indexAt(position)
          
@@ -519,7 +519,7 @@ class App(QtWidgets.QWidget):
         
         rows = self.view.model.rowCount()
         for i in range(rows):
-            self.view.showSummary(self.view.model.index(i,0))
+            self.view.show_summary(self.view.model.index(i, 0))
             
         # set the font
         myFont = "Verdana" # Consolas ok
@@ -547,10 +547,10 @@ class App(QtWidgets.QWidget):
         self.printTreeButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.printTreeButton.setShortcut('Ctrl+p')
         self.printTreeButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        self.printTreeButton.clicked.connect(self.onPrintTree)
+        self.printTreeButton.clicked.connect(self.on_print_tree)
         buttonLayout.addWidget(self.printTreeButton)
         self.printSamplesButton = QtWidgets.QPushButton("Print samples")
-        self.printSamplesButton.clicked.connect(self.onPrintSamples)
+        self.printSamplesButton.clicked.connect(self.on_print_samples)
         # buttonLayout.addWidget(self.printSamplesButton)
         self.timeLabel = QLabel("Duration:~ ")
         self.timeLabel.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
@@ -563,7 +563,7 @@ class App(QtWidgets.QWidget):
         self.fileLabel = QtWidgets.QLabel("Script file: ")
         self.fileEdit = QtWidgets.QLineEdit()
         self.fileOpenButton = QtWidgets.QPushButton("...")
-        self.fileOpenButton.clicked.connect(self.onOpenFile)
+        self.fileOpenButton.clicked.connect(self.on_open_file)
         fileLayout = QtWidgets.QHBoxLayout()
         fileLayout.addWidget(self.fileLabel)
         fileLayout.addWidget(self.fileEdit)
@@ -623,7 +623,7 @@ class App(QtWidgets.QWidget):
 
         # checkbox to hide table
         self.b = QtWidgets.QCheckBox("Hide/Show Sample Table", self)
-        self.b.stateChanged.connect(self.clickBox)
+        self.b.stateChanged.connect(self.click_box)
         mainLayout.addWidget(self.dataGroupBox)
         mainLayout.addWidget(self.sampleTableGroupBox)
 
@@ -642,7 +642,7 @@ class App(QtWidgets.QWidget):
         
 ###########  
         
-    def onOpenFile(self):
+    def on_open_file(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         fileName, _ = QFileDialog.getSaveFileName(self,"Open Script File...", "",\
@@ -662,12 +662,12 @@ class App(QtWidgets.QWidget):
         #     self.fileEdit.setText(fileName)
         #     return fileName
         
-    def onPrintTree(self):
-        self.view.updateSummary()
+    def on_print_tree(self):
+        self.view.update_summary()
         if os.path.isfile(self.fileEdit.text()):
             f = open(self.fileEdit.text(),"w+")
         else:
-            f = self.onOpenFile()
+            f = self.on_open_file()
             if os.path.isfile(self.fileEdit.text()):
                 f = open(self.fileEdit.text(), "w+")
             else:
@@ -681,7 +681,7 @@ class App(QtWidgets.QWidget):
             #     args.append(1)
             # else:
             #     args.append(0)
-        f.write(NRActions.writeHeader(self.onPrintSamples(), args))
+        f.write(NRActions.writeHeader(self.on_print_samples(), args))
 
 
         for row in range(self.view.model.rowCount()):
@@ -697,10 +697,10 @@ class App(QtWidgets.QWidget):
                 sampleNumber = -1
             f.write(tempAction.stringLine(sampleNumber)+"\n")
 
-        f.write(NRActions.writeFooter(self.onPrintSamples()))
+        f.write(NRActions.writeFooter(self.on_print_samples()))
         f.close()
 
-    def onPrintSamples(self):
+    def on_print_samples(self):
         samples = []
         #print(self.view.tableModel.getData())
         for row in range(self.view.tableModel.rowCount(QModelIndex)):
@@ -716,7 +716,7 @@ class App(QtWidgets.QWidget):
         return samples
 
    
-    def clickBox(self, state):
+    def click_box(self, state):
         if state == QtCore.Qt.Checked:
             self.addLayerButton.setHidden(True)
             self.removeLayerButton.setHidden(True)
@@ -793,7 +793,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
         for i in range(rows):
             if self.form_widget.view.model.item(i, 0).child(0, 0).text() == "Sample":
                 self.form_widget.view.openPersistentEditor(self.form_widget.view.model.item(i, 0).child(0, 1).index())
-            self.form_widget.view.showSummary(self.form_widget.view.model.index(i, 0))
+            self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
         self.form_widget.view.resizeColumnToContents(0)
         self.form_widget.fileEdit.setText('runScriptTest2.gcl')
         ############################
@@ -822,14 +822,14 @@ class MyMainWindow(QtWidgets.QMainWindow):
         with open(fileName) as json_file:
             data = json.load(json_file)
             #print(len(data['Samples']))
-            tableModel = TableModel(data['Samples'], self.form_widget.view.headerLabels_sampTable)
+            tableModel = TableModel(self.form_widget.view, data['Samples'], self.form_widget.view.headerLabels_sampTable)
             self.form_widget.view.tableModel.layoutAboutToBeChanged.emit()
             self.form_widget.view.tableModel._data = data['Samples']
             self.form_widget.view.tableModel.layoutChanged.emit()
 
         rows = self.form_widget.view.model.rowCount()
         for i in range(rows):
-            self.form_widget.view.showSummary(self.form_widget.view.model.index(i, 0))
+            self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
         self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName + "[*]")
 
     def saveScript(self):
