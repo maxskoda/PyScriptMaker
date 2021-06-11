@@ -333,7 +333,7 @@ class Tree(QtWidgets.QTreeView):
         self.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
         self.resizeColumnToContents(0)        
         self.setAlternatingRowColors(True)
-        font = QtGui.QFont("Verdana", 10.5)
+        font = QtGui.QFont("Verdana", 10)
         font.setWeight(QtGui.QFont.Bold)
         self.header().setFont(font)
         self.resize(self.sizeHint().height(), self.minimumHeight())
@@ -523,7 +523,7 @@ class App(QtWidgets.QWidget):
             
         # set the font
         myFont = "Verdana" # Consolas ok
-        font = QtGui.QFont(myFont, 10.5)
+        font = QtGui.QFont(myFont, 10)
         self.view.setFont(font)
 
         self.dataGroupBox = QtWidgets.QGroupBox("NR Script")
