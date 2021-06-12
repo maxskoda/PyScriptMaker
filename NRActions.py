@@ -113,7 +113,9 @@ class RunAngles(ScriptActionClass.ActionClass):
         return self
 
     def summary(self):
-        res = dict(zip(self.Angles, self.uAmps))
+        degree = str(b'\xc2\xb0', 'utf8')
+        res1 = dict(zip(self.Angles, self.uAmps))
+        res = ''.join("({}{}: {}\u03BCA) ".format(angle, degree, int(uamps)) for angle, uamps in res1.items())
         outString = self.Sample + " " +\
                     self.Subtitle +\
                     "\t" + str(res)
@@ -154,17 +156,19 @@ class RunAngles(ScriptActionClass.ActionClass):
         return "Number of Angles and uAmps entries need to be the same."
 
 class Inject(ScriptActionClass.ActionClass):
-    def __init__(self, Sample="", Solution="D2O", Flow=1.5, Volume=15.0):
+    def __init__(self, Sample="", Solution="D2O", Flow=1.5, Volume=15.0, wait="False"):
         self.Sample = Sample #model.item(row).child(0,1).text()
         self.solution = Solution
         self.flow = tofloat(Flow)
         self.volume = tofloat(Volume)
+        self.wait = wait
         
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
         self.solution = node.child(1, 1).text()
         self.flow = tofloat(node.child(2, 1).text())
         self.volume = tofloat(node.child(3, 1).text())
+        self.wait = node.child(4, 1).text()
         return self
 
     def isValid(self):
@@ -175,9 +179,15 @@ class Inject(ScriptActionClass.ActionClass):
             return [False, "Requested liquid not valid. Must be D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B"]
         
     def summary(self):
-        return '{}, {}, {}, {}'.format(self.Sample, self.solution, self.flow, self.volume)
+        if self.wait == 'False':
+            w = 'continue'
+        else:
+            w = 'wait'
+
+        return '{}, {}, {}, {} -> {}'.format(self.Sample, self.solution, self.flow, self.volume, w)
         
     def stringLine(self, sampleNumber):
+        ### needs string for 'wait'
         outString = "runTime = inject(" + str(sampleNumber) + ", \"" + self.solution + \
                         "\"," + str(self.flow) + "," + str(self.volume) + ")\n"
         return outString
@@ -186,12 +196,16 @@ class Inject(ScriptActionClass.ActionClass):
         rdict = {"Inject": [{ "label": "Sample", "value": str(self.Sample) },\
                    { "label": "Solution", "value": str(self.solution)},\
                    { "label": "Flow", "value": str(self.flow)},\
-                   { "label": "Volume", "value": str(self.volume)}]
+                   { "label": "Volume", "value": str(self.volume)},\
+                   { "label": "Wait", "value": str(self.wait)}]
             }
         return json.dumps(rdict, indent=4)
 
     def calcTime(self, inst):
-        return 0 ### needts to change if "wait" implemented
+        if self.wait == 'False':
+            return 0
+        else:
+            return self.volume/self.flow
 
     def toolTip(self):
         return "Valid input: D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B. HPLC: A - D2O, B - H2O"

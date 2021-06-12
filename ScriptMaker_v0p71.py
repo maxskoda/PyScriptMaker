@@ -12,7 +12,7 @@ from PyQt5.QtCore import (QAbstractItemModel, QFile, QIODevice, pyqtSlot, QSortF
                           QModelIndex, Qt, QDataStream, QVariant)
 from PyQt5 import QtGui, QtCore, QtWidgets
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut, QAbstractItemDelegate, QListWidgetItem,
+from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut, QListWidgetItem, QStyleOptionProgressBar,
     QComboBox, QApplication, QTreeWidget, qApp, QFileDialog, QAbstractItemView, QStyledItemDelegate, QDoubleSpinBox,
                              QSpinBox, QLCDNumber, QSizePolicy)
 
@@ -28,7 +28,7 @@ import NRActions
 # define name string for dynamic import of action classes:
 myActions = "NRActions"
 
-HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row Number")
+HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row Number", "Duration/min")
 
 
 class myStandardItemModel(QtGui.QStandardItemModel):
@@ -89,8 +89,9 @@ class myStandardItemModel(QtGui.QStandardItemModel):
                         item = QtGui.QStandardItem(key)
                         itemCheck = QtGui.QStandardItem("")
                         lastItem = QtGui.QStandardItem("")
-
-                        item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
+                        durationItem = QtGui.QStandardItem("||||||||||||||||||||||||||||||||||||||||")
+                        #durationItem.setData(45, Qt.UserRole)
+                        item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable
                                                    & ~QtCore.Qt.ItemIsDropEnabled\
                                                    & ~QtCore.Qt.ItemIsDragEnabled)
                         itemCheck.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
@@ -99,7 +100,10 @@ class myStandardItemModel(QtGui.QStandardItemModel):
                         lastItem.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
                                                    & ~QtCore.Qt.ItemIsDropEnabled\
                                                    & ~QtCore.Qt.ItemIsDragEnabled)
-                    parentItem.appendRow([item, item2, itemCheck, lastItem])
+                        durationItem.setFlags(item.flags() & QtCore.Qt.ItemIsEditable
+                                                   & ~QtCore.Qt.ItemIsDropEnabled\
+                                                   & ~QtCore.Qt.ItemIsDragEnabled)
+                    parentItem.appendRow([item, item2, itemCheck, lastItem, durationItem])
 
                     for it in p.get(next(iter(p))):
                         par = QtGui.QStandardItem(it.get('label'))
@@ -212,7 +216,26 @@ class ComboBoxDelegate(QtWidgets.QStyledItemDelegate):
                 self.editor[ind].setCurrentIndex(currentIndex)
 
 
-class SpinBoxDelegate(QStyledItemDelegate):
+class ProgressDelegate(QtWidgets.QStyledItemDelegate):
+    def paint(self, painter, option, index):
+        if index.parent().isValid():
+            view = option.widget
+            if isinstance(view, QtWidgets.QTreeView) and index.model() is view.model():
+                view.openPersistentEditor(index)
+            return
+        super(ProgressDelegate, self).paint(painter, option, index)
+
+    def createEditor(self, parent, option, index):
+        if index.parent().isValid():
+            editor = QtWidgets.QProgressBar(parent)
+            editor.setFixedWidth(100)
+            editor.setContentsMargins(0, 0, 0, 0)
+            editor.setValue(45)#index.data(Qt.UserRole))
+            return editor
+        super(ProgressDelegate, self).createEditor(parent, option, index)
+
+
+class SpinBoxDelegate(QtWidgets.QStyledItemDelegate):
     def __init__(self, min, max, intOnly=False, parent=None):
         super(SpinBoxDelegate, self).__init__(parent)
         self.min = min
@@ -325,6 +348,9 @@ class Tree(QtWidgets.QTreeView):
         self.tableModel.dataChanged.connect(self.update_summary)
         self.model.dataChanged.connect(self.update_runtime)
 
+        self.dur_delegate = ProgressDelegate(self)
+        self.setItemDelegateForColumn(4, self.dur_delegate)
+
         #self.setEditTriggers(QtWidgets.QAbstractItemView.AllEditTriggers)#CurrentChanged)
         self.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove | QtWidgets.QAbstractItemView.DragDrop)
         self.setDragEnabled(True)
@@ -380,6 +406,7 @@ class Tree(QtWidgets.QTreeView):
                 print("makeAction method undefined in ", tempAction)
             try:
                 self.rtime = tempAction.calcTime(self.parent().parent().instrumentSelector.currentText())
+                self.model.item(row, 4).setText(str(self.rtime))
                 self.totalTime += self.rtime
             except AttributeError:
                 pass
