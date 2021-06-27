@@ -28,7 +28,7 @@ import NRActions
 # define name string for dynamic import of action classes:
 myActions = "NRActions"
 
-HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row Number", "Duration/min")
+HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row Number", "Action duration")
 
 
 class myStandardItemModel(QtGui.QStandardItemModel):
@@ -36,6 +36,19 @@ class myStandardItemModel(QtGui.QStandardItemModel):
         super(myStandardItemModel, self).__init__(parent)
         #self.populate('C:/Users/ktd43279/Documents/build-Reorderable_tree-Desktop-Debug/debug/actionList2.json')
         #self.populate('INTER_4Samples_2Contrasts_test.json')
+
+
+    def canDropMimeData(self, data, action, row, column, parent):
+        print('can drop called on')
+        print(parent.data())
+        print("PARENT: ", parent.parent())
+        return True
+
+    # def dropMimeData(self, data, action, row, column, parent):
+    #     parent_name = parent.data()
+    #     node_name = data.text()
+    #     print("Dropped {} onto {}".format(node_name, parent_name))
+    #     return True
 
     def flags(self, index):
         defaultFlags =  QtCore.Qt.ItemIsEnabled | super(myStandardItemModel, self).flags(index)
@@ -50,6 +63,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
 
     def itemList(self, parent = QtCore.QModelIndex()):
         items = []
+        print('itemlist')
         for row in range(self.rowCount(parent)):
             idx = self.index(row, 0, parent)
             items.append(self.data(idx))
@@ -141,7 +155,7 @@ class ComboBoxDelegate(QtWidgets.QStyledItemDelegate):
         self.commitData.emit(editor)
 
     def createEditor(self, parent, option, index):
-        self.updateCombo(index)
+        # self.updateCombo(index)
         row = index.row()
         hasSample = (self.treeView.model.item(index.parent().row(), 0).child(0, 0).text() == "Sample")
         if row == 0 and index.parent().row() >= 0 and hasSample:# not the very first row
@@ -154,10 +168,11 @@ class ComboBoxDelegate(QtWidgets.QStyledItemDelegate):
             return editor
         else:
             editor = QtWidgets.QStyledItemDelegate.createEditor(self, parent, option, index)
+            # editor.model().select()
             return editor
 
     def paint(self, painter, option, index):
-        self.updateCombo(index)
+        # self.updateCombo(index)
         try:
             hasSample = (self.treeView.model.item(index.row(), 0).child(0, 0).text() == "Sample")
         except AttributeError:
@@ -201,7 +216,7 @@ class ComboBoxDelegate(QtWidgets.QStyledItemDelegate):
                 else:
                     pass
                     # print(currentIndex)
-            print(indToDelete)
+            # print(indToDelete)
             for ind in indToDelete:
                 del self.editor[ind]
             for ind in self.editor:
@@ -288,11 +303,11 @@ class TableModel(QtCore.QAbstractTableModel):
             return False
         if role == QtCore.Qt.EditRole:
             self._data[index.row()][index.column()] = str(value)
-            self.dataChanged.emit(index, index, [QtCore.Qt.DisplayRole])
+            self.dataChanged.emit(index, index)#, [QtCore.Qt.DisplayRole])
             return True
         else:
             return False
-        return True
+        return QtCore.QAbstractTableModel.setData(self, index, value, role)# True
 
     def rowCount(self, index):
         return len(self._data)
@@ -310,6 +325,12 @@ class TableModel(QtCore.QAbstractTableModel):
             if self.view.model.item(row, 0).child(0, 0).text() == "Sample":
                 # print(self.view.model.item(row, 0).child(0, 1).updateCombo())
                 self.view.update_summary()
+
+    def update_model(self, newdata):
+        self.beginResetModel()
+        self._data = newdata
+        self.view.update_summary()
+        self.endResetModel()
 
 
     def headerData(self, section, orientation, role):
@@ -330,7 +351,7 @@ class Tree(QtWidgets.QTreeView):
         #                         ["S2", "21", "22", "23", "24"],
         #                         ["S3", "31", "32", "33", "34"], ])
 
-        sampleTable = [["S1", "100", "1", "1", "1", "1", "1", "1", "1"],
+        self.sampleTable = [["S1", "100", "1", "1", "1", "1", "1", "1", "1"],
                        ["S2", "200", "2", "2", "2", "2", "2", "2", "2"],
                        ["S3", "300", "3", "3", "3", "3", "3", "3", "3"],
                        ["S4", "400", "4", "4", "4", "4", "4", "4", "4"],
@@ -340,11 +361,12 @@ class Tree(QtWidgets.QTreeView):
 
         self.headerLabels_sampTable = ["Sample/Title", "Trans", "Height", "Phi Offset",\
                                        "Psi", "Footprint", "Resolution", "Coarse_noMirror", "Switch"]
-        self.tableModel = TableModel(self, sampleTable, self.headerLabels_sampTable)
+        self.tableModel = TableModel(self, self.sampleTable, self.headerLabels_sampTable)
 
-        self.delegate = ComboBoxDelegate(self, sampleTable)
+        self.delegate = ComboBoxDelegate(self, self.sampleTable)
         self.setItemDelegateForColumn(1, self.delegate)
         self.tableModel.dataChanged.connect(self.delegate.updateCombo)
+        self.tableModel.layoutChanged.connect(self.delegate.updateCombo)
         self.tableModel.dataChanged.connect(self.update_summary)
         self.model.dataChanged.connect(self.update_runtime)
 
@@ -389,9 +411,14 @@ class Tree(QtWidgets.QTreeView):
             short.activated.connect(partial(self.menu_action, action))
             action.triggered.connect(partial(self.menu_action, action))
 
-    def update_runtime(self):
-        self.totalTime = 0.0
+    def update_sample_table(self):
+        self.tableModel.update_model(self.sampleTable)
 
+
+    def update_runtime(self):
+        # self.delegate.updateCombo()
+        self.totalTime = 0.0
+        print("Rows: ", self.model.rowCount())
         for row in range(self.model.rowCount()):
             try:
                 self.model.item(row, 3).setText(str(row + 1))
@@ -401,7 +428,8 @@ class Tree(QtWidgets.QTreeView):
                 # Instantiate the class (pass arguments to the constructor, if needed)
                 tempAction = MyClass()
                 tempAction.makeAction(it)
-                it.setToolTip(tempAction.toolTip())
+                it.setToolTip(self.tempAction.toolTip())#
+
             except AttributeError as err:
                 print("makeAction method undefined in ", tempAction)
             try:
@@ -415,6 +443,7 @@ class Tree(QtWidgets.QTreeView):
         self.parent().parent().parent().setWindowModified(True)
 
     def update_summary(self):
+        print(self.model.rowCount())
         for row in range(self.model.rowCount()):
             self.show_summary(self.model.index(row, 0))
 
@@ -442,13 +471,14 @@ class Tree(QtWidgets.QTreeView):
         self.model.invisibleRootItem().child(index.row(), 1).setText(tempAction.summary())
         self.resizeColumnToContents(1)
 
-        # self.updateRuntime(index)
+
         try:
             if tempAction.isValid()[0]:
                 self.model.invisibleRootItem().child(index.row(), 2).\
                             setBackground(QtGui.QColor(QtGui.QColor("green")))
                 item = self.model.getRootItem(index.row(), 2)
                 item.setToolTip("")
+                # self.update_runtime()
             else:
                 self.model.invisibleRootItem().child(index.row(),2).\
                             setBackground(QtGui.QColor(QtGui.QColor("red")))
@@ -459,10 +489,11 @@ class Tree(QtWidgets.QTreeView):
             print("isValid method undefined in ", tempAction)
 
         #return self.rtime, tempAction.summary()  # shortText
+        # self.update_runtime()
         del tempAction
         
     def remove_summary(self, index):
-        self.model.invisibleRootItem().child(index.row(),1).setText("")
+        self.model.invisibleRootItem().child(index.row(), 1).setText("")
  
         
     def open_menu(self, position):
@@ -504,6 +535,7 @@ class Tree(QtWidgets.QTreeView):
         item = QtGui.QStandardItem(item.text())
         itemCheck = QtGui.QStandardItem("")
         rowNumberItem = QtGui.QStandardItem("")
+        durationItem = QtGui.QStandardItem("")
         # override index temporarily test
         index = self.selectedIndexes()[0]
 
@@ -515,7 +547,7 @@ class Tree(QtWidgets.QTreeView):
                                   & ~QtCore.Qt.ItemIsDropEnabled\
                                   & ~QtCore.Qt.ItemIsDragEnabled)
         root = self.model.invisibleRootItem()
-        root.insertRow(index.row()+1, [item, item2, itemCheck, rowNumberItem])
+        root.insertRow(index.row()+1, [item, item2, itemCheck, rowNumberItem, durationItem])
         newRow = self.model.item(index.row()+1) 
         for key in actionItem.__dict__:          
             par = QtGui.QStandardItem(key)
@@ -799,7 +831,6 @@ class MyMainWindow(QtWidgets.QMainWindow):
         fileMenu.addAction(saveAct)
         fileMenu.addAction(exitAct)
 
-        
         QtWidgets.qApp.installEventFilter(self)
 
         # Open default file
@@ -849,15 +880,23 @@ class MyMainWindow(QtWidgets.QMainWindow):
         with open(fileName) as json_file:
             data = json.load(json_file)
             #print(len(data['Samples']))
-            tableModel = TableModel(self.form_widget.view, data['Samples'], self.form_widget.view.headerLabels_sampTable)
+            # tableModel = TableModel(self.form_widget.view, data['Samples'], self.form_widget.view.headerLabels_sampTable)
             self.form_widget.view.tableModel.layoutAboutToBeChanged.emit()
-            self.form_widget.view.tableModel._data = data['Samples']
+            self.form_widget.view.sampleTable = data['Samples']
+            self.form_widget.view.update_sample_table()
             self.form_widget.view.tableModel.layoutChanged.emit()
+
+
 
         rows = self.form_widget.view.model.rowCount()
         for i in range(rows):
             self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
         self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName + "[*]")
+
+        # table_data = self.form_widget.sampleTable.model().getData()
+        # self.form_widget.view.tableModel.onSampleChange()
+        # self.form_widget.view.delegate = ComboBoxDelegate(table_data)
+        # self.form_widget.view.tableModel.dataChanged.emit()
 
     def saveScript(self):
         options = QFileDialog.Options()

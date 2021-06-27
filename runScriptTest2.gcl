@@ -1,4 +1,4 @@
-### This script was generated on 12/06/2021, at 12:24:10
+### This script was generated on 27/06/2021, at 16:26:20
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -50,19 +50,20 @@ experimentsettings
 #Script body begins here:
 #====================================
 
-##### Sample 1
-sample[1].subtitle = "D2O"
-runTime = runAngles(sample[1],0.7,5.0)
-runTime = runAngles(sample[1],2.3,20.0)
-
-runTime = inject(1, "SMW",1.5,15.0)
-
 ##### Sample 2
 sample[2].subtitle = "D2O"
 runTime = runAngles(sample[2],0.7,5.0)
 runTime = runAngles(sample[2],2.3,20.0)
 
 runTime = inject(2, "SMW",1.5,15.0)
+
+##### Sample 1
+sample[1].subtitle = "D2O"
+runTime = runAngles(sample[1],0.7,5.0)
+runTime = runAngles(sample[1],1.5,20.0)
+runTime = runAngles(sample[1],2.3,20.0)
+
+runTime = inject(1, "SMW",1.5,15.0)
 
 ##### Sample 3
 sample[3].subtitle = "D2O"
@@ -137,6 +138,11 @@ runTime = runAngles(sample[4],2.3,25.0)
 sample[5].subtitle = "H2O"
 runTime = runAngles(sample[5],0.7,10.0)
 runTime = runAngles(sample[5],2.3,25.0)
+
+##### Sample 1
+sample[1].subtitle = "H2O"
+runTime = runAngles(sample[1],0.7,10.0)
+runTime = runAngles(sample[1],2.3,25.0)
 
 ENDPROCEDURE
 

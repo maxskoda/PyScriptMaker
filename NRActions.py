@@ -188,7 +188,11 @@ class Inject(ScriptActionClass.ActionClass):
         
     def stringLine(self, sampleNumber):
         ### needs string for 'wait'
-        outString = "runTime = inject(" + str(sampleNumber) + ", \"" + self.solution + \
+        if self.wait != 'False':
+            outString = "runTime = inject:wait(" + str(sampleNumber) + ", \"" + self.solution + \
+                        "\"," + str(self.flow) + "," + str(self.volume) + ")\n"
+        else:
+            outString = "runTime = inject(" + str(sampleNumber) + ", \"" + self.solution + \
                         "\"," + str(self.flow) + "," + str(self.volume) + ")\n"
         return outString
     

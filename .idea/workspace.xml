@@ -20,10 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa2868dc-3f05-41ce-b2f7-b6f864290da2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/newActions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/INTER_4Samples_2Contrasts_inject.json" beforeDir="false" afterPath="$PROJECT_DIR$/INTER_4Samples_2Contrasts_inject.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NRActions.py" beforeDir="false" afterPath="$PROJECT_DIR$/NRActions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71.py" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptMaker_v0p71.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_test - Copy.json" beforeDir="false" afterPath="$PROJECT_DIR$/json_test - Copy.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/runScriptTest2.gcl" beforeDir="false" afterPath="$PROJECT_DIR$/runScriptTest2.gcl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +63,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.ScriptMaker_v0p71">
-    <configuration name="NRActions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="DragNDrop_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -70,53 +71,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NRActions.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="RefNX_RasCAL_GUI_v0p2 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PyScriptMaker" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../RefNX_RasCAL_GUI" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../PROGS" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../RefNX_RasCAL_GUI/RefNX_RasCAL_GUI_v0p2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ScriptActionClass" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PyScriptMaker" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptActionClass.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../PROGS/DragNDrop_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -146,7 +105,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="webscrape" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dragdrop_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -158,7 +117,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/webscrape.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dragdrop_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_dragdrop" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyScriptMaker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_dragdrop.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="treeview_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyScriptMaker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads/342fc56c42df27239fa5276b79fca8e6-7033beff04370fb103a3adc7d7514f9e516243e8/342fc56c42df27239fa5276b79fca8e6-7033beff04370fb103a3adc7d7514f9e516243e8" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/342fc56c42df27239fa5276b79fca8e6-7033beff04370fb103a3adc7d7514f9e516243e8/342fc56c42df27239fa5276b79fca8e6-7033beff04370fb103a3adc7d7514f9e516243e8/treeview_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,10 +171,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.ScriptMaker_v0p71" />
-        <item itemvalue="Python.webscrape" />
-        <item itemvalue="Python.RefNX_RasCAL_GUI_v0p2 (1)" />
-        <item itemvalue="Python.NRActions" />
-        <item itemvalue="Python.ScriptActionClass" />
+        <item itemvalue="Python.dragdrop_test" />
+        <item itemvalue="Python.treeview_test" />
+        <item itemvalue="Python.DragNDrop_test" />
+        <item itemvalue="Python.test_dragdrop" />
       </list>
     </recent_temporary>
   </component>
@@ -203,54 +204,79 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1515" height="242" key="GridCell.Tab.0.bottom" timestamp="1623539337945">
+    <state x="4605" y="296" key="#com.intellij.ide.util.MemberChooser" timestamp="1624801717878">
+      <screen x="3840" y="0" width="1920" height="1160" />
+    </state>
+    <state x="4605" y="296" key="#com.intellij.ide.util.MemberChooser/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624801717878" />
+    <state width="1338" height="466" key="DebuggerActiveHint" timestamp="1624748729834">
+      <screen x="3840" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1338" height="466" key="DebuggerActiveHint/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624748729834" />
+    <state x="550" y="216" key="FileChooserDialogImpl" timestamp="1623963938382">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1515" height="242" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623539337945" />
-    <state width="1899" height="242" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1623486000851" />
-    <state width="1515" height="300" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1623428584041" />
-    <state width="1515" height="242" key="GridCell.Tab.0.center" timestamp="1623539337945">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state x="550" y="216" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1623963938382" />
+    <state width="1899" height="229" key="GridCell.Tab.0.bottom" timestamp="1624807110554">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
-    <state width="1515" height="242" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623539337945" />
-    <state width="1899" height="242" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1623486000851" />
-    <state width="1515" height="300" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1623428584041" />
-    <state width="1515" height="242" key="GridCell.Tab.0.left" timestamp="1623539337945">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="242" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623742747059" />
+    <state width="1899" height="229" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624807110554" />
+    <state width="1527" height="229" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1624790314228" />
+    <state width="1899" height="229" key="GridCell.Tab.0.center" timestamp="1624807110554">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
-    <state width="1515" height="242" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623539337945" />
-    <state width="1899" height="242" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1623486000851" />
-    <state width="1515" height="300" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1623428584041" />
-    <state width="1515" height="242" key="GridCell.Tab.0.right" timestamp="1623539337945">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="242" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623742747059" />
+    <state width="1899" height="229" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624807110554" />
+    <state width="1527" height="229" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1624790314228" />
+    <state width="1899" height="229" key="GridCell.Tab.0.left" timestamp="1624807110554">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
-    <state width="1515" height="242" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623539337945" />
-    <state width="1899" height="242" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1623486000851" />
-    <state width="1515" height="300" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1623428584041" />
-    <state width="1515" height="300" key="GridCell.Tab.1.bottom" timestamp="1623538761259">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="242" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623742747059" />
+    <state width="1899" height="229" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624807110554" />
+    <state width="1527" height="229" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1624790314228" />
+    <state width="1899" height="229" key="GridCell.Tab.0.right" timestamp="1624807110554">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
-    <state width="1515" height="300" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623538761259" />
-    <state width="1515" height="300" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1623428584041" />
-    <state width="1515" height="300" key="GridCell.Tab.1.center" timestamp="1623538761259">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="242" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623742747059" />
+    <state width="1899" height="229" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624807110554" />
+    <state width="1527" height="229" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1624790314228" />
+    <state width="1899" height="298" key="GridCell.Tab.1.bottom" timestamp="1624806870169">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
-    <state width="1515" height="300" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623538761259" />
-    <state width="1515" height="300" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1623428584041" />
-    <state width="1515" height="300" key="GridCell.Tab.1.left" timestamp="1623538761259">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="300" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623694386620" />
+    <state width="1899" height="298" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624806870169" />
+    <state width="1515" height="225" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1623965140288" />
+    <state width="1899" height="298" key="GridCell.Tab.1.center" timestamp="1624806870169">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
-    <state width="1515" height="300" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623538761259" />
-    <state width="1515" height="300" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1623428584041" />
-    <state width="1515" height="300" key="GridCell.Tab.1.right" timestamp="1623538761259">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="300" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623694386620" />
+    <state width="1899" height="298" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624806870169" />
+    <state width="1515" height="225" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1623965140288" />
+    <state width="1899" height="298" key="GridCell.Tab.1.left" timestamp="1624806870169">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
-    <state width="1515" height="300" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623538761259" />
-    <state width="1515" height="300" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1623428584041" />
+    <state width="1515" height="300" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623694386620" />
+    <state width="1899" height="298" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624806870169" />
+    <state width="1515" height="225" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1623965140288" />
+    <state width="1899" height="298" key="GridCell.Tab.1.right" timestamp="1624806870169">
+      <screen x="3840" y="0" width="1920" height="1160" />
+    </state>
+    <state width="1515" height="300" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623694386620" />
+    <state width="1899" height="298" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624806870169" />
+    <state width="1515" height="225" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1623965140288" />
     <state x="279" y="106" key="SettingsEditor" timestamp="1623424760805">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="279" y="106" key="SettingsEditor/0.0.1536.920@0.0.1536.920" timestamp="1623424760805" />
+    <state width="968" height="588" key="XDebugger.FullValuePopup" timestamp="1624748729832">
+      <screen x="3840" y="0" width="1920" height="1160" />
+    </state>
+    <state width="774" height="466" key="XDebugger.FullValuePopup/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1623693911903" />
+    <state width="968" height="588" key="XDebugger.FullValuePopup/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1624748729832" />
+    <state x="331" y="190" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1623855621815">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="331" y="190" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.920@0.0.1536.920" timestamp="1623855621815" />
     <state x="629" y="58" width="1149" height="636" key="dock-window-1" timestamp="1623426285975">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
