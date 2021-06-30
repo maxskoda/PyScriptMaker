@@ -67,3 +67,71 @@ class run_angle_polref(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         return "Number of Angles and uAmps entries need to be the same."
+
+
+class SampleLoop(ScriptActionClass.ActionClass):
+    def __init__(self, samples=[], Subtitle="", Angles=[0.7, 2.3], uAmps=[5, 20], contrastChange_to="H2O"):
+        self.samples = [samples] # model.item(row).child(0,1).text()
+        self.Subtitle = Subtitle  # model.item(row).child(1,1).text()
+        self.Angles = Angles  # model.item(row).child(2,1).text()
+        self.uAmps = uAmps  # model.item(row).child(3,1).text()
+        self.contrast_change = contrastChange_to
+
+    def makeAction(self, node):
+        self.Sample = node.child(0, 1).text()
+        self.Subtitle = node.child(1, 1).text()
+
+        tempAngles = node.child(2, 1).text().split(",")
+        self.Angles = [float(a) for a in tempAngles if isfloat(a)]
+
+        tempAmps = node.child(3, 1).text().split(",")
+        self.uAmps = [float(a) for a in tempAmps if isfloat(a)]
+
+        self.contrast_change = node.child(4, 1).text()
+        return self
+
+    def summary(self):
+        degree = str(b'\xc2\xb0', 'utf8')
+        res1 = dict(zip(self.Angles, self.uAmps))
+        res = ''.join("({}{}: {}\u03BCA) ".format(angle, degree, int(uamps)) for angle, uamps in res1.items())
+        outString = self.Sample + " " + \
+                    self.Subtitle + \
+                    "\t" + str(res) +\
+                    "->" + self.contrast_change
+        return outString
+
+    def isValid(self):
+        if len(self.Angles) != len(self.uAmps):
+            return [False, "Number of Angles is not the same as number of uAmps or empty."]
+        elif any(i > 5 for i in self.Angles):
+            return [False, "One of the angles might be too high."]
+        elif len(self.Angles) == 0:
+            return [False, "Please enter at least on angle/uAmp pair."]
+        else:
+            return [True, "All good!"]
+
+    def stringLine(self, sampleNumber):
+        outString = "LOOP ii FROM 1 TO " + str(len(self.samples)) + "\n"
+        # outString = "##### Sample " + str(sampleNumber) + "\n"
+        outString += "sample[ii].subtitle = \"" + self.Subtitle + "\"\n"
+
+        for a in range(len(self.Angles)):
+            outString += "runTime = runAngles(sample[ii]," + str(self.Angles[a]) + "," + str(
+                self.uAmps[a]) + ")\n"
+        return outString
+
+    def makeJSON(self):
+        rdict = {"RunAngles": [{"label": "Sample", "value": str(self.Sample)}, \
+                               {"label": "Subtitle", "value": str(self.Subtitle)}, \
+                               {"label": "Angles", "value": ['{:.1f}'.format(x) for x in self.Angles]}, \
+                               {"label": "uAmps", "value": ['{}'.format(x) for x in self.uAmps]}]}
+        return json.dumps(rdict, indent=4)
+
+    def calcTime(self, inst):
+        if inst in ["INTER", "POLREF", "OFFSPEC"]:
+            return sum(self.uAmps) / 40.0 * 60
+        else:
+            return sum(self.uAmps) / 180.0 * 60
+
+    def toolTip(self):
+        return "Number of Angles and uAmps entries need to be the same."

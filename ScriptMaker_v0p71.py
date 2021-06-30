@@ -4,6 +4,8 @@ Created on Thu May 12 09:09:50 2020
 
 @author: Maximilian Skoda
 """
+
+import qdarkstyle
 import json
 import os.path
 import zmq
@@ -28,7 +30,7 @@ import NRActions
 # define name string for dynamic import of action classes:
 myActions = "NRActions"
 
-HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row Number", "Action duration")
+HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row", "Action duration / min")
 
 
 class myStandardItemModel(QtGui.QStandardItemModel):
@@ -855,6 +857,14 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.form_widget.view.resizeColumnToContents(0)
         self.form_widget.fileEdit.setText('runScriptTest2.gcl')
         ############################
+        self.setStyleSheet("""
+
+            QTreeView {
+            alternate-background-color: #e8f4fc;
+            background: #f6fafb;
+            }
+
+        """)
         
     def openScript(self):
         print("Opening...")
@@ -938,8 +948,11 @@ class MyMainWindow(QtWidgets.QMainWindow):
 
 
 def main():
+
     app = QApplication([])
     app.aboutToQuit.connect(app.deleteLater)
+    # app.setStyle('Plastique')
+    # app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
     foo = MyMainWindow()
     foo.resize(700, 800)
     foo.setWindowTitle("Ma_xSkript [*]")

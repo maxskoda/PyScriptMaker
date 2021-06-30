@@ -1,19 +1,6 @@
 from abc import ABC, abstractmethod
 
 
-class AbstractClassExample(ABC):
-
-    @abstractmethod
-    def do_something(self):
-        print("Some implementation!")
-
-
-class AnotherSubclass(AbstractClassExample):
-
-        def do_something(self):
-            super().do_something()
-            print("The enrichment from AnotherSubclass")
-
 class ActionClass(ABC):
 
     @abstractmethod
@@ -48,8 +35,4 @@ class ActionClass(ABC):
     def toolTip(self):
         pass
 
-# Driver code
-# for cls in AbstractClassExample.__subclasses__():
-#     print (cls.__name__)
-# print( issubclass(AnotherSubclass, AbstractClassExample))
-# print( isinstance(AnotherSubclass(), AbstractClassExample))
+
