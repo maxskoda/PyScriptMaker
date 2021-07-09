@@ -395,10 +395,12 @@ class ContrastChange(ScriptActionClass.ActionClass):
             return [False, "Please enter numbers."]
         
     def summary(self):    
-        return '{}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.concA, self.concB, self.concC, self.concD, self.flow, self.volume)
+        return '{}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.concA, self.concB, self.concC, self.concD,
+                                                   self.flow, self.volume)
         
     def stringLine(self, sampleNumber):
-        outString = "runTime = contrastChange(" + str(sampleNumber) + "," + self.concA + "," + self.concB + "," + self.concC + "," + self.concD + \
+        outString = "runTime = contrastChange(" + str(sampleNumber) + "," + self.concA + "," + \
+                    self.concB + "," + self.concC + "," + self.concD + \
                         "," + self.flow + "," + self.volume + ")\n"
         return outString
     

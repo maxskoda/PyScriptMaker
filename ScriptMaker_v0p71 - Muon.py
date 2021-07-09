@@ -29,9 +29,9 @@ import importlib
 import MuonActions#NRActions
 
 # define name string for dynamic import of action classes:
-myActions = "NRActions" #"MuonActions"
+myActions = "MuonActions"
 
-NRActions = __import__('NRActions') #__import__('MuonActions')
+NRActions = __import__('MuonActions')
 
 HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row", "Action duration / min")
 
@@ -850,7 +850,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
         QtWidgets.qApp.installEventFilter(self)
 
         # Open default file
-        fileName = "INTER_4Samples_2Contrasts_inject.json" #"Muon_test.json"
+        fileName = "Muon_test.json"
         self.form_widget.view.model.populate(fileName)
         for col in range(self.form_widget.view.model.columnCount()):
             self.form_widget.view.resizeColumnToContents(col)
@@ -869,7 +869,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
                 self.form_widget.view.openPersistentEditor(self.form_widget.view.model.item(i, 0).child(0, 1).index())
             self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
         self.form_widget.view.resizeColumnToContents(0)
-        self.form_widget.fileEdit.setText('runScriptTest2.gcl')
+        self.form_widget.fileEdit.setText('MuonScriptTest1.py')
         ############################
         self.setStyleSheet("""
 
