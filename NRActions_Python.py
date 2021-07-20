@@ -37,69 +37,49 @@ def writeHeader(samples, args=[]):
     outString = "### This script was generated on " + current_time + "\n" + \
                 "### with ScriptMaker (c) Maximilian Skoda 2020 \n" + \
                 "### Enjoy and use at your own risk. \n\n" + \
-                "FORWARD experimentsettings\n\n" + \
-                "PROCEDURE runscript\n"+\
-                "GLOBAL runtime\n"+\
-                "LOCAL ii\n\n"+\
-                "CHANGE NPERIODS=1\n"+\
-                "cset monitor 1\n"+\
-                "experimentsettings\n"+\
-                "#====================================\n"+\
-                "#These should be changed with each sample change:\n"+\
-                "#====================================\n"
-    sampList=[]            
+                "import sys\n" + \
+                "import os\n"
+    outString += r'sys.path.insert(0, os.path.abspath(os.path.join(r"C:\\", "Instrument", "scripts")))'
+    outString += "\nfrom genie_python import genie as g\n"
+    outString += "from technique.reflectometry import SampleGenerator, run_angle, contrast_change, transmission\n\n\n"
+    outString += "def runscript(dry_run=False):\n"
+
+    outString += "\tsample_generator = SampleGenerator(\n" + \
+                 "\t\ttranslation=400.0,\n" + \
+                 "\t\theight2_offset=0,\n" + \
+                 "\t\tphi_offset=0.0,\n" + \
+                 "\t\tpsi_offset=0.0,\n" + \
+                 "\t\theight_offset=0.0,\n" + \
+                 "\t\tresolution=0.03,\n" + \
+                 "\t\tfootprint=60)\n\n"
+    sampList=[]
     for samp in range(len(samples)):
-        outString += "          sample[" + str(samp+1) + "].title = \"" + samples[samp].get("Sample/Title") +"\"\n"+\
-                     "    sample[" + str(samp+1) + "].translation = " + samples[samp].get("Trans") +"\n"+\
-                     "         sample[" + str(samp+1) + "].height = " + samples[samp].get("Height") +"\n"+\
-                     "     sample[" + str(samp+1) + "].phi_offset = " + samples[samp].get("Phi Offset") +"\n"+\
-                     "            sample[" + str(samp+1) + "].psi = " + samples[samp].get("Psi") + "\n"+\
-                     "#====================================\n"
-                     #"      s" + str(samp+1) + ".footprint = " + samples[samp].get("Footprint") +"\n"+\
-                     #"     s" + str(samp+1) + ".resolution = " + samples[samp].get("Resolution") +"\n"+\
-                     #"s" + str(samp+1) + ".coarse_nomirror = " + samples[samp].get("Coarse_noMirror") +"\n"+\                                        
-                     #"       s" + str(samp+1) + ".subtitle = \"\""  +"\n"+\
-                     
-    outString += "#====================================\n\n"+\
-                 "#====================================\n"+\
-                 "#Script body begins here:\n"+\
-                 "#====================================\n\n"
+        outString += "\tsample_" + samples[samp].get("Sample/Title") + "= sample_generator.new_sample(title="
+        outString += r'"' + samples[samp].get("Sample/Title") + r'",' + "\n"
+        outString += "\t\ttranslation=" + samples[samp].get("Trans") +",\n"
+        outString += "\t\theight_offset=" + samples[samp].get("Height") + ",\n"
+        outString += "\t\tphi_offset=" + samples[samp].get("Phi Offset") + ",\n"
+        outString += "\t\tpsi_offset=" + samples[samp].get("Psi") + ")\n\n"
+
+
     return outString
 
 def writeFooter(samples):
-    ## for OpenGenie
-    outString = "ENDPROCEDURE\n\n" + \
-                "PROCEDURE experimentsettings\n"+\
-                "GLOBAL S1 S2 S3 S4 S5 S6 S7 sample\n"+\
-                "#====================================\n"+\
-                "#Generic settings for all samples which do not need to be changed during experiment:\n"+\
-                "#====================================\n"+\
-                "s1=fields(); s2=fields(); s3=fields(); s4=fields(); s5=fields(); s6=fields(); s7=fields()\n"+\
-                "#====================================\n"
-    for samp in range(len(samples)):
-        outString += "     s" + str(samp+1) + ".phi_offset = " + samples[samp].get("Phi Offset") +"\n"+\
-                     "            s" + str(samp+1) + ".psi = " + samples[samp].get("Psi") + "\n"+\
-                     "      s" + str(samp+1) + ".footprint = " + samples[samp].get("Footprint") +"\n"+\
-                     "     s" + str(samp+1) + ".resolution = " + samples[samp].get("Resolution") +"\n"+\
-                     "s" + str(samp+1) + ".coarse_nomirror = " + samples[samp].get("Coarse_noMirror") +"\n"+\
-                     "         s" + str(samp+1) + ".height = " + samples[samp].get("Height") +"\n"+\
-                     "          s" + str(samp+1) + ".title = \"" + samples[samp].get("Sample/Title") +"\"\n"+\
-                     "       s" + str(samp+1) + ".subtitle = \"\""  +"\n"+\
-                     "    s" + str(samp+1) + ".translation = " + samples[samp].get("Trans") +"\n"+\
-                     "#====================================\n"
-    outString += "sample=dimensions(7)\n" +\
-                 "sample[1]=s1; sample[2]=s2; sample[3]=s3; sample[4]=s4; sample[5]=s5; sample[6]=s6; sample[7]=s7\n"
-
-    outString += "ENDPROCEDURE\n"                                
+    ## for Python
+    outString = ""
     return outString
 
 class RunAngles(ScriptActionClass.ActionClass):
+    action_type = 'multi'
     def __init__(self, Sample="", Subtitle="", Angles=[0.7, 2.3], uAmps=[5, 20], options=''):
         self.Sample = Sample #model.item(row).child(0,1).text()
         self.Subtitle = Subtitle #model.item(row).child(1,1).text()
         self.Angles = Angles #model.item(row).child(2,1).text()
         self.uAmps = uAmps #model.item(row).child(3,1).text()
         self.options = options
+
+    def get_icon(self):
+        return "Running_icon.svg"
 
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
@@ -137,11 +117,12 @@ class RunAngles(ScriptActionClass.ActionClass):
             return [True, "All good!"]
         
     def stringLine(self, sampleNumber):
-        outString = "##### Sample " + str(sampleNumber) + "\n"
-        outString += "sample[" + str(sampleNumber) + "].subtitle = \"" + self.Subtitle + "\"\n"
+        outString = "\t##### Sample " + str(sampleNumber) + "\n"
+        outString += "\tsample_" + self.Sample + ".subtitle=" + "\"" + self.Subtitle + "\"\n"
         
         for a in range(len(self.Angles)):
-            outString += "runTime = runAngles(sample[" + str(sampleNumber) + "]," + str(self.Angles[a]) + "," + str(self.uAmps[a]) + ")\n"
+            outString += "\trun_angle(sample_" + self.Sample + ", angle=" \
+                         + str(self.Angles[a]) + ", count_uamps=" + str(self.uAmps[a]) + ", mode=\"NR\")\n"
         return outString
     
     def makeJSON(self):
@@ -210,18 +191,18 @@ class SampleLoop(ScriptActionClass.ActionClass):
             return [True, "All good!"]
 
     def stringLine(self, sampleNumber):
-        outString = "LOOP ii FROM 1 TO " + str(len(self.samples)) + "\n"
+        outString = "\tsamplist = [" + ", ".join(self.samples) + "]\n"
+        outString += "\tfor samp in ['sample_' + s for s in samplist]:\n"
         # outString = "##### Sample " + str(sampleNumber) + "\n"
-        outString += "\tsample[ii].subtitle = \"" + self.Subtitle + "\"\n"
+        outString += "\t\tsamp.subtitle = \"" + self.Subtitle + "\"\n"
 
         for a in range(len(self.Angles)):
-            outString += "\trunTime = runAngles(sample[ii]," + str(self.Angles[a]) + "," + str(
-                self.uAmps[a]) + ")\n"
+            outString += "\t\trun_angle(samp, angle=" \
+                         + str(self.Angles[a]) + ", count_uamps=" + str(self.uAmps[a]) + ", mode=\"NR\")\n"
 
         # Change the contrast:
-        outString += "\trunTime = inject(ii, \"" + self.Inject + \
-                    "\"," + str(self.flow) + "," + str(self.volume) + ")\n"
-        outString += "ENDLOOP\n"
+        outString += "\t\tinject:wait(samp, \"" + self.Inject + \
+                    "\", " + str(self.flow) + ", " + str(self.volume) + ")\n"
 
         return outString
 
@@ -318,6 +299,9 @@ class Inject(ScriptActionClass.ActionClass):
         self.flow = tofloat(Flow)
         self.volume = tofloat(Volume)
         self.wait = wait
+
+    def get_icon(self):
+        return "inject.png"
         
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
@@ -345,11 +329,11 @@ class Inject(ScriptActionClass.ActionClass):
     def stringLine(self, sampleNumber):
         ### needs string for 'wait'
         if self.wait != 'False':
-            outString = "runTime = inject:wait(" + str(sampleNumber) + ", \"" + self.solution + \
-                        "\"," + str(self.flow) + "," + str(self.volume) + ")\n"
+            outString = "\tinject:wait(sample_" + self.Sample + ", \"" + self.solution + \
+                        "\", " + str(self.flow) + ", " + str(self.volume) + ")\n"
         else:
-            outString = "runTime = inject(" + str(sampleNumber) + ", \"" + self.solution + \
-                        "\"," + str(self.flow) + "," + str(self.volume) + ")\n"
+            outString = "\tinject(sample_" + self.Sample + ", \"" + self.solution + \
+                        "\", " + str(self.flow) + ", " + str(self.volume) + ")\n"
         return outString
     
     def makeJSON(self):
@@ -438,7 +422,10 @@ class Transmission(ScriptActionClass.ActionClass):
         self.uAmps = uAmps
         self.height_offset = height_offset
         self.sm_angle = sm_angle
-        
+
+    def get_icon(self):
+        return "transmission_icon.png"
+
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
         self.Subtitle = node.child(1, 1).text()
@@ -530,7 +517,6 @@ class GoToPressure(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         pass
-
 
 class SetJulabo(ScriptActionClass.ActionClass):
     def __init__(self, Temperature="20.0", lowLimit="", highLimit=""):

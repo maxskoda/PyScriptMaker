@@ -20,19 +20,19 @@ from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut, QListWidge
                              QSpinBox, QLCDNumber, QSizePolicy)
 
 from functools import partial
+from openpyxl import load_workbook
 # import numpy as np
 
 # Standard import
 import importlib
 
 # import custom 'actions' file
-# import MuonActions #NRActions
+# import MuonActions #SANSActions
 
 # define name string for dynamic import of action classes:
-myActions = "NRActions" #"MuonActions"
+myActions = "SANSActions_Python"#"SANSActions_Python" #"MuonActions"
 
-NRActions = __import__('NRActions') #__import__('MuonActions')
-
+SANSActions = __import__('SANSActions_Python') #__import__('MuonActions')
 
 HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row", "Action duration / min")
 
@@ -408,8 +408,8 @@ class Tree(QtWidgets.QTreeView):
         self.menu = QtWidgets.QMenu()
         self.sub_menu = QtWidgets.QMenu("Insert Action")
         self.menu.addMenu(self.sub_menu)
-        # actions = NRActions.actions
-        actions = [cls.__name__ for cls in NRActions.ScriptActionClass.ActionClass.__subclasses__()]
+        # actions = SANSActions.actions
+        actions = [cls.__name__ for cls in SANSActions.ScriptActionClass.ActionClass.__subclasses__()]
         for name in actions:
             shortcut = "Ctrl+" + name[0].lower()
             action = self.sub_menu.addAction(name)
@@ -424,7 +424,7 @@ class Tree(QtWidgets.QTreeView):
 
     def update_runtime(self):
         self.totalTime = 0.0
-
+        global myActions
         for row in range(self.model.rowCount()):
             try:
                 it = self.model.getRootItem(row, 0)
@@ -457,7 +457,10 @@ class Tree(QtWidgets.QTreeView):
 
     def show_summary(self, index):
         it = self.model.getRootItem(index.row(), index.column())
-
+        global SANSActions
+        global myActions
+        importlib.reload(SANSActions)
+        print("Here:", SANSActions, "MyActions: ", myActions)
         colors = ["black", "red", "blue", "green", "orange", "darkviolet", "salmon", "lavender"]
 
         clName = it.text()
@@ -538,32 +541,39 @@ class Tree(QtWidgets.QTreeView):
 
 
     def menu_action(self, action):
+        global myActions
         item2 = QtGui.QStandardItem("")
         item = QtGui.QStandardItem(action.text())
         itemCheck = QtGui.QStandardItem("")
         rowNumberItem = QtGui.QStandardItem("")
         durationItem = QtGui.QStandardItem("")
         # override index temporarily test
-        index = self.selectedIndexes()[0]
+        selection = self.selectedIndexes()
+        if selection:
+            index = self.selectedIndexes()[0]
+            row = index.row()
+        else:
+            row = -1
 
         clName = item.text()
         MyClass = getattr(importlib.import_module(myActions), clName)
         # Instantiate the class (pass arguments to the constructor, if needed)
         actionItem = MyClass()
+
         item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
                                   & ~QtCore.Qt.ItemIsDropEnabled\
                                   & ~QtCore.Qt.ItemIsDragEnabled)
         root = self.model.invisibleRootItem()
-        root.insertRow(index.row()+1, [item, item2, itemCheck, rowNumberItem, durationItem])
-        newRow = self.model.item(index.row()+1) 
-        for key in actionItem.__dict__:          
+        root.insertRow(row+1, [item, item2, itemCheck, rowNumberItem, durationItem])
+        newRow = self.model.item(row+1)
+        for key in actionItem.__dict__:
             par = QtGui.QStandardItem(key)
             par.setFlags(newRow.flags() & QtCore.Qt.ItemIsEditable & ~QtCore.Qt.ItemIsDragEnabled)
             if isinstance(actionItem.__dict__[key], list):
                 values = str(actionItem.__dict__[key]).strip('[]')
             else:
                 values =str(actionItem.__dict__[key])
-                
+
             val = QtGui.QStandardItem(values)
             newRow.appendRow([par, val])
             self.resizeColumnToContents(0)
@@ -581,6 +591,8 @@ class App(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(App, self).__init__(parent)
 
+        global SANSActions
+        global myActions
         self.view = Tree(self)
         
         rows = self.view.model.rowCount()
@@ -604,7 +616,7 @@ class App(QtWidgets.QWidget):
         mainLayout = QtWidgets.QVBoxLayout()
 
         self.instrumentSelector = QtWidgets.QComboBox()
-        self.instrumentSelector.addItems(NRActions.instruments)
+        self.instrumentSelector.addItems(SANSActions.instruments)
         self.instrumentSelector.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
 
         buttonLayout = QtWidgets.QHBoxLayout()
@@ -621,7 +633,7 @@ class App(QtWidgets.QWidget):
         self.playButton.setShortcut('Ctrl+r')
         self.playButton.setIcon(QtGui.QIcon('play_icon.png'))
         self.playButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        # self.playButton.clicked.connect(self.on_print_tree)
+        self.playButton.clicked.connect(self.play_script)
         buttonLayout.addWidget(self.playButton)
 
         self.pauseButton = QtWidgets.QPushButton("", self)
@@ -629,7 +641,7 @@ class App(QtWidgets.QWidget):
         self.pauseButton.setShortcut('Ctrl+/')
         self.pauseButton.setIcon(QtGui.QIcon('pause_icon.png'))
         self.pauseButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        # self.playButton.clicked.connect(self.on_print_tree)
+        self.pauseButton.clicked.connect(self.pause_script)
         buttonLayout.addWidget(self.pauseButton)
 
         self.stopButton = QtWidgets.QPushButton("", self)
@@ -637,7 +649,7 @@ class App(QtWidgets.QWidget):
         self.stopButton.setShortcut('Ctrl+.')
         self.stopButton.setIcon(QtGui.QIcon('stop_icon.png'))
         self.stopButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-        # self.playButton.clicked.connect(self.on_print_tree)
+        self.stopButton.clicked.connect(self.stop_script)
         buttonLayout.addWidget(self.stopButton)
 
         self.printSamplesButton = QtWidgets.QPushButton("Print samples")
@@ -650,12 +662,21 @@ class App(QtWidgets.QWidget):
         self.runTime.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         buttonLayout.addWidget(self.timeLabel)
         buttonLayout.addWidget(self.runTime)
-        
+
+        self.actionsLabel = QtWidgets.QLabel("Actions file: ")
+        self.actionsEdit = QtWidgets.QLineEdit()
+        self.actionsOpenButton = QtWidgets.QPushButton("...")
+        self.actionsOpenButton.clicked.connect(self.on_refresh_actions)
+
         self.fileLabel = QtWidgets.QLabel("Script file: ")
         self.fileEdit = QtWidgets.QLineEdit()
         self.fileOpenButton = QtWidgets.QPushButton("...")
         self.fileOpenButton.clicked.connect(self.on_open_file)
+
         fileLayout = QtWidgets.QHBoxLayout()
+        fileLayout.addWidget(self.actionsLabel)
+        fileLayout.addWidget(self.actionsEdit)
+        fileLayout.addWidget(self.actionsOpenButton)
         fileLayout.addWidget(self.fileLabel)
         fileLayout.addWidget(self.fileEdit)
         fileLayout.addWidget(self.fileOpenButton)
@@ -663,7 +684,7 @@ class App(QtWidgets.QWidget):
         mainLayout.addLayout(fileLayout)
         mainLayout.addLayout(buttonLayout)
 
-        # Sample Table - this is NR specific and should be moved to NRActions.py!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # Sample Table - this is NR specific and should be moved to SANSActions.py!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         self.sampleTableGroupBox = QtWidgets.QGroupBox("Sample table")
         sampleLayout = QtWidgets.QHBoxLayout()
 
@@ -731,13 +752,44 @@ class App(QtWidgets.QWidget):
         
         self.show()
         
-###########  
+###########
+    def play_script(self):
+        self.view.model.getRootItem(0, 0).setBackground(QtGui.QBrush(Qt.BDiagPattern))
+        self.view.model.getRootItem(0, 1).setBackground(QtGui.QBrush(Qt.BDiagPattern))
+        self.playButton.setDisabled(1)
+        self.pauseButton.setEnabled(1)
+
+    def pause_script(self):
+        self.view.model.getRootItem(0, 0).setBackground(QtGui.QBrush(Qt.BDiagPattern))
+        self.view.model.getRootItem(0, 1).setBackground(QtGui.QBrush(Qt.BDiagPattern))
+        if not self.playButton.isEnabled() and self.pauseButton.isEnabled():
+            self.pauseButton.setDisabled(1)
+            self.playButton.setEnabled(1)
+
+
+
+    def stop_script(self):
+        self.view.model.getRootItem(0, 0).setBackground(QtGui.QBrush(Qt.NoBrush))
+        self.view.model.getRootItem(0, 1).setBackground(QtGui.QBrush(Qt.NoBrush))
+        self.playButton.setDisabled(0)
+        self.pauseButton.setDisabled(0)
+
+    def on_refresh_actions(self):
+        print(self.actionsEdit.text())
+        global myActions
+        global SANSActions
+        # del myActions
+        SANSActions = importlib.import_module(self.actionsEdit.text())
+        importlib.reload(SANSActions)
+        myActions = self.actionsEdit.text()
+        print(SANSActions)
+        print(myActions)
         
     def on_open_file(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         fileName, _ = QFileDialog.getSaveFileName(self,"Open Script File...", "",\
-                                                  "OpenGenie Files (*.gcl);;All Files (*);;Python Files (*.py)", options=options)
+                                                  "Python Files (*.py);;All Files (*);;OpenGenie Files (*.gcl)", options=options)
 
         try:
             with open(fileName) as f:
@@ -772,7 +824,7 @@ class App(QtWidgets.QWidget):
             #     args.append(1)
             # else:
             #     args.append(0)
-        f.write(NRActions.writeHeader(self.on_print_samples(), args))
+        f.write(SANSActions.writeHeader(self.on_print_samples(), args))
 
 
         for row in range(self.view.model.rowCount()):
@@ -788,7 +840,7 @@ class App(QtWidgets.QWidget):
                 sampleNumber = -1
             f.write(tempAction.stringLine(sampleNumber)+"\n")
 
-        f.write(NRActions.writeFooter(self.on_print_samples()))
+        f.write(SANSActions.writeFooter(self.on_print_samples()))
         f.close()
 
     def on_print_samples(self):
@@ -874,7 +926,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
         QtWidgets.qApp.installEventFilter(self)
 
         # Open default file
-        fileName = "INTER_4Samples_2Contrasts_inject.json" #"Muon_test.json"
+        fileName = "LARMOR_test.json"#"INTER_4Samples_2Contrasts_inject.json" #"Muon_test.json"
         self.form_widget.view.model.populate(fileName)
         for col in range(self.form_widget.view.model.columnCount()):
             self.form_widget.view.resizeColumnToContents(col)
@@ -893,7 +945,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
                 self.form_widget.view.openPersistentEditor(self.form_widget.view.model.item(i, 0).child(0, 1).index())
             self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
         self.form_widget.view.resizeColumnToContents(0)
-        self.form_widget.fileEdit.setText('runScriptTest2.gcl')
+        self.form_widget.fileEdit.setText('PyScript_test1.py')
         ############################
         self.setStyleSheet("""
 
@@ -919,32 +971,86 @@ class MyMainWindow(QtWidgets.QMainWindow):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         fileName, _ = QFileDialog.getOpenFileName(self, "Open saved ScriptMaker state", "",\
-                                                  "MaxScript Files (*.json);;All Files (*)", options=options)
+                                                  "MaxScript Files (*.json);;"
+                                                  "SANS Excel table (*.xlsx);;"
+                                                 "All Files (*)", options=options)
         if fileName:
-            # delete all rows
-            self.form_widget.view.model.removeRows(0, self.form_widget.view.model.rowCount())
+            if fileName.split(".")[1].upper() == "JSON":
+                # delete all rows
+                self.form_widget.view.model.removeRows(0, self.form_widget.view.model.rowCount())
 
-            self.form_widget.view.model.populate(fileName)
-            with open(fileName) as json_file:
-                data = json.load(json_file)
-                #print(len(data['Samples']))
-                # tableModel = TableModel(self.form_widget.view, data['Samples'], self.form_widget.view.headerLabels_sampTable)
-                self.form_widget.view.tableModel.layoutAboutToBeChanged.emit()
-                self.form_widget.view.sampleTable = data['Samples']
-                self.form_widget.view.update_sample_table()
-                self.form_widget.view.tableModel.layoutChanged.emit()
+                self.form_widget.view.model.populate(fileName)
+                with open(fileName) as json_file:
+                    data = json.load(json_file)
+                    #print(len(data['Samples']))
+                    # tableModel = TableModel(self.form_widget.view, data['Samples'], self.form_widget.view.headerLabels_sampTable)
+                    self.form_widget.view.tableModel.layoutAboutToBeChanged.emit()
+                    self.form_widget.view.sampleTable = data['Samples']
+                    self.form_widget.view.update_sample_table()
+                    self.form_widget.view.tableModel.layoutChanged.emit()
+
+                rows = self.form_widget.view.model.rowCount()
+                for i in range(rows):
+                    self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
+                self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName + "[*]")
+
+            else: # SANS Excel table file
+                # print(fileName.split(".")[1].upper())
+                json_file_name = fileName.split(".")[0] + ".json"
+                print(json_file_name)
+                wb = load_workbook(filename=fileName)
+                ws = wb.active
+                wb_row = 2
+                with open(json_file_name, "w+") as f:
+                    outString = "{\"Samples\": ["
+                    ## get defined samples from table:
+                    data = self.form_widget.sampleTable.model().getData()
+
+                    for row in data:
+                        r = str([''.join(x) for x in row])
+                        r = str(r).replace("\'", "\"")
+                        outString += r + ",\n"
+                    outString = outString[:-2] + "],\n"
+
+                    outString += "\n\n\"Action\":[\n"
+                    while ws.cell(row=wb_row, column=1).value:
+                        do_trans = getattr(importlib.import_module(myActions), 'do_trans')
+                        # Instantiate the class (pass arguments to the constructor, if needed)
+                        tempAction = do_trans(title=str(ws.cell(row=wb_row, column=7).value),
+                                             pos=str(ws.cell(row=wb_row, column=1).value),
+                                             uamps=ws.cell(row=wb_row, column=2).value,
+                                             thickness=ws.cell(row=wb_row, column=9).value)
+                        outString += tempAction.makeJSON() + ","
+                        del tempAction
+
+                        do_sans = getattr(importlib.import_module(myActions), 'do_sans')
+                        # Instantiate the class (pass arguments to the constructor, if needed)
+                        tempAction = do_sans(title=str(ws.cell(row=wb_row, column=7).value) + '_' + \
+                                                   str(ws.cell(row=wb_row, column=8).value),
+                                             pos=str(ws.cell(row=wb_row, column=1).value),
+                                             uamps=ws.cell(row=wb_row, column=4).value,
+                                             thickness=ws.cell(row=wb_row, column=9).value)
+                        outString += tempAction.makeJSON() + ","
+                        # print([ws.cell(row=row, column=col).value for col in range(1, 12)])
+                        del tempAction
+                        wb_row += 1
+                    outString = outString[:-1] + "]\n}"
+                    f.write(outString)
+
+                # delete all rows
+                self.form_widget.view.model.removeRows(0, self.form_widget.view.model.rowCount())
+
+                self.form_widget.view.model.populate(json_file_name)
+                with open(json_file_name) as json_file:
+                    data = json.load(json_file)
+                    #print(len(data['Samples']))
+                    # tableModel = TableModel(self.form_widget.view, data['Samples'], self.form_widget.view.headerLabels_sampTable)
+                    self.form_widget.view.tableModel.layoutAboutToBeChanged.emit()
+                    self.form_widget.view.sampleTable = data['Samples']
+                    self.form_widget.view.update_sample_table()
+                    self.form_widget.view.tableModel.layoutChanged.emit()
 
 
-
-            rows = self.form_widget.view.model.rowCount()
-            for i in range(rows):
-                self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
-            self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName + "[*]")
-
-            # table_data = self.form_widget.sampleTable.model().getData()
-            # self.form_widget.view.tableModel.onSampleChange()
-            # self.form_widget.view.delegate = ComboBoxDelegate(table_data)
-            # self.form_widget.view.tableModel.dataChanged.emit()
 
     def saveScript(self):
         options = QFileDialog.Options()

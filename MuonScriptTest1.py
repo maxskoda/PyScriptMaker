@@ -1,4 +1,4 @@
-### This script was generated on 08/07/2021, at 22:21:50
+### This script was generated on 09/07/2021, at 17:48:29
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -17,3 +17,4 @@ def runsscript():
 	script_definition = DoRun()
 	script_definition.run(**{'start_temperature': keep, 'magnet_device': N/A, 'custom': None, 'start_field': keep, 'mevents': 10, 'stop_field': keep, 'step_field': 0, 'step_temperature': 0, 'stop_temperature': keep})
 	script_definition.run(**{'start_temperature': 25, 'magnet_device': N/A, 'custom': None, 'start_field': keep, 'mevents': 10, 'stop_field': keep, 'step_field': 0, 'step_temperature': 5, 'stop_temperature': 55})
+	script_definition.run(**{'start_temperature': keep, 'magnet_device': N/A, 'custom': None, 'start_field': 1, 'mevents': 10, 'stop_field': 5, 'step_field': 0.5, 'step_temperature': 0, 'stop_temperature': keep})

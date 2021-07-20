@@ -1,0 +1,1188 @@
+{"Samples": [["S1", "100", "1", "1", "1", "1", "1", "1", "1"],
+["S2", "200", "2", "2", "2", "2", "2", "2", "2"],
+["S3", "300", "3", "3", "3", "3", "3", "3", "3"],
+["S4", "400", "4", "4", "4", "4", "4", "4", "4"],
+["", "", " ", " ", " ", " ", " ", " ", " "],
+["", "", " ", " ", " ", " ", " ", " ", " "],
+["", "", " ", " ", " ", " ", " ", " ", " "]],
+
+
+"Action":[
+{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV10"
+        },
+        {
+            "label": "pos",
+            "value": "7CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV10_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "7CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV11"
+        },
+        {
+            "label": "pos",
+            "value": "8CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV11_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "8CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV12"
+        },
+        {
+            "label": "pos",
+            "value": "9CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV12_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "9CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV13"
+        },
+        {
+            "label": "pos",
+            "value": "10CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV13_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "10CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV14"
+        },
+        {
+            "label": "pos",
+            "value": "11CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV14_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "11CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV15"
+        },
+        {
+            "label": "pos",
+            "value": "12CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV15_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "12CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV16"
+        },
+        {
+            "label": "pos",
+            "value": "13CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV16_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "13CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV17"
+        },
+        {
+            "label": "pos",
+            "value": "14CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV17_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "14CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV26"
+        },
+        {
+            "label": "pos",
+            "value": "1CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV26_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "1CB"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "CV27"
+        },
+        {
+            "label": "pos",
+            "value": "2CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "CV27_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "2CB"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K1"
+        },
+        {
+            "label": "pos",
+            "value": "3CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K1_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "3CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K2"
+        },
+        {
+            "label": "pos",
+            "value": "4CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K2_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "4CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K3"
+        },
+        {
+            "label": "pos",
+            "value": "5CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K3_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "5CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K4"
+        },
+        {
+            "label": "pos",
+            "value": "6CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K4_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "6CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K5"
+        },
+        {
+            "label": "pos",
+            "value": "7CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K5_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "7CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K6"
+        },
+        {
+            "label": "pos",
+            "value": "8CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K6_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "8CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K7"
+        },
+        {
+            "label": "pos",
+            "value": "9CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K7_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "9CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K8"
+        },
+        {
+            "label": "pos",
+            "value": "10CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K8_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "10CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K9"
+        },
+        {
+            "label": "pos",
+            "value": "11CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K9_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "11CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K10"
+        },
+        {
+            "label": "pos",
+            "value": "12CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K10_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "12CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K11"
+        },
+        {
+            "label": "pos",
+            "value": "13CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K11_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "13CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "K12"
+        },
+        {
+            "label": "pos",
+            "value": "14CB"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "K12_TRIS Buffer pH7"
+        },
+        {
+            "label": "pos",
+            "value": "14CB"
+        },
+        {
+            "label": "uamps",
+            "value": "13"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "L1"
+        },
+        {
+            "label": "pos",
+            "value": "1CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "L1_D2O"
+        },
+        {
+            "label": "pos",
+            "value": "1CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "L2"
+        },
+        {
+            "label": "pos",
+            "value": "2CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "L2_D2O"
+        },
+        {
+            "label": "pos",
+            "value": "2CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "L3"
+        },
+        {
+            "label": "pos",
+            "value": "3CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "L3_D2O"
+        },
+        {
+            "label": "pos",
+            "value": "3CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "L4"
+        },
+        {
+            "label": "pos",
+            "value": "4CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "L4_D2O"
+        },
+        {
+            "label": "pos",
+            "value": "4CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "L5"
+        },
+        {
+            "label": "pos",
+            "value": "5CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "L5_D2O"
+        },
+        {
+            "label": "pos",
+            "value": "5CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+},{
+    "do_trans": [
+        {
+            "label": "title",
+            "value": "L6"
+        },
+        {
+            "label": "pos",
+            "value": "6CT"
+        },
+        {
+            "label": "uamps",
+            "value": "3"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        }
+    ]
+},{
+    "do_sans": [
+        {
+            "label": "title",
+            "value": "L6_D2O"
+        },
+        {
+            "label": "pos",
+            "value": "6CT"
+        },
+        {
+            "label": "uamps",
+            "value": "10"
+        },
+        {
+            "label": "thickness",
+            "value": "2"
+        },
+        {
+            "label": "dae",
+            "value": "event"
+        }
+    ]
+}]
+}
