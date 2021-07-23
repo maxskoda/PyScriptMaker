@@ -71,7 +71,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
 
     def itemList(self, parent = QtCore.QModelIndex()):
         items = []
-        print('itemlist')
+        # print('itemlist')
         for row in range(self.rowCount(parent)):
             idx = self.index(row, 0, parent)
             items.append(self.data(idx))
@@ -136,7 +136,7 @@ class myStandardItemModel(QtGui.QStandardItemModel):
                         par = QtGui.QStandardItem(it.get('label'))
                         par.setFlags(item.flags() & QtCore.Qt.ItemIsEditable & ~QtCore.Qt.ItemIsDragEnabled)
                         if isinstance(it.get('value'), list):
-                            print(it.get('value'))
+                            # print(it.get('value'))
                             li = [float(i) if '.' in i else i for i in it.get('value')]
                             values = str(li).strip('[]')
                         else:
@@ -457,7 +457,7 @@ class Tree(QtWidgets.QTreeView):
         self.parent().parent().parent().setWindowModified(True)
 
     def update_summary(self):
-        print(self.model.rowCount())
+        # print(self.model.rowCount())
         for row in range(self.model.rowCount()):
             self.show_summary(self.model.index(row, 0))
 
@@ -829,19 +829,17 @@ class App(QtWidgets.QWidget):
         global countRate
         if self.beam_current_edit:
             countRate = self.beam_current_edit.text()
-            print(countRate)
+            # print(countRate)
 
     def on_refresh_actions(self):
-        print(self.actionsEdit.text())
+        # print(self.actionsEdit.text())
         global myActions
         global NRActions
         # del myActions
         NRActions = importlib.import_module(self.actionsEdit.text())
         importlib.reload(NRActions)
         myActions = self.actionsEdit.text()
-        print(NRActions)
-        print(myActions)
-        
+
     def on_open_file(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog

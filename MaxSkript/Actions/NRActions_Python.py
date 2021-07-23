@@ -138,7 +138,7 @@ class RunAngles(ScriptActionClass.ActionClass):
         return json.dumps(rdict, indent=4)
 
     def calcTime(self, inst):
-        if inst in ["INTER", "POLREF", "OFFSPEC"]:
+        if inst.upper().upper() in ["INTER", "POLREF", "OFFSPEC"]:
             return sum(self.uAmps) / 40.0 * 60
         else:
             return sum(self.uAmps) / 180.0 * 60
@@ -218,7 +218,7 @@ class SampleLoop(ScriptActionClass.ActionClass):
         return json.dumps(rdict, indent=4)
 
     def calcTime(self, inst):
-        if inst in ["INTER", "POLREF", "OFFSPEC"]:
+        if inst.upper() in ["INTER", "POLREF", "OFFSPEC"]:
             return sum(self.uAmps) * len(self.samples) / 40.0 * 60
         else:
             return sum(self.uAmps) * len(self.samples) / 180.0 * 60
@@ -288,7 +288,7 @@ class run_angle_polref(ScriptActionClass.ActionClass):
         return json.dumps(rdict, indent=4)
 
     def calcTime(self, inst):
-        if inst in ["INTER", "POLREF", "OFFSPEC"]:
+        if inst.upper() in ["INTER", "POLREF", "OFFSPEC"]:
             return sum(self.uAmps) / 40.0 * 60
         else:
             return sum(self.uAmps) / 180.0 * 60
@@ -481,7 +481,7 @@ class Transmission(ScriptActionClass.ActionClass):
         return outString+")\n"
 
     def calcTime(self, inst):
-        if inst in ["INTER", "POLREF", "OFFSPEC"]:
+        if inst.upper() in ["INTER", "POLREF", "OFFSPEC"]:
             return self.uAmps / 40.0 * 60
         else:
             return self.uAmps / 180.0 * 60

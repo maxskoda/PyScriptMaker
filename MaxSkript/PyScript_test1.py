@@ -1,4 +1,4 @@
-### This script was generated on 23/07/2021, at 15:59:09
+### This script was generated on 23/07/2021, at 16:20:47
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -91,16 +91,10 @@ def runscript(dry_run=False):
 	run_angle(sample_S4, angle=0.7, count_uamps=15.0, mode="NR")
 	run_angle(sample_S4, angle=2.3, count_uamps=20.0, mode="NR")
 
-	inject(sample_S4, "D2O", 1.5, 15.0)
-
-runTime = goToPressure(20.0, 15.0)
-
-##### Sample 1
-angles = [0.5, 1.6]
-frames = [36000.0, 36000.0]
-runs = [1, 4]
-for angle, frame, run_no in zip(angles, frames, runs):
-	inst.run_angle_polref(angle=angle, number_of_runs=run_no,
-						run_frames=frame, run_name=lkl;k)
-						sample_stack=sample, pol_mode=PNR)
+	samplist = ['S1',  ' S2']
+	for samp in ['sample_' + s for s in samplist]:
+		samp.subtitle = ""
+		run_angle(samp, angle=0.7, count_uamps=5.0, mode="NR")
+		run_angle(samp, angle=2.3, count_uamps=20.0, mode="NR")
+		inject:wait(samp, "H2O", 1.5, 15.0)
 
