@@ -1089,7 +1089,6 @@ class MyMainWindow(QtWidgets.QMainWindow):
                                              uamps=ws.cell(row=wb_row, column=4).value,
                                              thickness=ws.cell(row=wb_row, column=9).value)
                         outString += tempAction.makeJSON() + ","
-                        # print([ws.cell(row=row, column=col).value for col in range(1, 12)])
                         del tempAction
                         wb_row += 1
                     outString = outString[:-1] + "]\n}"
@@ -1101,8 +1100,6 @@ class MyMainWindow(QtWidgets.QMainWindow):
                 self.form_widget.view.model.populate(json_file_name)
                 with open(json_file_name) as json_file:
                     data = json.load(json_file)
-                    #print(len(data['Samples']))
-                    # tableModel = TableModel(self.form_widget.view, data['Samples'], self.form_widget.view.headerLabels_sampTable)
                     self.form_widget.view.tableModel.layoutAboutToBeChanged.emit()
                     self.form_widget.view.sampleTable = data['Samples']
                     self.form_widget.view.update_sample_table()
