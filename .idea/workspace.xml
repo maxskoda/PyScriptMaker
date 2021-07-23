@@ -20,19 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa2868dc-3f05-41ce-b2f7-b6f864290da2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/NRActions_Python.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SANSActions_Python.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ScriptMaker_v0p71_Python.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ScriptMaker_v0p71_SANS.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MARIActions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/INTER_4Samples_2Contrasts_inject.json" beforeDir="false" afterPath="$PROJECT_DIR$/INTER_4Samples_2Contrasts_inject.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/INTER_5Samples_3Contrasts_inject2.json" beforeDir="false" afterPath="$PROJECT_DIR$/INTER_5Samples_3Contrasts_inject2.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MuonScriptTest1.py" beforeDir="false" afterPath="$PROJECT_DIR$/MuonScriptTest1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NRActions.py" beforeDir="false" afterPath="$PROJECT_DIR$/NRActions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71.py" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptMaker_v0p71.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json_test_save.json" beforeDir="false" afterPath="$PROJECT_DIR$/json_test_save.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/newActions.py" beforeDir="false" afterPath="$PROJECT_DIR$/newActions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runScriptTest2.gcl" beforeDir="false" afterPath="$PROJECT_DIR$/runScriptTest2.gcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NRActions_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/NRActions_Python.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyScript_test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyScript_test1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71.py" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptMaker_v0p71_MARI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71.spec" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptMaker_v0p71.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptMaker_v0p71_Python.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +65,8 @@
       <recent name="C:\Users\ktd43279\Documents\GitHub\PyScriptMaker" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.newActions">
-    <configuration name="SANS_XL_to_JSON (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.ScriptMaker_v0p71_Python">
+    <configuration name="ScriptMaker_v0p71 - Muon" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -83,7 +78,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SANS_XL_to_JSON.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p71 - Muon.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -92,7 +87,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ScriptMaker_v0p71" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="ScriptMaker_v0p71_MARI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -104,7 +99,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p71.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p71_MARI.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -178,11 +173,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.newActions" />
         <item itemvalue="Python.ScriptMaker_v0p71_Python" />
         <item itemvalue="Python.ScriptMaker_v0p71_SANS" />
-        <item itemvalue="Python.ScriptMaker_v0p71" />
-        <item itemvalue="Python.SANS_XL_to_JSON (1)" />
+        <item itemvalue="Python.ScriptMaker_v0p71_MARI" />
+        <item itemvalue="Python.ScriptMaker_v0p71 - Muon" />
+        <item itemvalue="Python.newActions" />
       </list>
     </recent_temporary>
   </component>
@@ -225,62 +220,63 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="550" y="216" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1623963938382" />
-    <state width="1515" height="223" key="GridCell.Tab.0.bottom" timestamp="1626771706291">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1899" height="214" key="GridCell.Tab.0.bottom" timestamp="1627046996993">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
-    <state width="1515" height="223" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="210" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626565436639" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1626645381769" />
-    <state width="1515" height="223" key="GridCell.Tab.0.center" timestamp="1626771706291">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="160" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
+    <state width="1899" height="214" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627046996993" />
+    <state width="1515" height="160" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
+    <state width="1899" height="214" key="GridCell.Tab.0.center" timestamp="1627046996993">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
-    <state width="1515" height="223" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="210" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626565436639" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1626645381769" />
-    <state width="1515" height="223" key="GridCell.Tab.0.left" timestamp="1626771706291">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="160" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
+    <state width="1899" height="214" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627046996993" />
+    <state width="1515" height="160" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
+    <state width="1899" height="214" key="GridCell.Tab.0.left" timestamp="1627046996993">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
-    <state width="1515" height="223" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="210" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626565436639" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1626645381769" />
-    <state width="1515" height="223" key="GridCell.Tab.0.right" timestamp="1626771706291">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="160" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
+    <state width="1899" height="214" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627046996993" />
+    <state width="1515" height="160" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
+    <state width="1899" height="214" key="GridCell.Tab.0.right" timestamp="1627046996993">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
-    <state width="1515" height="223" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="210" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626565436639" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1626645381769" />
-    <state width="1515" height="223" key="GridCell.Tab.1.bottom" timestamp="1626771706291">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1515" height="160" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
+    <state width="1899" height="214" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627046996993" />
+    <state width="1515" height="160" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
+    <state width="1899" height="251" key="GridCell.Tab.1.bottom" timestamp="1626825584013">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="223" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="297" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626467008949" />
+    <state width="1899" height="251" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626825584013" />
     <state width="1515" height="223" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1626644740058" />
-    <state width="1515" height="223" key="GridCell.Tab.1.center" timestamp="1626771706291">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1899" height="251" key="GridCell.Tab.1.center" timestamp="1626825584013">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="223" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="297" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626467008949" />
+    <state width="1899" height="251" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626825584013" />
     <state width="1515" height="223" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1626644740058" />
-    <state width="1515" height="223" key="GridCell.Tab.1.left" timestamp="1626771706291">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1899" height="251" key="GridCell.Tab.1.left" timestamp="1626825584013">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="223" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="297" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626467008949" />
+    <state width="1899" height="251" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626825584013" />
     <state width="1515" height="223" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1626644740058" />
-    <state width="1515" height="223" key="GridCell.Tab.1.right" timestamp="1626771706291">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state width="1899" height="251" key="GridCell.Tab.1.right" timestamp="1626825584013">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="223" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="297" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626467008949" />
+    <state width="1899" height="251" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626825584013" />
     <state width="1515" height="223" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1626644740058" />
-    <state x="279" y="106" key="SettingsEditor" timestamp="1623424760805">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state x="4189" y="134" key="SettingsEditor" timestamp="1627043559363">
+      <screen x="3840" y="0" width="1920" height="1160" />
     </state>
-    <state x="279" y="106" key="SettingsEditor/0.0.1536.920@0.0.1536.920" timestamp="1623424760805" />
+    <state x="4189" y="134" key="SettingsEditor/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627043559363" />
+    <state x="279" y="106" key="SettingsEditor/0.0.1536.920@0.0.1536.920" timestamp="1626993444929" />
     <state width="968" height="588" key="XDebugger.FullValuePopup" timestamp="1624748729832">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>

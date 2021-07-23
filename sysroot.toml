@@ -1,0 +1,40 @@
+# A skeleton sysroot specification file.
+
+
+[OpenSSL]
+version = "0.0.0"
+
+[Python]
+version = "0.0.0"
+
+[PyQt]
+version = "0.0.0"
+installed_modules = []
+
+[PyQt3D]
+version = "0.0.0"
+
+[PyQtChart]
+version = "0.0.0"
+
+[PyQtDataVisualization]
+version = "0.0.0"
+
+[PyQtPurchasing]
+version = "0.0.0"
+
+[PyQtWebEngine]
+version = "0.0.0"
+
+[QScintilla]
+version = "0.0.0"
+
+[Qt]
+version = "0.0.0"
+
+[SIP]
+version = "0.0.0"
+module_name = ""
+
+[zlib]
+version = "0.0.0"

@@ -5,16 +5,17 @@ Created on Thu May 12 09:09:50 2020
 @author: Maximilian Skoda
 """
 
-import qdarkstyle
+# import qdarkstyle
 import json
 import os.path
-import zmq
+# import zmq
 import logging
+
 
 from PyQt5.QtCore import (QAbstractItemModel, QFile, QIODevice, pyqtSlot, QSortFilterProxyModel,
                           QModelIndex, Qt, QDataStream, QVariant)
 from PyQt5 import QtGui, QtCore, QtWidgets
-from PyQt5.QtGui import QKeySequence
+from PyQt5.QtGui import QKeySequence, QIntValidator
 from PyQt5.QtWidgets import (QWidget, QLabel, QMessageBox, QShortcut, QListWidgetItem, QStyleOptionProgressBar,
     QComboBox, QApplication, QTreeWidget, qApp, QFileDialog, QAbstractItemView, QStyledItemDelegate, QDoubleSpinBox,
                              QSpinBox, QLCDNumber, QSizePolicy)
@@ -37,6 +38,7 @@ NRActions = __import__('NRActions_Python') #__import__('MuonActions')
 HORIZONTAL_HEADERS = ("Action", "Parameters", "Ok", "Row", "Action duration / min")
 
 logging.basicConfig(level=logging.DEBUG)
+countRate = 40
 
 class myStandardItemModel(QtGui.QStandardItemModel):
     def __init__(self, parent = None):
@@ -546,7 +548,7 @@ class Tree(QtWidgets.QTreeView):
 
 
     def menu_action(self, action):
-        global myActions
+        global myActions, countRate
         item2 = QtGui.QStandardItem("")
         item = QtGui.QStandardItem(action.text())
         itemCheck = QtGui.QStandardItem("")
@@ -568,6 +570,9 @@ class Tree(QtWidgets.QTreeView):
         item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
                                   & ~QtCore.Qt.ItemIsDropEnabled\
                                   & ~QtCore.Qt.ItemIsDragEnabled)
+
+        if 'set_countrate' in dir(actionItem):
+            actionItem.set_countrate(countRate)
 
         if 'get_icon' in dir(actionItem):
             item.setIcon(QtGui.QIcon(actionItem.get_icon()))
@@ -686,6 +691,7 @@ class App(QtWidgets.QWidget):
         fileLayout.addWidget(self.fileEdit)
         fileLayout.addWidget(self.fileOpenButton)
 
+        # button to collapse all tree items
         self.collapseButton = QtWidgets.QPushButton("", self)
         self.collapseButton.setShortcut('Ctrl+-')
         self.collapseButton.setToolTip("Ctrl+-")
@@ -693,6 +699,7 @@ class App(QtWidgets.QWidget):
         self.collapseButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.collapseButton.clicked.connect(self.collapse_all)
 
+        # button to expand all tree items
         self.expandButton = QtWidgets.QPushButton("", self)
         self.expandButton.setShortcut('Ctrl++')
         self.expandButton.setToolTip("Ctrl++")
@@ -700,9 +707,25 @@ class App(QtWidgets.QWidget):
         self.expandButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.expandButton.clicked.connect(self.expand_all)
 
+        # Beam current override
+        self.beam_current_label = QtWidgets.QLabel("Beam current:", self)
+        self.beam_current_label.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
+        self.beam_current_edit = QtWidgets.QLineEdit("", self)
+        self.onlyInt = QIntValidator()
+        self.beam_current_edit.setValidator(self.onlyInt)
+        self.beam_current_edit.setFixedWidth(120)
+        self.beam_current_edit.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
+        self.beam_current_edit.editingFinished.connect(self.set_uamps)
+        self.uamp_label = QtWidgets.QLabel("\u03BCA", self)
+        self.uamp_label.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
+
+
         collapseLayout = QtWidgets.QHBoxLayout()
         collapseLayout.addWidget(self.collapseButton)
         collapseLayout.addWidget(self.expandButton)
+        collapseLayout.addWidget(self.beam_current_label)
+        collapseLayout.addWidget(self.beam_current_edit)
+        collapseLayout.addWidget(self.uamp_label)
 
         mainLayout.addLayout(fileLayout)
         mainLayout.addLayout(buttonLayout)
@@ -801,6 +824,12 @@ class App(QtWidgets.QWidget):
 
     def expand_all(self):
         self.view.expandAll()
+
+    def set_uamps(self):
+        global countRate
+        if self.beam_current_edit:
+            countRate = self.beam_current_edit.text()
+            print(countRate)
 
     def on_refresh_actions(self):
         print(self.actionsEdit.text())

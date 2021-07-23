@@ -81,6 +81,10 @@ class RunAngles(ScriptActionClass.ActionClass):
     def get_icon(self):
         return "Running_icon.svg"
 
+    def set_countrate(self, rate):
+        countRate = rate
+        print("CT: ", countRate)
+
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
         self.Subtitle = node.child(1, 1).text()

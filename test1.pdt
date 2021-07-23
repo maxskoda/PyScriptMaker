@@ -1,0 +1,1058 @@
+version = 0
+sysroot = ""
+sysroots_dir = ""
+parts = []
+
+[Application]
+entry_point = ""
+is_console = true
+is_bundle = false
+name = "ScriptMaker_v1"
+qmake_configuration = ""
+script = "C:\\Users\\ktd43279\\OneDrive - Science and Technology Facilities Council\\Documents\\PyScriptMaker\\ScriptMaker_v0p71_Python.py"
+syspath = ""
+
+[Application.Package]
+name = "C:\\Users\\ktd43279\\OneDrive - Science and Technology Facilities Council\\Documents\\PyScriptMaker"
+exclude = [ "*.pyc", "*.pyd", "*.pyo", "*.pyx", "*.pxi", "__pycache__", "*-info", "EGG_INFO", "*.so",]
+[[Application.Package.Content]]
+name = ".gitattributes"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = ".idea"
+included = true
+is_directory = true
+[[Application.Package.Content.Content]]
+name = "inspectionProfiles"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content]]
+name = "profiles_settings.xml"
+included = true
+is_directory = false
+
+
+[[Application.Package.Content.Content]]
+name = "misc.xml"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "modules.xml"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "PyScriptMaker.iml"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "vcs.xml"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "workspace.xml"
+included = true
+is_directory = false
+
+
+[[Application.Package.Content]]
+name = ".ipynb_checkpoints"
+included = true
+is_directory = true
+[[Application.Package.Content.Content]]
+name = "json_test-checkpoint.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "runScriptTest2-checkpoint.gcl"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "ScriptMaker_v0p71-checkpoint.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "Untitled-checkpoint.ipynb"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "untitled-checkpoint.md"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "untitled-checkpoint.txt"
+included = true
+is_directory = false
+
+
+[[Application.Package.Content]]
+name = "__init__.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "collapse_all_icon.png"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "dragdrop_test.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "expand_all_icon.png"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "inject.jpg"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "inject.png"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "INTER_4Samples_2Contrasts.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "INTER_4Samples_2Contrasts_4timeCchange.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "INTER_4Samples_2Contrasts_inject.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "INTER_4Samples_2Contrasts_test.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "INTER_4Samples_2Contrasts_test2.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "INTER_4Samples_3Contrasts.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "INTER_5Samples_3Contrasts_inject.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "INTER_5Samples_3Contrasts_inject2.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "json_test - Copy.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "json_test.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "JSON_test1.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "json_test_save.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "LARMOR_test.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "MARI_test.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "MARIActions.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "McScript_GetStarted.pptx"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "Muon_test.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "MuonActions.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "MuonScriptTest1.gcl"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "MuonScriptTest1.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "newActions.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "NRActions.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "NRActions_Python.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "OleicAcid_Si_1.ipynb"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "output"
+included = true
+is_directory = true
+[[Application.Package.Content.Content]]
+name = "python3.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "ScriptMaker_v0p71.exe"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content]]
+name = "ScriptMaker_v0p71_Python"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-com-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-console-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-datetime-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-debug-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-errorhandling-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-file-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-file-l1-2-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-file-l2-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-handle-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-heap-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-interlocked-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-libraryloader-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-localization-l1-2-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-memory-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-namedpipe-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-processenvironment-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-processthreads-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-processthreads-l1-1-1.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-profile-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-rtlsupport-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-string-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-synch-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-synch-l1-2-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-sysinfo-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-timezone-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-core-util-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-conio-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-convert-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-environment-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-filesystem-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-heap-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-locale-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-math-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-multibyte-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-process-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-runtime-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-stdio-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-string-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-time-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "api-ms-win-crt-utility-l1-1-0.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "base_library.zip"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "d3dcompiler_47.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "libcrypto-1_1.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "libEGL.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "libffi-7.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "libGLESv2.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "libopenblas.JPIJNSWNNAN3CE6LLI5FWSPHUT2VXMTH.gfortran-win_amd64.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "libssl-1_1.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "mfc140u.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "MSVCP140.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "MSVCP140_1.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "numpy"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content]]
+name = "core"
+included = true
+is_directory = true
+Content = []
+
+[[Application.Package.Content.Content.Content.Content]]
+name = "fft"
+included = true
+is_directory = true
+Content = []
+
+[[Application.Package.Content.Content.Content.Content]]
+name = "linalg"
+included = true
+is_directory = true
+Content = []
+
+[[Application.Package.Content.Content.Content.Content]]
+name = "random"
+included = true
+is_directory = true
+Content = []
+
+
+[[Application.Package.Content.Content.Content]]
+name = "opengl32sw.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "PIL"
+included = true
+is_directory = true
+Content = []
+
+[[Application.Package.Content.Content.Content]]
+name = "platforms"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content]]
+name = "qminimal.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content]]
+name = "qoffscreen.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content]]
+name = "qwebgl.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content]]
+name = "qwindows.dll"
+included = true
+is_directory = false
+
+
+[[Application.Package.Content.Content.Content]]
+name = "PyQt5"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content]]
+name = "Qt"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content.Content]]
+name = "plugins"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "iconengines"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qsvgicon.dll"
+included = true
+is_directory = false
+
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "imageformats"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qgif.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qicns.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qico.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qjpeg.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qsvg.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qtga.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qtiff.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qwbmp.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qwebp.dll"
+included = true
+is_directory = false
+
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "platforms"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qminimal.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qoffscreen.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qwebgl.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qwindows.dll"
+included = true
+is_directory = false
+
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "platformthemes"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qxdgdesktopportal.dll"
+included = true
+is_directory = false
+
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "styles"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content.Content.Content.Content]]
+name = "qwindowsvistastyle.dll"
+included = true
+is_directory = false
+
+
+
+[[Application.Package.Content.Content.Content.Content.Content]]
+name = "translations"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_ar.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_bg.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_ca.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_cs.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_da.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_de.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_en.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_es.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_fi.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_fr.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_gd.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_he.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_hu.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_it.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_ja.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_ko.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_lv.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_pl.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_ru.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_sk.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_tr.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_uk.qm"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content.Content.Content.Content]]
+name = "qtbase_zh_TW.qm"
+included = true
+is_directory = false
+
+
+
+
+[[Application.Package.Content.Content.Content]]
+name = "python3.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "python38.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "pythoncom38.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "pywintypes38.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5Core.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5DBus.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5Gui.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5Network.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5Qml.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5QmlModels.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5Quick.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5Svg.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5WebSockets.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "Qt5Widgets.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "ScriptMaker_v0p71_Python.exe"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "ScriptMaker_v0p71_Python.exe.manifest"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "ucrtbase.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "VCRUNTIME140.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "VCRUNTIME140_1.dll"
+included = true
+is_directory = false
+
+[[Application.Package.Content.Content.Content]]
+name = "win32com"
+included = true
+is_directory = true
+[[Application.Package.Content.Content.Content.Content]]
+name = "shell"
+included = true
+is_directory = true
+Content = []
+
+
+
+
+[[Application.Package.Content]]
+name = "pause_icon.png"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "play_icon.png"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "PyScript_test1.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "Running_icon.svg"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "runScriptTest.gcl"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "runScriptTest2.gcl"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "SANS_XL_to_JSON.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "SANSActions_Python.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "Script_Sunday_Evening2.json"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "Script_Sunday_Evening2.xlsx"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "ScriptActionClass.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "ScriptMaker_v0p71 - Muon.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "ScriptMaker_v0p71.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "ScriptMaker_v0p71.spec"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "ScriptMaker_v0p71_MARI.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "ScriptMaker_v0p71_Python.exe"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "ScriptMaker_v0p71_Python.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "ScriptMaker_v0p71_SANS.py"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "solid_liquid.gcl"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "squareCogs.gif"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "stop_icon.png"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "transmission_icon.png"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "Untitled.ipynb"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "untitled.md"
+included = true
+is_directory = false
+
+[[Application.Package.Content]]
+name = "untitled.txt"
+included = true
+is_directory = false
+
