@@ -20,14 +20,256 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa2868dc-3f05-41ce-b2f7-b6f864290da2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MARIActions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/.gitattributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MuonScriptTest1.py" beforeDir="false" afterPath="$PROJECT_DIR$/MuonScriptTest1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NRActions_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/NRActions_Python.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyScript_test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/PyScript_test1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71.py" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptMaker_v0p71_MARI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71.spec" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptMaker_v0p71.spec" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/ScriptMaker_v0p71_Python.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTER_4Samples_2Contrasts.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_4Samples_2Contrasts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTER_4Samples_2Contrasts_4timeCchange.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_4Samples_2Contrasts_4timeCchange.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTER_4Samples_2Contrasts_inject.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_4Samples_2Contrasts_inject.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTER_4Samples_2Contrasts_test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_4Samples_2Contrasts_test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTER_4Samples_2Contrasts_test2.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_4Samples_2Contrasts_test2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTER_4Samples_3Contrasts.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_4Samples_3Contrasts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTER_5Samples_3Contrasts_inject.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_5Samples_3Contrasts_inject.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INTER_5Samples_3Contrasts_inject2.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_5Samples_3Contrasts_inject2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JSON_test1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LARMOR_test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/LARMOR_test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MARIActions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MARI_test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/MARI_test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/McScript_GetStarted.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/McScript_GetStarted.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MuonActions.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/MuonActions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MuonScriptTest1.gcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MuonScriptTest1.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/MuonScriptTest1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Muon_test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Muon_test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NRActions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NRActions_Python.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OleicAcid_Si_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/OleicAcid_Si_1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PyScript_test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/PyScript_test1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Running_icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/Running_icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SANSActions_Python.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SANS_XL_to_JSON.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/SANS_XL_to_JSON.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptActionClass.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71 - Muon.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71 - Muon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71.spec" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71_MARI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71_MARI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71_Python.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71_Python.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScriptMaker_v0p71_SANS.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71_SANS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Script_Sunday_Evening2.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Script_Sunday_Evening2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Script_Sunday_Evening2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Script_Sunday_Evening2.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collapse_all_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/collapse_all_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dragdrop_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/expand_all_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/expand_all_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inject.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/inject.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inject.png" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/inject.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_test - Copy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_test.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_test_save.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/newActions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/MSVCP140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/MSVCP140_1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PIL/_imaging.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PIL/_imagingtk.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PIL/_webp.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/iconengines/qsvgicon.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qgif.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qicns.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qico.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qjpeg.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qsvg.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qtga.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qtiff.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qwbmp.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/imageformats/qwebp.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/platforms/qminimal.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/platforms/qoffscreen.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/platforms/qwebgl.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/platforms/qwindows.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/platformthemes/qxdgdesktopportal.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/plugins/styles/qwindowsvistastyle.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_ar.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_bg.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_ca.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_cs.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_da.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_de.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_en.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_es.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_fi.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_fr.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_gd.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_he.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_hu.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_it.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_ja.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_ko.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_lv.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_pl.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_ru.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_sk.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_tr.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_uk.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/Qt/translations/qtbase_zh_TW.qm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/QtCore.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/QtGui.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/QtWidgets.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/PyQt5/sip.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5DBus.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5Gui.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5Network.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5Qml.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5QmlModels.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5Quick.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5Svg.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5WebSockets.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/Qt5Widgets.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/ScriptMaker_v0p71_Python.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/ScriptMaker_v0p71_Python.exe.manifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/VCRUNTIME140.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/VCRUNTIME140_1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_asyncio.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_bz2.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_cffi_backend.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_ctypes.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_decimal.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_elementtree.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_hashlib.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_lzma.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_multiprocessing.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_overlapped.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_queue.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_socket.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_ssl.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/_win32sysloader.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/altgraph-0.17.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/altgraph-0.17.dist-info/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/altgraph-0.17.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/altgraph-0.17.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/altgraph-0.17.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/altgraph-0.17.dist-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/altgraph-0.17.dist-info/zip-safe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-com-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-console-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-datetime-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-debug-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-errorhandling-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-file-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-file-l1-2-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-file-l2-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-handle-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-heap-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-interlocked-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-libraryloader-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-localization-l1-2-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-memory-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-namedpipe-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-processenvironment-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-processthreads-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-processthreads-l1-1-1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-profile-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-rtlsupport-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-string-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-synch-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-synch-l1-2-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-sysinfo-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-timezone-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-core-util-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-conio-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-convert-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-environment-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-filesystem-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-heap-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-locale-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-math-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-multibyte-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-process-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-runtime-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-stdio-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-string-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-time-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/api-ms-win-crt-utility-l1-1-0.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/base_library.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/cffi-1.14.6.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/cffi-1.14.6.dist-info/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/cffi-1.14.6.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/cffi-1.14.6.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/cffi-1.14.6.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/cffi-1.14.6.dist-info/entry_points.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/cffi-1.14.6.dist-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/d3dcompiler_47.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/libEGL.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/libGLESv2.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/libcrypto-1_1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/libffi-7.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/libopenblas.JPIJNSWNNAN3CE6LLI5FWSPHUT2VXMTH.gfortran-win_amd64.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/libssl-1_1.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/mfc140u.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/core/_multiarray_tests.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/core/_multiarray_umath.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/fft/_pocketfft_internal.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/linalg/_umath_linalg.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/linalg/lapack_lite.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/_bounded_integers.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/_common.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/_generator.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/_mt19937.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/_pcg64.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/_philox.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/_sfc64.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/bit_generator.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/numpy/random/mtrand.cp38-win_amd64.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/opengl32sw.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/platforms/qminimal.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/platforms/qoffscreen.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/platforms/qwebgl.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/platforms/qwindows.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyexpat.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/DESCRIPTION.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/REQUESTED" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/entry_points.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pyinstaller-4.4.dist-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/python3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/python38.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pythoncom38.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/pywintypes38.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/select.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/setuptools-52.0.0.dist-info/INSTALLER" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/setuptools-52.0.0.dist-info/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/setuptools-52.0.0.dist-info/METADATA" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/setuptools-52.0.0.dist-info/RECORD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/setuptools-52.0.0.dist-info/WHEEL" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/setuptools-52.0.0.dist-info/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/setuptools-52.0.0.dist-info/entry_points.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/setuptools-52.0.0.dist-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/ucrtbase.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/unicodedata.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/win32api.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/win32com/shell/shell.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/win32pdh.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/win32trace.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/win32ui.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/ScriptMaker_v0p71_Python/win32wnet.pyd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/python3.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pause_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/pause_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/play_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runScriptTest.gcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runScriptTest2.gcl" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/runScriptTest2.gcl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/solid_liquid.gcl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/squareCogs.gif" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/squareCogs.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stop_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/stop_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sysroot.toml" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/sysroot.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1.pdt" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/test1.pdt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transmission_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/transmission_icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +300,10 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript\Icons" />
+      <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker" />
       <recent name="C:\Users\ktd43279\Documents\GitHub\RefNX_RasCAL_GUI" />
@@ -66,27 +312,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.ScriptMaker_v0p71_Python">
-    <configuration name="ScriptMaker_v0p71 - Muon" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PyScriptMaker" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p71 - Muon.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="ScriptMaker_v0p71_MARI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -99,7 +324,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p71_MARI.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript\ScriptMaker_v0p71_MARI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ScriptMaker_v0p71_Python (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyScriptMaker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MaxSkript" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71_Python.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -120,7 +366,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p71_Python.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript\ScriptMaker_v0p71_Python.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -141,7 +387,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ScriptMaker_v0p71_SANS.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript\ScriptMaker_v0p71_SANS.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,7 +396,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="newActions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="dragdrop_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -162,7 +408,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/newActions.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dragdrop_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -174,10 +420,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.ScriptMaker_v0p71_Python" />
+        <item itemvalue="Python.ScriptMaker_v0p71_Python (1)" />
         <item itemvalue="Python.ScriptMaker_v0p71_SANS" />
+        <item itemvalue="Python.dragdrop_test" />
         <item itemvalue="Python.ScriptMaker_v0p71_MARI" />
-        <item itemvalue="Python.ScriptMaker_v0p71 - Muon" />
-        <item itemvalue="Python.newActions" />
       </list>
     </recent_temporary>
   </component>
@@ -220,57 +466,57 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="550" y="216" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1623963938382" />
-    <state width="1899" height="214" key="GridCell.Tab.0.bottom" timestamp="1627046996993">
+    <state width="1899" height="214" key="GridCell.Tab.0.bottom" timestamp="1627052942769">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
     <state width="1515" height="160" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
-    <state width="1899" height="214" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627046996993" />
+    <state width="1899" height="214" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627052942769" />
     <state width="1515" height="160" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
-    <state width="1899" height="214" key="GridCell.Tab.0.center" timestamp="1627046996993">
+    <state width="1899" height="214" key="GridCell.Tab.0.center" timestamp="1627052942769">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
     <state width="1515" height="160" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
-    <state width="1899" height="214" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627046996993" />
+    <state width="1899" height="214" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627052942769" />
     <state width="1515" height="160" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
-    <state width="1899" height="214" key="GridCell.Tab.0.left" timestamp="1627046996993">
+    <state width="1899" height="214" key="GridCell.Tab.0.left" timestamp="1627052942769">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
     <state width="1515" height="160" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
-    <state width="1899" height="214" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627046996993" />
+    <state width="1899" height="214" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627052942769" />
     <state width="1515" height="160" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
-    <state width="1899" height="214" key="GridCell.Tab.0.right" timestamp="1627046996993">
+    <state width="1899" height="214" key="GridCell.Tab.0.right" timestamp="1627052942769">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
     <state width="1515" height="160" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
-    <state width="1899" height="214" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627046996993" />
+    <state width="1899" height="214" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627052942769" />
     <state width="1515" height="160" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
-    <state width="1899" height="251" key="GridCell.Tab.1.bottom" timestamp="1626825584013">
+    <state width="1899" height="251" key="GridCell.Tab.1.bottom" timestamp="1627052482170">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="223" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="251" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626825584013" />
+    <state width="1899" height="251" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627052482170" />
     <state width="1515" height="223" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1626644740058" />
-    <state width="1899" height="251" key="GridCell.Tab.1.center" timestamp="1626825584013">
+    <state width="1899" height="251" key="GridCell.Tab.1.center" timestamp="1627052482170">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="223" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="251" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626825584013" />
+    <state width="1899" height="251" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627052482170" />
     <state width="1515" height="223" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1626644740058" />
-    <state width="1899" height="251" key="GridCell.Tab.1.left" timestamp="1626825584013">
+    <state width="1899" height="251" key="GridCell.Tab.1.left" timestamp="1627052482170">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="223" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="251" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626825584013" />
+    <state width="1899" height="251" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627052482170" />
     <state width="1515" height="223" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1626644740058" />
-    <state width="1899" height="251" key="GridCell.Tab.1.right" timestamp="1626825584013">
+    <state width="1899" height="251" key="GridCell.Tab.1.right" timestamp="1627052482170">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="223" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626771706291" />
-    <state width="1899" height="251" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1626825584013" />
+    <state width="1899" height="251" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627052482170" />
     <state width="1515" height="223" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1626644740058" />
     <state x="4189" y="134" key="SettingsEditor" timestamp="1627043559363">
       <screen x="3840" y="0" width="1920" height="1160" />
