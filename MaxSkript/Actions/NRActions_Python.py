@@ -23,6 +23,13 @@ def isfloat(value):
     except ValueError:
         return False
 
+def isint(value):
+    try:
+        int(value)
+        return True
+    except ValueError:
+        return False
+
 def tofloat(value):
     try:
         float(value)
@@ -415,7 +422,7 @@ class ContrastChange(ScriptActionClass.ActionClass):
         return "Concentrations in % and need to add up to 100."
 
 class Transmission(ScriptActionClass.ActionClass):
-    def __init__(self, s1vg=1.0 ,s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
+    def __init__(self, s1vg=1.0, s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
         self.Sample = Sample 
         self.Subtitle = Subtitle 
         self.s1vg = tofloat(s1vg)
@@ -471,7 +478,7 @@ class Transmission(ScriptActionClass.ActionClass):
         return json.dumps(rdict, indent=4)
         
     def stringLine(self, sampleNumber):
-        outString = "runTime = transmission(sample[" + str(sampleNumber) + "], \"" + self.Subtitle + "\", " + str(self.uAmps) + "," + str(self.s1vg) + "," + str(self.s2vg) +\
+        outString = "\ttransmission(sample_" + self.Sample + ", \"" + self.Subtitle + "\", " + str(self.uAmps) + "," + str(self.s1vg) + "," + str(self.s2vg) +\
                                                 "," + str(self.s1hg) + "," + str(self.s2hg) + "," + str(self.s4hg)
         if str(self.height_offset) != "":
             outString += "," + str(self.height_offset)
@@ -571,6 +578,94 @@ class SetJulabo(ScriptActionClass.ActionClass):
     def toolTip(self):
         pass
 
+class HystLoop(ScriptActionClass.ActionClass):
+    def __init__(self, Sample="", Subtitle="", Angles=[0.7, 2.3], frames=[5, 20], fields=[20, 50], measure=[1, 0],
+                 wait="False"):
+        self.Sample = Sample
+        self.Subtitle = Subtitle  #
+        self.Angles = Angles
+        self.Frames = frames
+        self.Fields = fields
+        self.Measure = measure
+        self.wait = wait
+
+    def get_icon(self):
+        return "MaxSkript/Icons/hystloop1.png"
+
+    def makeAction(self, node):
+        self.Sample = node.child(0, 1).text()
+        self.Subtitle = node.child(1, 1).text()
+
+        tempAngles = node.child(2, 1).text().split(",")
+        self.Angles = [float(a) for a in tempAngles if isfloat(a)]
+
+        tempFrames = node.child(3, 1).text().split(",")
+        self.frames = [float(a) for a in tempFrames if isfloat(a)]
+
+        tempFields = node.child(4, 1).text().split(",")
+        self.Fields = [float(a) for a in tempFields if isfloat(a)]
+
+        tempMeas = node.child(5, 1).text().split(",")
+        self.Measure = [int(a) for a in tempMeas if isint(a)]
+
+        self.wait = node.child(6, 1).text()
+        return self
+
+    def summary(self):
+        degree = str(b'\xc2\xb0', 'utf8')
+        res1 = dict(zip(self.Angles, self.Frames))
+        res = ''.join("({}{}: {}\u03BCA) ".format(angle, degree, int(frames)) for angle, frames in res1.items())
+        outString = self.Sample + " " + \
+                    self.Subtitle + \
+                    "\t" + str(res) + \
+                    "fields = [" + ", ".join([str(field) for field in self.Fields]) + "]"
+        return outString
+
+    def isValid(self):
+        if len(self.Angles) != len(self.Frames):
+            return [False, "Number of Angles is not the same as number of frames or empty."]
+        elif any(i > 5 for i in self.Angles):
+            return [False, "One of the angles might be too high."]
+        elif len(self.Angles) == 0:
+            return [False, "Please enter at least on angle/frames pair."]
+        elif len(self.Fields) != len(self.Measure):
+            return [False, "Number of fields is not the same as number of measurements."]
+        else:
+            return [True, "All good!"]
+
+    def stringLine(self, sampleNumber):
+        outString = "\t##### Sample " + str(sampleNumber) + " hysteresis loop\n"
+        outString += "\tfields = [" + ", ".join([str(field) for field in self.Fields]) + "]\n"
+        outString += "\tmeasure = [" + ", ".join([str(meas) for meas in self.Measure]) + "]\n"
+        outString += "\tfor field, meas in zip(fields, measure):\n"
+        outString += "\t\tsample_" + self.Sample + ".subtitle = \"" + self.Subtitle + " field=\" + field\n"
+
+        outString += "\t\tif meas:\n"
+        for a in range(len(self.Angles)):
+            outString +="\t\t\trun_angle(sample_" + self.Sample + ", angle=" \
+                         + str(self.Angles[a]) + ", count_frames=" + str(self.frames[a]) + ", mode=\"PNR\")\n"
+
+        # Change the field:
+        outString += "\t\tg.cset(b.FIELD=field)\n"
+
+        return outString
+
+    def makeJSON(self):
+        rdict = {"RunAngles": [{"label": "Sample", "value": str(self.Sample)}, \
+                               {"label": "Subtitle", "value": str(self.Subtitle)}, \
+                               {"label": "Angles", "value": ['{:.1f}'.format(x) for x in self.Angles]}, \
+                               {"label": "uAmps", "value": ['{}'.format(x) for x in self.uAmps]}]}
+        return json.dumps(rdict, indent=4)
+
+    def calcTime(self, inst):
+        if inst.upper() in ["INTER", "POLREF", "OFFSPEC"]:
+            return (sum(self.frames) / 36000.0 * 60) * self.Measure.count(1)
+        else:
+            return sum(self.frames) / 180.0 * 60
+
+    def toolTip(self):
+        return "Number of Angles and uAmps entries need to be the same."
+
 class IterRegistry(type):
     def __iter__(cls):
         return iter(cls._registry)
@@ -583,15 +678,15 @@ class NRsample(object):
     def __init__(self, row=[]):
         self._registry.append(self)
         
-        self.title = row[0]
-        self.translation = row[1]
-        self.height = row[2]
-        self.phi_offset = row[3]
-        self.psi = row[4]
-        self.footprint = row[5]
-        self.resolution = row[6]
-        self.coarse_noMirror = row[7]
-        self.switch_pos = row[8]
+        self.title = 'Title' #row[0]
+        self.translation = 'trans' #row[1]
+        self.height = 'height' #row[2]
+        self.phi_offset = 'phi_offset' #row[3]
+        self.psi = 'psi' #row[4]
+        self.footprint = 'footprint' #row[5]
+        self.resolution = 'resolution' #row[6]
+        self.coarse_noMirror = 'coarse_noMirror' #row[7]
+        self.switch_pos = 'switch_pos' #row[8]
         #sampleNumber += 1
         
     #sampleNumber=0

@@ -375,6 +375,15 @@ class Tree(QtWidgets.QTreeView):
 
         self.headerLabels_sampTable = ["Sample/Title", "Trans", "Height", "Phi Offset",\
                                        "Psi", "Footprint", "Resolution", "Coarse_noMirror", "Switch"]
+
+        try:
+            SampleClass = getattr(importlib.import_module(myActions), 'NRsample')
+            # Instantiate the class (pass arguments to the constructor, if needed)
+            NRSample = SampleClass()
+            print([sample_attribute for sample_attribute in dir(NRSample) if '_' not in sample_attribute[0]])
+        except AttributeError:
+            print("NRsample class not found in myActions module.")
+
         self.tableModel = TableModel(self, self.sampleTable, self.headerLabels_sampTable)
 
         self.delegate = ComboBoxDelegate(self, self.sampleTable)
@@ -1001,7 +1010,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
                 self.form_widget.view.openPersistentEditor(self.form_widget.view.model.item(i, 0).child(0, 1).index())
             self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
         self.form_widget.view.resizeColumnToContents(0)
-        self.form_widget.fileEdit.setText('PyScript_test1.py')
+        self.form_widget.fileEdit.setText('MaxSkript/PyScript_test1.py')
         ############################
         self.setStyleSheet("""
 
