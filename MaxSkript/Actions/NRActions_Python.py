@@ -9,7 +9,6 @@ from datetime import datetime
 import MaxSkript.Actions.ScriptActionClass as ScriptActionClass
 
 
-
 # instruments
 instruments = ["INTER", "SURF", "PolRef", "OffSpec", "CRISP"]
 # actions list items need to match method names (obsolete due to abstract class:
@@ -23,6 +22,7 @@ def isfloat(value):
     except ValueError:
         return False
 
+
 def isint(value):
     try:
         int(value)
@@ -30,12 +30,14 @@ def isint(value):
     except ValueError:
         return False
 
+
 def tofloat(value):
     try:
         float(value)
         return float(value)
     except ValueError:
         return "NaN"
+
 
 def writeHeader(samples, args=[]):
     now = datetime.now()
@@ -71,10 +73,12 @@ def writeHeader(samples, args=[]):
 
     return outString
 
+
 def writeFooter(samples):
     ## for Python
     outString = ""
     return outString
+
 
 class RunAngles(ScriptActionClass.ActionClass):
     action_type = 'multi'
@@ -109,7 +113,7 @@ class RunAngles(ScriptActionClass.ActionClass):
     def summary(self):
         degree = str(b'\xc2\xb0', 'utf8')
         res1 = dict(zip(self.Angles, self.uAmps))
-        res = ''.join("({}{}: {}\u03BCA) ".format(angle, degree, int(uamps)) for angle, uamps in res1.items())
+        res = ''.join("({}{}: {}\u03BCAh) ".format(angle, degree, int(uamps)) for angle, uamps in res1.items())
         outString = self.Sample + " " +\
                     self.Subtitle +\
                     "\t" + str(res)
@@ -152,6 +156,7 @@ class RunAngles(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         return "Number of Angles and uAmps entries need to be the same."
+
 
 class SampleLoop(ScriptActionClass.ActionClass):
     def __init__(self, samples="S1, S2", Subtitle="", Angles=[0.7, 2.3], uAmps=[5, 20], contrastChange_to="H2O",
@@ -233,6 +238,7 @@ class SampleLoop(ScriptActionClass.ActionClass):
     def toolTip(self):
         return "Number of Angles and uAmps entries need to be the same."
 
+
 class run_angle_polref(ScriptActionClass.ActionClass):
     def __init__(self, sample_stack="", angles=[0.5, 1.6], Subtitle="",
                  frames=[36000, 36000], number_of_runs=[1, 4], pol_mode='PNR'):
@@ -303,6 +309,7 @@ class run_angle_polref(ScriptActionClass.ActionClass):
     def toolTip(self):
         return "Number of Angles and uAmps entries need to be the same."
 
+
 class Inject(ScriptActionClass.ActionClass):
     def __init__(self, Sample="", Solution="D2O", Flow=1.5, Volume=15.0, wait="False"):
         self.Sample = Sample #model.item(row).child(0,1).text()
@@ -365,6 +372,7 @@ class Inject(ScriptActionClass.ActionClass):
     def toolTip(self):
         return "Valid input: D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B. HPLC: A - D2O, B - H2O"
 
+
 class ContrastChange(ScriptActionClass.ActionClass):
     def __init__(self, Sample="", concA=100, concB=0, concC=0, concD=0, Flow=1.0, Volume=10.0):
         self.Sample = Sample #model.item(row).child(0,1).text()
@@ -420,6 +428,7 @@ class ContrastChange(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         return "Concentrations in % and need to add up to 100."
+
 
 class Transmission(ScriptActionClass.ActionClass):
     def __init__(self, s1vg=1.0, s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
@@ -495,7 +504,8 @@ class Transmission(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         pass
- 
+
+
 class GoToPressure(ScriptActionClass.ActionClass):
     def __init__(self, pressure=20.0, speed=15.0):
         # self.Sample = "" # dummy
@@ -528,6 +538,7 @@ class GoToPressure(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         pass
+
 
 class SetJulabo(ScriptActionClass.ActionClass):
     def __init__(self, Temperature="20.0", lowLimit="", highLimit=""):
@@ -578,8 +589,9 @@ class SetJulabo(ScriptActionClass.ActionClass):
     def toolTip(self):
         pass
 
+
 class HystLoop(ScriptActionClass.ActionClass):
-    def __init__(self, Sample="", Subtitle="", Angles=[0.7, 2.3], frames=[5, 20], fields=[20, 50], measure=[1, 0],
+    def __init__(self, Sample="", Subtitle="", Angles=[0.7, 2.3], frames=[9000, 27000], fields=[20, 50], measure=[1, 0],
                  wait="False"):
         self.Sample = Sample
         self.Subtitle = Subtitle  #
@@ -614,7 +626,7 @@ class HystLoop(ScriptActionClass.ActionClass):
     def summary(self):
         degree = str(b'\xc2\xb0', 'utf8')
         res1 = dict(zip(self.Angles, self.Frames))
-        res = ''.join("({}{}: {}\u03BCA) ".format(angle, degree, int(frames)) for angle, frames in res1.items())
+        res = ''.join("({}{}: {}fr) ".format(angle, degree, int(frames)) for angle, frames in res1.items())
         outString = self.Sample + " " + \
                     self.Subtitle + \
                     "\t" + str(res) + \
@@ -665,6 +677,7 @@ class HystLoop(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         return "Number of Angles and uAmps entries need to be the same."
+
 
 class IterRegistry(type):
     def __iter__(cls):
