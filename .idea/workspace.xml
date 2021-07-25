@@ -20,13 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa2868dc-3f05-41ce-b2f7-b6f864290da2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MaxSkript/sampletable.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MaxSkript/treeitems.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MaxSkript/treeview.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MaxSkript/Actions/NRActions_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Actions/NRActions_Python.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MaxSkript/Icons/hystloop1.png" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Icons/hystloop1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MaxSkript/PyScript_test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/PyScript_test1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71_Python.py" afterDir="false" />
     </list>
@@ -60,15 +54,15 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript\Icons" />
-      <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker" />
       <recent name="C:\Users\ktd43279\Documents\GitHub\RefNX_RasCAL_GUI" />
       <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\PROGS\ModelViewTest" />
       <recent name="C:\Users\ktd43279\Documents\GitHub\PyScriptMaker" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript\Icons" />
+      <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript" />
     </key>
   </component>
   <component name="RunManager" selected="Python.ScriptMaker_v0p71_Python">
@@ -230,33 +224,33 @@
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state x="4389" y="400" key="FileDocumentManager.FileCacheConflict/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627138012056" />
-    <state width="1899" height="214" key="GridCell.Tab.0.bottom" timestamp="1627160681336">
+    <state width="1899" height="214" key="GridCell.Tab.0.bottom" timestamp="1627223099471">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
     <state width="1515" height="160" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
-    <state width="1899" height="214" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627160681336" />
+    <state width="1899" height="214" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627223099471" />
     <state width="1515" height="160" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
-    <state width="1899" height="214" key="GridCell.Tab.0.center" timestamp="1627160681336">
+    <state width="1899" height="214" key="GridCell.Tab.0.center" timestamp="1627223099471">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
     <state width="1515" height="160" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
-    <state width="1899" height="214" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627160681336" />
+    <state width="1899" height="214" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627223099471" />
     <state width="1515" height="160" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
-    <state width="1899" height="214" key="GridCell.Tab.0.left" timestamp="1627160681336">
+    <state width="1899" height="214" key="GridCell.Tab.0.left" timestamp="1627223099471">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
     <state width="1515" height="160" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
-    <state width="1899" height="214" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627160681336" />
+    <state width="1899" height="214" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627223099471" />
     <state width="1515" height="160" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
-    <state width="1899" height="214" key="GridCell.Tab.0.right" timestamp="1627160681336">
+    <state width="1899" height="214" key="GridCell.Tab.0.right" timestamp="1627223099471">
       <screen x="3840" y="0" width="1920" height="1160" />
     </state>
     <state width="1515" height="248" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1040@0.0.1536.920" timestamp="1626338247365" />
     <state width="1515" height="160" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1626946238533" />
-    <state width="1899" height="214" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627160681336" />
+    <state width="1899" height="214" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1627223099471" />
     <state width="1515" height="160" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1626993296865" />
     <state width="1899" height="251" key="GridCell.Tab.1.bottom" timestamp="1627159855332">
       <screen x="3840" y="0" width="1920" height="1160" />

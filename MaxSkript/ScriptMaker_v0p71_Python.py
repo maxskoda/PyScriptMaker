@@ -55,6 +55,7 @@ class App(QtWidgets.QWidget):
         self.view.setFont(font)
 
         self.dataGroupBox = QtWidgets.QGroupBox("NR Script")
+        self.dataGroupBox.setFont(font)
         dataLayout = QtWidgets.QHBoxLayout()
 
         # dataLayout.addWidget(actionList)
@@ -171,6 +172,7 @@ class App(QtWidgets.QWidget):
 
         # Sample Table - this is NR specific and should be moved to NRActions.py!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         self.sampleTableGroupBox = QtWidgets.QGroupBox("Sample table")
+        self.sampleTableGroupBox.setFont(font)
         sampleLayout = QtWidgets.QHBoxLayout()
 
         self.sampleTable = QtWidgets.QTableView()

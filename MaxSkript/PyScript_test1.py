@@ -1,4 +1,4 @@
-### This script was generated on 24/07/2021, at 22:02:55
+### This script was generated on 25/07/2021, at 15:21:46
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -91,18 +91,13 @@ def runscript(dry_run=False):
 	run_angle(sample_S4, angle=0.7, count_uamps=15.0, mode="NR")
 	run_angle(sample_S4, angle=2.3, count_uamps=20.0, mode="NR")
 
-	##### Sample 2 hysteresis loop
+	##### Sample 3 hysteresis loop
 	fields = [20.0, 50.0]
 	measure = [1, 0]
 	for field, meas in zip(fields, measure):
-		sample_S2.subtitle = "kkk field=" + field
+		sample_S3.subtitle = "jhkhk field=" + field
 		if meas:
-			run_angle(sample_S2, angle=0.7, count_frames=9000.0, mode="PNR")
-			run_angle(sample_S2, angle=2.3, count_frames=27000.0, mode="PNR")
+			run_angle(sample_S3, angle=0.7, count_frames=9000.0, mode="PNR")
+			run_angle(sample_S3, angle=2.3, count_frames=27000.0, mode="PNR")
 		g.cset(b.FIELD=field)
-
-	##### Sample 1
-	sample_S1.subtitle="H2O"
-	run_angle(sample_S1, angle=0.7, count_uamps=15.0, mode="NR")
-	run_angle(sample_S1, angle=2.3, count_uamps=20.0, mode="NR")
 
