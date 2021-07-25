@@ -63,7 +63,7 @@ class App(QtWidgets.QWidget):
 
         self.dataGroupBox.setLayout(dataLayout)
 
-        mainLayout = QtWidgets.QVBoxLayout()
+        self.mainLayout = QtWidgets.QVBoxLayout()
 
         self.instrumentSelector = QtWidgets.QComboBox()
         self.instrumentSelector.addItems(NRActions.instruments)
@@ -166,72 +166,73 @@ class App(QtWidgets.QWidget):
         collapseLayout.addWidget(self.beam_current_edit)
         collapseLayout.addWidget(self.uamp_label)
 
-        mainLayout.addLayout(fileLayout)
-        mainLayout.addLayout(buttonLayout)
-        mainLayout.addLayout(collapseLayout)
+        self.mainLayout.addLayout(fileLayout)
+        self.mainLayout.addLayout(buttonLayout)
+        self.mainLayout.addLayout(collapseLayout)
 
-        # Sample Table - this is NR specific and should be moved to NRActions.py!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        self.sampleTableGroupBox = QtWidgets.QGroupBox("Sample table")
-        self.sampleTableGroupBox.setFont(font)
-        sampleLayout = QtWidgets.QHBoxLayout()
+        # # Sample Table - this is NR specific and should be moved to NRActions.py!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        # self.sampleTableGroupBox = QtWidgets.QGroupBox("Sample table")
+        # self.sampleTableGroupBox.setFont(font)
+        # sampleLayout = QtWidgets.QHBoxLayout()
+        #
+        # self.sampleTable = QtWidgets.QTableView()
 
-        self.sampleTable = QtWidgets.QTableView()
         # Delegates for entering correct numbers --- THIS IS NR SPECIFIC ##################################
-        self.transDelegate = SpinBoxDelegate(-600.0, 600.0)
-        self.sampleTable.setItemDelegateForColumn(1, self.transDelegate)
-
-        self.heightDelegate = SpinBoxDelegate(-30.0, 30.0)
-        self.sampleTable.setItemDelegateForColumn(2, self.heightDelegate)
-
-        self.phiDelegate = SpinBoxDelegate(-5.0, 5.0)
-        self.sampleTable.setItemDelegateForColumn(3, self.phiDelegate)
-
-        self.psiDelegate = SpinBoxDelegate(-5.0, 5.0)
-        self.sampleTable.setItemDelegateForColumn(4, self.psiDelegate)
-
-        self.fpDelegate = SpinBoxDelegate(1.0, 300.0)
-        self.sampleTable.setItemDelegateForColumn(5, self.fpDelegate)
-
-        self.resDelegate = SpinBoxDelegate(0.005, 0.15)
-        self.sampleTable.setItemDelegateForColumn(6, self.resDelegate)
-
-        self.coarseNoMDelegate = SpinBoxDelegate(-60, 100.0)
-        self.sampleTable.setItemDelegateForColumn(7, self.coarseNoMDelegate)
-
-        self.switchDelegate = SpinBoxDelegate(1.0, 6.0, True)
-        self.sampleTable.setItemDelegateForColumn(8, self.switchDelegate)
+        # self.transDelegate = SpinBoxDelegate(-600.0, 600.0)
+        # self.sampleTable.setItemDelegateForColumn(1, self.transDelegate)
+        #
+        # self.heightDelegate = SpinBoxDelegate(-30.0, 30.0)
+        # self.sampleTable.setItemDelegateForColumn(2, self.heightDelegate)
+        #
+        # self.phiDelegate = SpinBoxDelegate(-5.0, 5.0)
+        # self.sampleTable.setItemDelegateForColumn(3, self.phiDelegate)
+        #
+        # self.psiDelegate = SpinBoxDelegate(-5.0, 5.0)
+        # self.sampleTable.setItemDelegateForColumn(4, self.psiDelegate)
+        #
+        # self.fpDelegate = SpinBoxDelegate(1.0, 300.0)
+        # self.sampleTable.setItemDelegateForColumn(5, self.fpDelegate)
+        #
+        # self.resDelegate = SpinBoxDelegate(0.005, 0.15)
+        # self.sampleTable.setItemDelegateForColumn(6, self.resDelegate)
+        #
+        # self.coarseNoMDelegate = SpinBoxDelegate(-60, 100.0)
+        # self.sampleTable.setItemDelegateForColumn(7, self.coarseNoMDelegate)
+        #
+        # self.switchDelegate = SpinBoxDelegate(1.0, 6.0, True)
+        # self.sampleTable.setItemDelegateForColumn(8, self.switchDelegate)
 
         ##################################################################################################
         # tableModel = TableModel(sampleTable)
-        self.sampleTable.setAlternatingRowColors(True)
-        self.sampleTable.setModel(self.view.tableModel)
-        self.sampleTable.resizeColumnsToContents()
+        # self.sampleTable.setAlternatingRowColors(True)
+        # self.sampleTable.setModel(self.view.tableModel)
+        # self.sampleTable.resizeColumnsToContents()
 
         # Create buttons:
-        self.addLayerButton = QtWidgets.QPushButton("Add sample")
-        self.addLayerButton.clicked.connect(self.on_addLayer)
-        self.removeLayerButton = QtWidgets.QPushButton("Remove Sample(s)")
-        self.removeLayerButton.clicked.connect(self.on_removeLayer)
-
-        self.hbox_layers = QtWidgets.QHBoxLayout()
-
-        self.hbox_layers.addWidget(self.addLayerButton)
-        self.hbox_layers.addWidget(self.removeLayerButton)
-        self.hbox_layers.addStretch(1)
-        self.vbox_samples = QtWidgets.QVBoxLayout()
+        # self.addLayerButton = QtWidgets.QPushButton("Add sample")
+        # self.addLayerButton.clicked.connect(self.on_addLayer)
+        # self.removeLayerButton = QtWidgets.QPushButton("Remove Sample(s)")
+        # self.removeLayerButton.clicked.connect(self.on_removeLayer)
+        #
+        # self.hbox_layers = QtWidgets.QHBoxLayout()
+        #
+        # self.hbox_layers.addWidget(self.addLayerButton)
+        # self.hbox_layers.addWidget(self.removeLayerButton)
+        # self.hbox_layers.addStretch(1)
+        # self.vbox_samples = QtWidgets.QVBoxLayout()
 
         # checkbox to hide table
-        self.b = QtWidgets.QCheckBox("Hide/Show Sample Table", self)
-        self.b.stateChanged.connect(self.click_box)
-        mainLayout.addWidget(self.dataGroupBox)
-        mainLayout.addWidget(self.sampleTableGroupBox)
+        # self.b = QtWidgets.QCheckBox("Hide/Show Sample Table", self)
+        # self.b.stateChanged.connect(self.click_box)
+        # self.mainLayout.addWidget(self.dataGroupBox)
+        # mainLayout.addWidget(self.sampleTableGroupBox)
 
-        self.vbox_samples.addWidget(self.b)
-        self.vbox_samples.addLayout(self.hbox_layers)
-        self.vbox_samples.addWidget(self.sampleTable)
-        sampleLayout.addLayout(self.vbox_samples)
-        self.sampleTableGroupBox.setLayout(sampleLayout)
-        self.setLayout(mainLayout)
+        # self.vbox_samples.addWidget(self.b)
+        # self.vbox_samples.addLayout(self.hbox_layers)
+        # self.vbox_samples.addWidget(self.sampleTable)
+        # sampleLayout.addLayout(self.vbox_samples)
+        # self.sampleTableGroupBox.setLayout(sampleLayout)
+        # self.setLayout(self.mainLayout)
 
         self.view.resizeColumnToContents(0)
         self.view.resizeColumnToContents(2)
@@ -355,28 +356,6 @@ class App(QtWidgets.QWidget):
                 samples.append(sampleDict)
         return samples
 
-    def click_box(self, state):
-        if state == QtCore.Qt.Checked:
-            self.addLayerButton.setHidden(True)
-            self.removeLayerButton.setHidden(True)
-            self.sampleTable.setHidden(True)
-        else:
-            self.addLayerButton.setHidden(False)
-            self.removeLayerButton.setHidden(False)
-            self.sampleTable.setHidden(False)
-
-    def on_addLayer(self):
-        pass
-        # data = self.view.tableModel.getData()
-        # rowNo = len(data)
-        # data.append(["S"+str(rowNo+1), "", "", "", "", "", "", "", ""])
-        # self.view.tableModel = TableModel(data, self.view.headerLabels_sampTable)
-        # self.sampleTable.setModel(self.view.tableModel)
-        #
-        # self.view.tableModel.rowsInserted.connect(self.view.delegate.updateCombo)
-
-    def on_removeLayer(self):
-        pass
 
 
 class MyMainWindow(QtWidgets.QMainWindow):
@@ -419,6 +398,55 @@ class MyMainWindow(QtWidgets.QMainWindow):
         editMenu.addAction(change_subtitle_Act)
 
         QtWidgets.qApp.installEventFilter(self)
+        ################################
+        # Sample Table - this is NR specific and should be moved to NRActions.py!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        ################################
+        self.NRSamples = QtWidgets.QDockWidget('Sample table', self)
+        self.sampleTableGroupBox = QtWidgets.QGroupBox("Sample table")
+        # self.sampleTableGroupBox.setFont(font)
+        sampleLayout = QtWidgets.QHBoxLayout()
+
+        self.sampleTable = QtWidgets.QTableView()
+
+        # Create buttons:
+        self.addLayerButton = QtWidgets.QPushButton("Add sample")
+        self.addLayerButton.clicked.connect(self.on_addLayer)
+        self.removeLayerButton = QtWidgets.QPushButton("Remove Sample(s)")
+        self.removeLayerButton.clicked.connect(self.on_removeLayer)
+
+        self.hbox_layers = QtWidgets.QHBoxLayout()
+
+        self.hbox_layers.addWidget(self.addLayerButton)
+        self.hbox_layers.addWidget(self.removeLayerButton)
+        self.hbox_layers.addStretch(1)
+        self.vbox_samples = QtWidgets.QVBoxLayout()
+
+
+        # checkbox to hide table
+        self.b = QtWidgets.QCheckBox("Hide/Show Sample Table", self)
+        self.b.stateChanged.connect(self.click_box)
+
+        self.vbox_samples.addWidget(self.b)
+        self.vbox_samples.addLayout(self.hbox_layers)
+        self.vbox_samples.addWidget(self.sampleTable)
+        sampleLayout.addLayout(self.vbox_samples)
+        self.sampleTableGroupBox.setLayout(sampleLayout)
+        self.setLayout(self.form_widget.mainLayout)
+
+        self.sampleTable.setAlternatingRowColors(True)
+        self.sampleTable.setModel(self.form_widget.view.tableModel)
+        self.sampleTable.resizeColumnsToContents()
+
+        self.form_widget.mainLayout.addWidget(self.form_widget.dataGroupBox)
+        # self.form_widget.mainLayout.addWidget(self.sampleTableGroupBox)
+        self.NRSamples.setWidget(self.sampleTable)#sampleTableGroupBox)
+        self.NRSamples.setFeatures(QtWidgets.QDockWidget.DockWidgetFloatable |
+                 QtWidgets.QDockWidget.DockWidgetMovable)
+        self.addDockWidget(Qt.BottomDockWidgetArea, self.NRSamples)
+
+        self.form_widget.setLayout(self.form_widget.mainLayout)
+        ##################################
+
 
         # Open default file
         fileName = "MaxSkript/INTER_4Samples_2Contrasts_inject.json"  # "Muon_test.json"
@@ -450,6 +478,30 @@ class MyMainWindow(QtWidgets.QMainWindow):
             }
 
         """)
+
+    def click_box(self, state):
+        if state == QtCore.Qt.Checked:
+            self.addLayerButton.setHidden(True)
+            self.removeLayerButton.setHidden(True)
+            self.sampleTable.setHidden(True)
+        else:
+            self.addLayerButton.setHidden(False)
+            self.removeLayerButton.setHidden(False)
+            self.sampleTable.setHidden(False)
+
+    def on_addLayer(self):
+        pass
+        # data = self.view.tableModel.getData()
+        # rowNo = len(data)
+        # data.append(["S"+str(rowNo+1), "", "", "", "", "", "", "", ""])
+        # self.view.tableModel = TableModel(data, self.view.headerLabels_sampTable)
+        # self.sampleTable.setModel(self.view.tableModel)
+        #
+        # self.view.tableModel.rowsInserted.connect(self.view.delegate.updateCombo)
+
+    def on_removeLayer(self):
+        pass
+
 
     def openScript(self):
         print("Opening...")
