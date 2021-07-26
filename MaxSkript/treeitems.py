@@ -25,7 +25,7 @@ class MyStandardItemModel(QtGui.QStandardItemModel):
         return True
 
     def dropEvent(self, e):
-        self.setText("Hallo")
+        print("Hallo")
 
     # def dropMimeData(self, data, action, row, column, parent):
     #     parent_name = parent.data()
@@ -88,8 +88,9 @@ class MyStandardItemModel(QtGui.QStandardItemModel):
                         item = QtGui.QStandardItem(key)
                         itemCheck = QtGui.QStandardItem("")
                         lastItem = QtGui.QStandardItem("")
-                        durationItem = QtGui.QStandardItem("||||||||||||||||||||||||||||||||||||||||")
-                        # durationItem.setData(45, Qt.UserRole)
+                        durationItem = QtGui.QStandardItem(0)
+                        durationItem.setData(0, QtCore.Qt.UserRole + 1000)
+
                         item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable
                                       & ~QtCore.Qt.ItemIsDropEnabled \
                                       & ~QtCore.Qt.ItemIsDragEnabled)
@@ -221,20 +222,20 @@ class ComboBoxDelegate(QtWidgets.QStyledItemDelegate):
 
 
 class ProgressDelegate(QtWidgets.QStyledItemDelegate):
-    def paint(self, painter, option, index):
-        if index.parent().isValid():
-            view = option.widget
-            if isinstance(view, QtWidgets.QTreeView) and index.model() is view.model():
-                view.openPersistentEditor(index)
-            return
-        super(ProgressDelegate, self).paint(painter, option, index)
 
-    def createEditor(self, parent, option, index):
-        if index.parent().isValid():
-            editor = QtWidgets.QProgressBar(parent)
-            editor.setFixedWidth(100)
-            editor.setContentsMargins(0, 0, 0, 0)
-            editor.setValue(45)  # index.data(Qt.UserRole))
-            return editor
-        super(ProgressDelegate, self).createEditor(parent, option, index)
+    def paint(self, painter, option, index):
+        progress = index.data(QtCore.Qt.UserRole+1000)
+        if not progress:
+            progress = 0
+        opt = QtWidgets.QStyleOptionProgressBar()
+        opt.rect = option.rect
+        opt.minimum = 0
+        opt.maximum = 100
+        opt.progress = progress
+        opt.text = "{}".format(progress)
+        opt.textVisible = True
+        QtWidgets.QApplication.style().drawControl(QtWidgets.QStyle.CE_ProgressBar, opt, painter)
+
+
+
 

@@ -13,6 +13,7 @@ myActions = "Actions.NRActions_Python"
 
 NRActions = __import__('Actions.NRActions_Python', globals(), locals(), ['NRActions_Python'], 0)
 
+
 class Tree(QtWidgets.QTreeView):
     def __init__(self, parent=None):
         super(Tree, self).__init__(parent)
@@ -94,10 +95,18 @@ class Tree(QtWidgets.QTreeView):
             short.activated.connect(partial(self.menu_action, action))
             action.triggered.connect(partial(self.menu_action, action))
 
+
+
     def update_sample_table(self):
         self.tableModel.update_model(self.sampleTable)
 
     def update_runtime(self):
+        old_time = self.parent().parent().runTime.text()
+        hmin = old_time.split('h ')
+        h = hmin[0]
+        mins = hmin[1].split('min')[0]
+        old_minutes = int(h)*60 + int(mins)
+
         self.totalTime = 0.0
         global myActions
         for row in range(self.model.rowCount()):
@@ -116,7 +125,14 @@ class Tree(QtWidgets.QTreeView):
                 print("makeAction method undefined in ", tempAction, err)
             try:
                 self.rtime = tempAction.calcTime(self.parent().parent().instrumentSelector.currentText())
-                self.model.item(row, 4).setText(str(self.rtime))
+                # if old_minutes > 0:
+                #     time_percent = float(self.rtime)/(old_minutes+float(self.rtime)) * 100
+                # else:
+                #     time_percent = 0
+                self.model.item(row, 4).setData(self.rtime, QtCore.Qt.UserRole + 1000)
+                # self.model.item(row, 4).setData("red", QtCore.Qt.BackgroundColorRole)
+                # self.model.item(row, 4).setText(str(self.rtime))
+                # print("Time: ", self.totalTime)
                 self.totalTime += self.rtime
             except AttributeError:
                 pass
@@ -155,6 +171,11 @@ class Tree(QtWidgets.QTreeView):
 
         self.model.invisibleRootItem().child(index.row(), 1).setText(tempAction.summary())
         self.resizeColumnToContents(1)
+        try:
+            self.rtime = tempAction.calcTime(self.parent().parent().instrumentSelector.currentText())
+            self.model.item(index.row(), 4).setData(self.rtime, QtCore.Qt.UserRole + 1000)
+        except AttributeError:
+            pass
 
         try:
             if tempAction.isValid()[0]:
@@ -217,7 +238,8 @@ class Tree(QtWidgets.QTreeView):
         item = QtGui.QStandardItem(action.text())
         itemCheck = QtGui.QStandardItem("")
         rowNumberItem = QtGui.QStandardItem("")
-        durationItem = QtGui.QStandardItem("")
+        durationItem = QtGui.QStandardItem(0)
+        durationItem.setData(self.rtime, QtCore.Qt.UserRole + 1000)
         # override index temporarily test
         selection = self.selectedIndexes()
         if selection:

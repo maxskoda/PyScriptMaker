@@ -1,4 +1,4 @@
-### This script was generated on 25/07/2021, at 15:59:17
+### This script was generated on 26/07/2021, at 13:10:39
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -19,7 +19,7 @@ def runscript(dry_run=False):
 		resolution=0.03,
 		footprint=60)
 
-	sample_S1= sample_generator.new_sample(title="S1",
+	sample_foo= sample_generator.new_sample(title="foo",
 		translation=100,
 		height_offset=1,
 		phi_offset=1,
@@ -43,17 +43,12 @@ def runscript(dry_run=False):
 		phi_offset=4,
 		psi_offset=4)
 
-	##### Sample 4
-	sample_S4.subtitle="hghg"
-	run_angle(sample_S4, angle=0.7, count_uamps=5.0, mode="NR")
-	run_angle(sample_S4, angle=2.3, count_uamps=20.0, mode="NR")
+	##### Sample 1
+	sample_foo.subtitle="D2O"
+	run_angle(sample_foo, angle=0.7, count_uamps=5.0, mode="NR")
+	run_angle(sample_foo, angle=2.3, count_uamps=20.0, mode="NR")
 
-	##### Sample 2
-	sample_S2.subtitle="D2O"
-	run_angle(sample_S2, angle=0.7, count_uamps=5.0, mode="NR")
-	run_angle(sample_S2, angle=2.3, count_uamps=20.0, mode="NR")
-
-	inject(sample_S1, "H2O", 1.5, 15.0)
+	inject(sample_foo, "H2O", 1.5, 15.0)
 
 	##### Sample 2
 	sample_S2.subtitle="D2O"
@@ -62,37 +57,25 @@ def runscript(dry_run=False):
 
 	inject(sample_S2, "H2O", 1.5, 15.0)
 
-	##### Sample 3
-	sample_S3.subtitle="D2O"
-	run_angle(sample_S3, angle=0.7, count_uamps=5.0, mode="NR")
-	run_angle(sample_S3, angle=2.3, count_uamps=20.0, mode="NR")
-
-	inject(sample_S3, "H2O", 1.5, 15.0)
-
-	##### Sample 4
-	sample_S4.subtitle="D2O"
-	run_angle(sample_S4, angle=0.7, count_uamps=5.0, mode="NR")
-	run_angle(sample_S4, angle=2.3, count_uamps=20.0, mode="NR")
-
-	inject(sample_S4, "H2O", 1.5, 15.0)
+	##### Sample 1
+	sample_foo.subtitle="D2O"
+	run_angle(sample_foo, angle=0.7, count_uamps=5.0, mode="NR")
+	run_angle(sample_foo, angle=2.3, count_uamps=20.0, mode="NR")
 
 	##### Sample 1
-	sample_S1.subtitle="H2O"
-	run_angle(sample_S1, angle=0.7, count_uamps=15.0, mode="NR")
-	run_angle(sample_S1, angle=2.3, count_uamps=20.0, mode="NR")
+	sample_foo.subtitle="H2O"
+	run_angle(sample_foo, angle=0.7, count_uamps=5.0, mode="NR")
+	run_angle(sample_foo, angle=2.3, count_uamps=20.0, mode="NR")
 
 	##### Sample 2
 	sample_S2.subtitle="H2O"
-	run_angle(sample_S2, angle=0.7, count_uamps=15.0, mode="NR")
+	run_angle(sample_S2, angle=0.7, count_uamps=5.0, mode="NR")
 	run_angle(sample_S2, angle=2.3, count_uamps=20.0, mode="NR")
 
-	##### Sample 3
-	sample_S3.subtitle="H2O"
-	run_angle(sample_S3, angle=0.7, count_uamps=15.0, mode="NR")
-	run_angle(sample_S3, angle=2.3, count_uamps=20.0, mode="NR")
-
-	##### Sample 4
-	sample_S4.subtitle="H2O"
-	run_angle(sample_S4, angle=0.7, count_uamps=15.0, mode="NR")
-	run_angle(sample_S4, angle=2.3, count_uamps=20.0, mode="NR")
+	samplist = ['S1',  ' S2',  'S3']
+	for samp in ['sample_' + s for s in samplist]:
+		samp.subtitle = "smw"
+		run_angle(samp, angle=0.7, count_uamps=5.0, mode="NR")
+		run_angle(samp, angle=2.3, count_uamps=20.0, mode="NR")
+		inject:wait(samp, "H2O", 1.5, 15.0)
 

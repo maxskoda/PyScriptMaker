@@ -468,7 +468,6 @@ class Transmission(ScriptActionClass.ActionClass):
         
     def isValid(self):
         for attr in self.__dict__:
-            print(attr)
             if attr == "NaN" or attr == "nan":
                 return [False, "Check values! One is not a number."]
                 break

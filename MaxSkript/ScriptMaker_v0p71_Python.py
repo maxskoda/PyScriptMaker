@@ -108,7 +108,7 @@ class App(QtWidgets.QWidget):
         self.timeLabel = QLabel("Duration:~ ")
         self.timeLabel.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         self.timeLabel.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
-        self.runTime = QLabel("00:00")
+        self.runTime = QLabel("00h 00min")
         self.runTime.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         buttonLayout.addWidget(self.timeLabel)
         buttonLayout.addWidget(self.runTime)
@@ -169,70 +169,6 @@ class App(QtWidgets.QWidget):
         self.mainLayout.addLayout(fileLayout)
         self.mainLayout.addLayout(buttonLayout)
         self.mainLayout.addLayout(collapseLayout)
-
-        # # Sample Table - this is NR specific and should be moved to NRActions.py!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        # self.sampleTableGroupBox = QtWidgets.QGroupBox("Sample table")
-        # self.sampleTableGroupBox.setFont(font)
-        # sampleLayout = QtWidgets.QHBoxLayout()
-        #
-        # self.sampleTable = QtWidgets.QTableView()
-
-        # Delegates for entering correct numbers --- THIS IS NR SPECIFIC ##################################
-        # self.transDelegate = SpinBoxDelegate(-600.0, 600.0)
-        # self.sampleTable.setItemDelegateForColumn(1, self.transDelegate)
-        #
-        # self.heightDelegate = SpinBoxDelegate(-30.0, 30.0)
-        # self.sampleTable.setItemDelegateForColumn(2, self.heightDelegate)
-        #
-        # self.phiDelegate = SpinBoxDelegate(-5.0, 5.0)
-        # self.sampleTable.setItemDelegateForColumn(3, self.phiDelegate)
-        #
-        # self.psiDelegate = SpinBoxDelegate(-5.0, 5.0)
-        # self.sampleTable.setItemDelegateForColumn(4, self.psiDelegate)
-        #
-        # self.fpDelegate = SpinBoxDelegate(1.0, 300.0)
-        # self.sampleTable.setItemDelegateForColumn(5, self.fpDelegate)
-        #
-        # self.resDelegate = SpinBoxDelegate(0.005, 0.15)
-        # self.sampleTable.setItemDelegateForColumn(6, self.resDelegate)
-        #
-        # self.coarseNoMDelegate = SpinBoxDelegate(-60, 100.0)
-        # self.sampleTable.setItemDelegateForColumn(7, self.coarseNoMDelegate)
-        #
-        # self.switchDelegate = SpinBoxDelegate(1.0, 6.0, True)
-        # self.sampleTable.setItemDelegateForColumn(8, self.switchDelegate)
-
-        ##################################################################################################
-        # tableModel = TableModel(sampleTable)
-        # self.sampleTable.setAlternatingRowColors(True)
-        # self.sampleTable.setModel(self.view.tableModel)
-        # self.sampleTable.resizeColumnsToContents()
-
-        # Create buttons:
-        # self.addLayerButton = QtWidgets.QPushButton("Add sample")
-        # self.addLayerButton.clicked.connect(self.on_addLayer)
-        # self.removeLayerButton = QtWidgets.QPushButton("Remove Sample(s)")
-        # self.removeLayerButton.clicked.connect(self.on_removeLayer)
-        #
-        # self.hbox_layers = QtWidgets.QHBoxLayout()
-        #
-        # self.hbox_layers.addWidget(self.addLayerButton)
-        # self.hbox_layers.addWidget(self.removeLayerButton)
-        # self.hbox_layers.addStretch(1)
-        # self.vbox_samples = QtWidgets.QVBoxLayout()
-
-        # checkbox to hide table
-        # self.b = QtWidgets.QCheckBox("Hide/Show Sample Table", self)
-        # self.b.stateChanged.connect(self.click_box)
-        # self.mainLayout.addWidget(self.dataGroupBox)
-        # mainLayout.addWidget(self.sampleTableGroupBox)
-
-        # self.vbox_samples.addWidget(self.b)
-        # self.vbox_samples.addLayout(self.hbox_layers)
-        # self.vbox_samples.addWidget(self.sampleTable)
-        # sampleLayout.addLayout(self.vbox_samples)
-        # self.sampleTableGroupBox.setLayout(sampleLayout)
-        # self.setLayout(self.mainLayout)
 
         self.view.resizeColumnToContents(0)
         self.view.resizeColumnToContents(2)
@@ -402,6 +338,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
         # Sample Table - this is NR specific and should be moved to NRActions.py!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         ################################
         self.NRSamples = QtWidgets.QDockWidget('Sample table', self)
+        myFont = "Verdana"
+        self.NRSamples.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.sampleTableGroupBox = QtWidgets.QGroupBox("Sample table")
         # self.sampleTableGroupBox.setFont(font)
         sampleLayout = QtWidgets.QHBoxLayout()
@@ -421,7 +359,6 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.hbox_layers.addStretch(1)
         self.vbox_samples = QtWidgets.QVBoxLayout()
 
-
         # checkbox to hide table
         self.b = QtWidgets.QCheckBox("Hide/Show Sample Table", self)
         self.b.stateChanged.connect(self.click_box)
@@ -438,13 +375,32 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.sampleTable.resizeColumnsToContents()
 
         self.form_widget.mainLayout.addWidget(self.form_widget.dataGroupBox)
+        self.form_widget.mainLayout.addWidget(self.b)
         # self.form_widget.mainLayout.addWidget(self.sampleTableGroupBox)
         self.NRSamples.setWidget(self.sampleTable)#sampleTableGroupBox)
         self.NRSamples.setFeatures(QtWidgets.QDockWidget.DockWidgetFloatable |
                  QtWidgets.QDockWidget.DockWidgetMovable)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.NRSamples)
 
+        self.NRSamples.setContentsMargins(20,20,20,20)
         self.form_widget.setLayout(self.form_widget.mainLayout)
+
+        # setting style sheet to the NRSample dock widget
+        # self.NRSamples.setStyleSheet(
+        #                    "QDockWidget::title"
+        #                    "{"
+        #                    "background : darkgrey;"
+        #                    "}"
+        #                    "QDockWidget QWidget"
+        #                    "{"
+        #                    "border : 3px solid black;"
+        #                    "}"
+        #                    )
+        style ="QDockWidget::Widget{padding - left: 30px;}"
+        style += "QProgressBar {border: 2px solid grey; border-radius: 5px; text-align: center;}"
+        style += "QProgressBar::chunk {background-color: #CD96CD; width: 10px; margin: 0.5px;}"
+
+        self.setStyleSheet(style)
         ##################################
 
 
@@ -481,13 +437,15 @@ class MyMainWindow(QtWidgets.QMainWindow):
 
     def click_box(self, state):
         if state == QtCore.Qt.Checked:
-            self.addLayerButton.setHidden(True)
-            self.removeLayerButton.setHidden(True)
-            self.sampleTable.setHidden(True)
+            self.NRSamples.hide()
+            # self.addLayerButton.setHidden(True)
+            # self.removeLayerButton.setHidden(True)
+            # self.sampleTable.setHidden(True)
         else:
-            self.addLayerButton.setHidden(False)
-            self.removeLayerButton.setHidden(False)
-            self.sampleTable.setHidden(False)
+            self.NRSamples.show()
+            # self.addLayerButton.setHidden(False)
+            # self.removeLayerButton.setHidden(False)
+            # self.sampleTable.setHidden(False)
 
     def on_addLayer(self):
         pass
