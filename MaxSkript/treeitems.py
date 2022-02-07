@@ -88,23 +88,27 @@ class MyStandardItemModel(QtGui.QStandardItemModel):
                         item = QtGui.QStandardItem(key)
                         itemCheck = QtGui.QStandardItem("")
                         lastItem = QtGui.QStandardItem("")
-                        durationItem = QtGui.QStandardItem(0)
+                        durationItem = QtGui.QStandardItem("")
                         durationItem.setData(0, QtCore.Qt.UserRole + 1000)
 
                         item.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable
-                                      & ~QtCore.Qt.ItemIsDropEnabled \
+                                      & ~QtCore.Qt.ItemIsDropEnabled
                                       & ~QtCore.Qt.ItemIsDragEnabled)
-                        itemCheck.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
-                                           & ~QtCore.Qt.ItemIsDropEnabled \
+                        itemCheck.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable
+                                           & ~QtCore.Qt.ItemIsDropEnabled
                                            & ~QtCore.Qt.ItemIsDragEnabled)
-                        lastItem.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable \
-                                          & ~QtCore.Qt.ItemIsDropEnabled \
+                        lastItem.setFlags(item.flags() & ~QtCore.Qt.ItemIsEditable
+                                          & ~QtCore.Qt.ItemIsDropEnabled
                                           & ~QtCore.Qt.ItemIsDragEnabled)
                         durationItem.setFlags(item.flags() & QtCore.Qt.ItemIsEditable
-                                              & ~QtCore.Qt.ItemIsDropEnabled \
+                                              & ~QtCore.Qt.ItemIsDropEnabled
                                               & ~QtCore.Qt.ItemIsDragEnabled)
                     if 'get_icon' in dir(actionItem):
-                        item.setIcon(QtGui.QIcon(actionItem.get_icon()))
+                        scriptDir = os.path.dirname(os.path.realpath(__file__))
+                        ico = actionItem.get_icon()
+                        icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
+                        print(icon_path)
+                        item.setIcon(QtGui.QIcon(icon_path))
                     parentItem.appendRow([item, item2, itemCheck, lastItem, durationItem])
 
                     for it in p.get(next(iter(p))):
@@ -224,7 +228,7 @@ class ComboBoxDelegate(QtWidgets.QStyledItemDelegate):
 class ProgressDelegate(QtWidgets.QStyledItemDelegate):
 
     def paint(self, painter, option, index):
-        progress = index.data(QtCore.Qt.UserRole+1000)
+        progress = index.data(QtCore.Qt.UserRole + 1000)
         if not progress:
             progress = 0
         opt = QtWidgets.QStyleOptionProgressBar()
@@ -235,7 +239,3 @@ class ProgressDelegate(QtWidgets.QStyledItemDelegate):
         opt.text = "{}".format(progress)
         opt.textVisible = True
         QtWidgets.QApplication.style().drawControl(QtWidgets.QStyle.CE_ProgressBar, opt, painter)
-
-
-
-

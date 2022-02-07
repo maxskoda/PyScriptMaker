@@ -4,6 +4,7 @@ Created on Thu Feb 27 21:30:47 2020
 
 @author: Maximilian Skoda
 """
+import os.path
 import json
 from datetime import datetime
 import MaxSkript.Actions.ScriptActionClass as ScriptActionClass
@@ -54,21 +55,21 @@ def writeHeader(samples, args=[]):
     outString += "def runscript(dry_run=False):\n"
 
     outString += "\tsample_generator = SampleGenerator(\n" + \
-                 "\t\ttranslation=400.0,\n" + \
-                 "\t\theight2_offset=0,\n" + \
-                 "\t\tphi_offset=0.0,\n" + \
-                 "\t\tpsi_offset=0.0,\n" + \
-                 "\t\theight_offset=0.0,\n" + \
-                 "\t\tresolution=0.03,\n" + \
-                 "\t\tfootprint=60)\n\n"
+                 "\t\t    translation= 400.0,\n" + \
+                 "\t\theight2_offset = 0.0,\n" + \
+                 "\t\t    phi_offset = 0.0,\n" + \
+                 "\t\t    psi_offset = 0.0,\n" + \
+                 "\t\t height_offset = 0.0,\n" + \
+                 "\t\t    resolution = 0.03,\n" + \
+                 "\t\t     footprint = 60)\n\n"
     sampList=[]
     for samp in range(len(samples)):
         outString += "\tsample_" + samples[samp].get("Sample/Title") + "= sample_generator.new_sample(title="
         outString += r'"' + samples[samp].get("Sample/Title") + r'",' + "\n"
-        outString += "\t\ttranslation=" + samples[samp].get("Trans") +",\n"
-        outString += "\t\theight_offset=" + samples[samp].get("Height") + ",\n"
-        outString += "\t\tphi_offset=" + samples[samp].get("Phi Offset") + ",\n"
-        outString += "\t\tpsi_offset=" + samples[samp].get("Psi") + ")\n\n"
+        outString += "\t\t  translation = " + samples[samp].get("Trans") +",\n"
+        outString += "\t\theight_offset = " + samples[samp].get("Height") + ",\n"
+        outString += "\t\t   phi_offset = " + samples[samp].get("Phi Offset") + ",\n"
+        outString += "\t\t   psi_offset = " + samples[samp].get("Psi") + ")\n\n"
 
 
     return outString
@@ -90,7 +91,7 @@ class RunAngles(ScriptActionClass.ActionClass):
         self.options = options
 
     def get_icon(self):
-        return "MaxSkript/Icons/Running_icon.svg"
+        return "Running_icon.svg"
 
     def set_countrate(self, rate):
         countRate = rate
@@ -136,8 +137,8 @@ class RunAngles(ScriptActionClass.ActionClass):
         outString += "\tsample_" + self.Sample + ".subtitle=" + "\"" + self.Subtitle + "\"\n"
         
         for a in range(len(self.Angles)):
-            outString += "\trun_angle(sample_" + self.Sample + ", angle=" \
-                         + str(self.Angles[a]) + ", count_uamps=" + str(self.uAmps[a]) + ", mode=\"NR\")\n"
+            outString += "\trun_angle(sample_" + self.Sample + ", " \
+                         + str(self.Angles[a]) + ", count_uamps=" + str(self.uAmps[a]) + ")\n"#", mode=\"NR\")\n"
         return outString
     
     def makeJSON(self):
@@ -319,7 +320,7 @@ class Inject(ScriptActionClass.ActionClass):
         self.wait = wait
 
     def get_icon(self):
-        return "MaxSkript/Icons/inject.png"
+        return "inject.png"
         
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
@@ -444,7 +445,7 @@ class Transmission(ScriptActionClass.ActionClass):
         self.sm_angle = sm_angle
 
     def get_icon(self):
-        return "MaxSkript/Icons/transmission_icon.png"
+        return "transmission_icon.png"
 
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
@@ -601,7 +602,7 @@ class HystLoop(ScriptActionClass.ActionClass):
         self.wait = wait
 
     def get_icon(self):
-        return "MaxSkript/Icons/hystloop1.png"
+        return "hystloop1.png"
 
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
