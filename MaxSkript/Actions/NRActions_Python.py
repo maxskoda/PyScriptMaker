@@ -40,7 +40,7 @@ def tofloat(value):
         return "NaN"
 
 
-def writeHeader(samples, args=[]):
+def writeHeader(samples, cols=[]):
     now = datetime.now()
     current_time = now.strftime("%d/%m/%Y, at %H:%M:%S")
     ## for OpenGenie
@@ -55,21 +55,30 @@ def writeHeader(samples, args=[]):
     outString += "def runscript(dry_run=False):\n"
 
     outString += "\tsample_generator = SampleGenerator(\n" + \
-                 "\t\t    translation= 400.0,\n" + \
-                 "\t\theight2_offset = 0.0,\n" + \
-                 "\t\t    phi_offset = 0.0,\n" + \
-                 "\t\t    psi_offset = 0.0,\n" + \
-                 "\t\t height_offset = 0.0,\n" + \
-                 "\t\t    resolution = 0.03,\n" + \
-                 "\t\t     footprint = 60)\n\n"
+                 "\t\t    translation = 400.0,\n" + \
+                 "\t\t height2_offset = 0.0,\n" + \
+                 "\t\t     phi_offset = 0.0,\n" + \
+                 "\t\t     psi_offset = 0.0,\n" + \
+                 "\t\t  height_offset = 0.0,\n" + \
+                 "\t\t     resolution = 0.03,\n" + \
+                 "\t\t      footprint = 60)\n" + \
+                 "\t\t          valve = 1)\n\n"
     sampList=[]
     for samp in range(len(samples)):
         outString += "\tsample_" + samples[samp].get("Sample/Title") + "= sample_generator.new_sample(title="
         outString += r'"' + samples[samp].get("Sample/Title") + r'",' + "\n"
-        outString += "\t\t  translation = " + samples[samp].get("Trans") +",\n"
-        outString += "\t\theight_offset = " + samples[samp].get("Height") + ",\n"
-        outString += "\t\t   phi_offset = " + samples[samp].get("Phi Offset") + ",\n"
-        outString += "\t\t   psi_offset = " + samples[samp].get("Psi") + ")\n\n"
+        outString += "\t\t   translation = " + samples[samp].get("Trans") +",\n"
+        outString += "\t\t height_offset = " + samples[samp].get("Height") + ",\n"
+        outString += "\t\t    phi_offset = " + samples[samp].get("Phi Offset") + ",\n"
+        outString += "\t\t    psi_offset = " + samples[samp].get("Psi")
+        if 5 in cols:
+            outString += ",\n\t\t     footprint = " + samples[samp].get("Footprint")
+        if 6 in cols:
+            outString += ",\n\t\t    resolution = " + samples[samp].get("Footprint")
+        if 7 in cols:
+            outString += ",\n\t\theight2_offset = " + samples[samp].get("Coarse_noMirror")
+
+        outString += ")\n\n"
 
 
     return outString
@@ -127,7 +136,7 @@ class RunAngles(ScriptActionClass.ActionClass):
             return [False, "One of the angles might be too high."]
         elif len(self.Angles) == 0:
             return [False, "Please enter at least on angle/uAmp pair."]
-        elif not set(self.options).issubset(set(['', 'SM', 't', 'ah', 'solid'])):
+        elif not set(self.options).issubset(set(['', "\'\'", 'SM', 't', 'ah', 'solid'])):
             return [False, "Valid options are: '', 'SM', 't', 'ah', 'solid'"]
         else:
             return [True, "All good!"]
@@ -374,15 +383,66 @@ class Inject(ScriptActionClass.ActionClass):
         return "Valid input: D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B. HPLC: A - D2O, B - H2O"
 
 
+class ChangeContrast(ScriptActionClass.ActionClass):
+    def __init__(self, Sample="", solvent="D2O", Flow=1.5, Volume=15.0, wait=False):
+        self.Sample = Sample  # model.item(row).child(0,1).text()
+        self.solvent = solvent
+        self.flow = tofloat(Flow)
+        self.volume = tofloat(Volume)
+        self.wait = wait
+
+    def makeAction(self, node):
+        self.Sample = node.child(0, 1).text()
+        self.solvent = node.child(1, 1).text()
+        self.flow = tofloat(node.child(2, 1).text())
+        self.volume = tofloat(node.child(3, 1).text())
+        self.wait = node.child(4, 1).text()
+        return self
+
+    def isValid(self):
+        return [True]
+
+    def summary(self):
+        return '{}, {}, {}, {}'.format(self.Sample, self.solvent, self.flow, self.volume)
+
+    def stringLine(self, sampleNumber):
+        if self.wait != 'False':
+            outString = "\tcontrast_change(sample_" + self.Sample + ".valve, " + self.solvent + \
+                        ", " + str(self.flow) + ", " + str(self.volume) + ", wait=True)\n"
+        else:
+            outString = "\tcontrast_change(sample_" + self.Sample + ".valve, " + self.solvent + \
+                        ", " + str(self.flow) + ", " + str(self.volume) + ")\n"
+        return outString
+
+    def makeJSON(self):
+        rdict = {"ChangeContrast": [{"label": "Sample", "value": str(self.Sample)}, \
+                                    {"label": "solvent", "value": str(self.solvent)}, \
+                                    {"label": "Flow", "value": str(self.flow)}, \
+                                    {"label": "Volume", "value": str(self.volume)},\
+                                    {"label": "Wait", "value": str(self.wait)}]
+                 }
+        return json.dumps(rdict, indent=4)
+
+    def calcTime(self, inst):
+        if self.wait == 'False':
+            return 0
+        else:
+            return self.volume/self.flow
+
+    def toolTip(self):
+        return "Concentrations in % and need to add up to 100."
+
+
 class ContrastChange(ScriptActionClass.ActionClass):
-    def __init__(self, Sample="", concA=100, concB=0, concC=0, concD=0, Flow=1.0, Volume=10.0):
+    def __init__(self, Sample="", concA=100, concB=0, concC=0, concD=0, Flow=1.5, Volume=15.0, wait=False):
         self.Sample = Sample #model.item(row).child(0,1).text()
         self.concA = concA
         self.concB = concB
         self.concC = concC
         self.concD = concD
-        self.flow = Flow
-        self.volume = Volume
+        self.flow = tofloat(Flow)
+        self.volume = tofloat(Volume)
+        self.wait = wait
         
     def makeAction(self, node):
         self.Sample = node.child(0,1).text()
@@ -390,8 +450,9 @@ class ContrastChange(ScriptActionClass.ActionClass):
         self.concB = node.child(2,1).text()
         self.concC = node.child(3,1).text()
         self.concD = node.child(4,1).text()
-        self.flow = node.child(5,1).text()
-        self.volume = node.child(6,1).text()        
+        self.flow = tofloat(node.child(5,1).text())
+        self.volume = tofloat(node.child(6,1).text())
+        self.wait = node.child(7, 1).text()
         return self
 
     def isValid(self):
@@ -408,9 +469,14 @@ class ContrastChange(ScriptActionClass.ActionClass):
                                                    self.flow, self.volume)
         
     def stringLine(self, sampleNumber):
-        outString = "runTime = contrastChange(" + str(sampleNumber) + "," + self.concA + "," + \
-                    self.concB + "," + self.concC + "," + self.concD + \
-                        "," + self.flow + "," + self.volume + ")\n"
+        if self.wait != 'False':
+            outString = "\tcontrast_change(sample_" + self.Sample + ".valve, " + \
+                        "[" + self.concA + "," + self.concB + "," + self.concC + "," + self.concD + "]"\
+                        ", " + str(self.flow) + ", " + str(self.volume) + ")\n"
+        else:
+            outString = "\tcontrast_change(sample_" + self.Sample + ".valve, " + \
+                        "[" + self.concA + "," + self.concB + "," + self.concC + "," + self.concD + "]" \
+                        ", " + str(self.flow) + ", " + str(self.volume) + "wait=True" + ")\n"
         return outString
     
     def makeJSON(self):
@@ -425,7 +491,10 @@ class ContrastChange(ScriptActionClass.ActionClass):
         return json.dumps(rdict, indent=4)
 
     def calcTime(self, inst):
-        return 0 ### needts to change if "wait" implemented
+        if self.wait == 'False':
+            return 0
+        else:
+            return self.volume/self.flow
 
     def toolTip(self):
         return "Concentrations in % and need to add up to 100."

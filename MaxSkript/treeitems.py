@@ -107,7 +107,6 @@ class MyStandardItemModel(QtGui.QStandardItemModel):
                         scriptDir = os.path.dirname(os.path.realpath(__file__))
                         ico = actionItem.get_icon()
                         icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
-                        print(icon_path)
                         item.setIcon(QtGui.QIcon(icon_path))
                     parentItem.appendRow([item, item2, itemCheck, lastItem, durationItem])
 

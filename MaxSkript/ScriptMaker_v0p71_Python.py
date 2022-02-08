@@ -54,29 +54,33 @@ class App(QtWidgets.QWidget):
         font = QtGui.QFont(myFont, 10)
         self.view.setFont(font)
 
-        self.dataGroupBox = QtWidgets.QGroupBox("NR Script")
-        self.dataGroupBox.setFont(font)
-        dataLayout = QtWidgets.QHBoxLayout()
+        # define tab area
+        self.dataLayout = QtWidgets.QVBoxLayout()
+        self.tabs = QtWidgets.QTabWidget()
+        self.tabs.addTab(self.view, "NR Script")
 
-        # dataLayout.addWidget(actionList)
-        dataLayout.addWidget(self.view)
+        # Settings tab
+        self.settings_tab = QtWidgets.QTextEdit()
+        self.settings_tab.setText("D2O = [100, 0, 0, 0]\nH2O = [0, 100, 0, 0]\nSMW = [38, 62, 0, 0]\n")
 
-        self.dataGroupBox.setLayout(dataLayout)
+        self.tabs.addTab(self.settings_tab, "Settings")
 
+        self.dataLayout.addWidget(self.tabs)
+        # remainder of front panel
         self.mainLayout = QtWidgets.QVBoxLayout()
 
         self.instrumentSelector = QtWidgets.QComboBox()
         self.instrumentSelector.addItems(NRActions.instruments)
         self.instrumentSelector.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
 
-        buttonLayout = QtWidgets.QHBoxLayout()
-        buttonLayout.addWidget(self.instrumentSelector)
+        self.buttonLayout = QtWidgets.QHBoxLayout()
+        self.buttonLayout.addWidget(self.instrumentSelector)
         self.printTreeButton = QtWidgets.QPushButton("Output script (Ctrl+p)", self)
         self.printTreeButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.printTreeButton.setShortcut('Ctrl+p')
         self.printTreeButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.printTreeButton.clicked.connect(self.on_print_tree)
-        buttonLayout.addWidget(self.printTreeButton)
+        self.buttonLayout.addWidget(self.printTreeButton)
 
         self.playButton = QtWidgets.QPushButton("", self)
         self.playButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
@@ -84,7 +88,7 @@ class App(QtWidgets.QWidget):
         self.playButton.setIcon(QtGui.QIcon('MaxSkript/Icons/play_icon.png'))
         self.playButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.playButton.clicked.connect(self.play_script)
-        buttonLayout.addWidget(self.playButton)
+        self.buttonLayout.addWidget(self.playButton)
 
         self.pauseButton = QtWidgets.QPushButton("", self)
         self.pauseButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
@@ -92,7 +96,7 @@ class App(QtWidgets.QWidget):
         self.pauseButton.setIcon(QtGui.QIcon('MaxSkript/Icons/pause_icon.png'))
         self.pauseButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.pauseButton.clicked.connect(self.pause_script)
-        buttonLayout.addWidget(self.pauseButton)
+        self.buttonLayout.addWidget(self.pauseButton)
 
         self.stopButton = QtWidgets.QPushButton("", self)
         self.stopButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
@@ -100,18 +104,18 @@ class App(QtWidgets.QWidget):
         self.stopButton.setIcon(QtGui.QIcon('MaxSkript/Icons/stop_icon.png'))
         self.stopButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.stopButton.clicked.connect(self.stop_script)
-        buttonLayout.addWidget(self.stopButton)
+        self.buttonLayout.addWidget(self.stopButton)
 
         self.printSamplesButton = QtWidgets.QPushButton("Print samples")
         self.printSamplesButton.clicked.connect(self.on_print_samples)
-        # buttonLayout.addWidget(self.printSamplesButton)
+        # self.buttonLayout.addWidget(self.printSamplesButton)
         self.timeLabel = QLabel("Duration:~ ")
         self.timeLabel.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         self.timeLabel.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.runTime = QLabel("00h 00min")
         self.runTime.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
-        buttonLayout.addWidget(self.timeLabel)
-        buttonLayout.addWidget(self.runTime)
+        self.buttonLayout.addWidget(self.timeLabel)
+        self.buttonLayout.addWidget(self.runTime)
 
         self.actionsLabel = QtWidgets.QLabel("Actions file: ")
         self.actionsEdit = QtWidgets.QLineEdit()
@@ -167,7 +171,7 @@ class App(QtWidgets.QWidget):
         collapseLayout.addWidget(self.uamp_label)
 
         self.mainLayout.addLayout(fileLayout)
-        self.mainLayout.addLayout(buttonLayout)
+        self.mainLayout.addLayout(self.buttonLayout)
         self.mainLayout.addLayout(collapseLayout)
 
         self.view.resizeColumnToContents(0)
@@ -252,14 +256,18 @@ class App(QtWidgets.QWidget):
 
         # NEED TO REVISIT THIS
         args = []
-        for col in range(self.view.tableModel.columnCount(QModelIndex)):
-            args.append(0)
-            # if self.sampleTable.item(0,col).checkState()  == Qt.Checked:
-            #     args.append(1)
-            # else:
-            #     args.append(0)
+
+        # determine selected columns for script output:
+        cols = self.parent().sampleTable.selectionModel().selectedColumns()
+        for col in cols:
+            args.append(col.column())
         f.write(NRActions.writeHeader(self.on_print_samples(), args))
 
+        ## write out additional script lines
+        text_lines = self.settings_tab.toPlainText().split('\n')
+        for line in text_lines:
+            f.write("\t"+line+"\n")
+        f.write('\n')
         for row in range(self.view.model.rowCount()):
             it = self.view.model.item(row)
             MyClass = getattr(importlib.import_module(myActions), it.text())
@@ -374,15 +382,17 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.sampleTable.setModel(self.form_widget.view.tableModel)
         self.sampleTable.resizeColumnsToContents()
 
-        self.form_widget.mainLayout.addWidget(self.form_widget.dataGroupBox)
+        # self.form_widget.mainLayout.addWidget(self.form_widget.dataGroupBox)
+        self.form_widget.mainLayout.addWidget(self.form_widget.tabs)
         self.form_widget.mainLayout.addWidget(self.b)
         # self.form_widget.mainLayout.addWidget(self.sampleTableGroupBox)
         self.NRSamples.setWidget(self.sampleTable)#sampleTableGroupBox)
+        self.sampleTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectColumns)
         self.NRSamples.setFeatures(QtWidgets.QDockWidget.DockWidgetFloatable |
                  QtWidgets.QDockWidget.DockWidgetMovable)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.NRSamples)
 
-        self.NRSamples.setContentsMargins(20,20,20,20)
+        self.NRSamples.setContentsMargins(20, 20, 20, 20)
         self.form_widget.setLayout(self.form_widget.mainLayout)
 
         # setting style sheet to the NRSample dock widget
@@ -564,7 +574,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
 
         outString = "{\"Samples\": ["
         ## get defined samples from table:
-        data = self.form_widget.sampleTable.model().getData()
+        # data = self.form_widget.sampleTable.model().getData()
+        data = self.form_widget.view.sampleTable
 
         for row in data:
             r = str([''.join(x) for x in row])

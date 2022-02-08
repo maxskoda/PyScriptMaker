@@ -101,52 +101,57 @@ class Tree(QtWidgets.QTreeView):
         self.tableModel.update_model(self.sampleTable)
 
     def update_runtime(self):
-        old_time = self.parent().parent().runTime.text()
-        hmin = old_time.split('h ')
-        h = hmin[0]
-        mins = hmin[1].split('min')[0]
-        old_minutes = int(h)*60 + int(mins)
+        try: ### it seems the first call finds noparent object!?
+            # old_time = self.parent().parent().parent().runTime.text()
+            # hmin = old_time.split('h ')
+            # h = hmin[0]
+            # mins = hmin[1].split('min')[0]
+            # old_minutes = int(h)*60 + int(mins)
 
-        self.totalTime = 0.0
-        global myActions
-        for row in range(self.model.rowCount()):
-            try:
-                it = self.model.getRootItem(row, 0)
-                clName = it.text()
-                MyClass = getattr(importlib.import_module(myActions), clName)
-                # Instantiate the class (pass arguments to the constructor, if needed)
-                tempAction = MyClass()
-                tempAction.makeAction(it)
-                it.setToolTip(tempAction.toolTip())  #
-                self.model.item(row, 3).setText(str(row + 1))
+            self.totalTime = 0.0
+            global myActions
+            for row in range(self.model.rowCount()):
+                try:
+                    it = self.model.getRootItem(row, 0)
+                    clName = it.text()
+                    MyClass = getattr(importlib.import_module(myActions), clName)
+                    # Instantiate the class (pass arguments to the constructor, if needed)
+                    tempAction = MyClass()
+                    tempAction.makeAction(it)
+                    it.setToolTip(tempAction.toolTip())  #
+                    self.model.item(row, 3).setText(str(row + 1))
 
-            except AttributeError as err:
-                # logging.warning("makeAction method undefined in "+tempAction.__repr__)
-                print("makeAction method undefined in ", tempAction, err)
-            try:
-                self.rtime = tempAction.calcTime(self.parent().parent().instrumentSelector.currentText())
-                # if old_minutes > 0:
-                #     time_percent = float(self.rtime)/(old_minutes+float(self.rtime)) * 100
-                # else:
-                #     time_percent = 0
-                self.model.item(row, 4).setData(self.rtime, QtCore.Qt.UserRole + 1000)
-                # self.model.item(row, 4).setData("red", QtCore.Qt.BackgroundColorRole)
-                # self.model.item(row, 4).setText(str(self.rtime))
-                # print("Time: ", self.totalTime)
-                self.totalTime += self.rtime
-            except AttributeError:
-                pass
-        self.parent().parent().runTime.setText(
-            "{:02d}h {:02d}min".format(int(divmod(self.totalTime, 60)[0]), int(divmod(self.totalTime, 60)[1])))
-        # update window title to indicate unsaved changes:
-        self.parent().parent().parent().setWindowModified(True)
+                except AttributeError as err:
+                    # logging.warning("makeAction method undefined in "+tempAction.__repr__)
+                    print("makeAction method undefined in ", tempAction, err)
+                try:
+                    self.rtime = tempAction.calcTime(self.parent().parent().parent().instrumentSelector.currentText())
+                    # if old_minutes > 0:
+                    #     time_percent = float(self.rtime)/(old_minutes+float(self.rtime)) * 100
+                    # else:
+                    #     time_percent = 0
+                    self.model.item(row, 4).setData(self.rtime, QtCore.Qt.UserRole + 1000)
+                    # self.model.item(row, 4).setData("red", QtCore.Qt.BackgroundColorRole)
+                    # self.model.item(row, 4).setText(str(self.rtime))
+                    # print("Time: ", self.totalTime)
+                    self.totalTime += self.rtime
+                except AttributeError:
+                    pass
+            self.parent().parent().parent().runTime.setText("{:02d}h {:02d}min".format(int(divmod(self.totalTime, 60)[0]), int(divmod(self.totalTime, 60)[1])))
+            # update window title to indicate unsaved changes:
+            self.parent().parent().setWindowModified(True)
+        except:
+            pass
+
 
     def update_summary(self):
         # print(self.model.rowCount())
+        self.update_runtime()
         for row in range(self.model.rowCount()):
             self.show_summary(self.model.index(row, 0))
 
     def show_summary(self, index):
+        self.update_runtime()
         it = self.model.getRootItem(index.row(), index.column())
         global NRActions
         global myActions
@@ -172,7 +177,7 @@ class Tree(QtWidgets.QTreeView):
         self.model.invisibleRootItem().child(index.row(), 1).setText(tempAction.summary())
         self.resizeColumnToContents(1)
         try:
-            self.rtime = tempAction.calcTime(self.parent().parent().instrumentSelector.currentText())
+            self.rtime = tempAction.calcTime(self.parent().parent().parent().instrumentSelector.currentText())
             self.model.item(index.row(), 4).setData(self.rtime, QtCore.Qt.UserRole + 1000)
         except AttributeError:
             pass
