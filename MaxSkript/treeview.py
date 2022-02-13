@@ -95,8 +95,6 @@ class Tree(QtWidgets.QTreeView):
             short.activated.connect(partial(self.menu_action, action))
             action.triggered.connect(partial(self.menu_action, action))
 
-
-
     def update_sample_table(self):
         self.tableModel.update_model(self.sampleTable)
 
@@ -142,7 +140,6 @@ class Tree(QtWidgets.QTreeView):
             self.parent().parent().setWindowModified(True)
         except:
             pass
-
 
     def update_summary(self):
         # print(self.model.rowCount())

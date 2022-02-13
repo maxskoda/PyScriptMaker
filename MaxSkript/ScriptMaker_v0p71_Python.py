@@ -387,7 +387,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.form_widget.mainLayout.addWidget(self.b)
         # self.form_widget.mainLayout.addWidget(self.sampleTableGroupBox)
         self.NRSamples.setWidget(self.sampleTable)#sampleTableGroupBox)
-        self.sampleTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectColumns)
+        #self.sampleTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectColumns)
         self.NRSamples.setFeatures(QtWidgets.QDockWidget.DockWidgetFloatable |
                  QtWidgets.QDockWidget.DockWidgetMovable)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.NRSamples)
@@ -415,7 +415,10 @@ class MyMainWindow(QtWidgets.QMainWindow):
 
 
         # Open default file
-        fileName = "MaxSkript/INTER_4Samples_2Contrasts_inject.json"  # "Muon_test.json"
+        scriptDir = os.path.dirname(os.path.realpath(__file__))
+        fname = 'INTER_4Samples_2Contrasts_ChCon.json'
+        fileName = scriptDir + os.path.sep + os.path.sep + fname
+        #fileName = "MaxSkript/INTER_4Samples_2Contrasts_ChCon.json"  # "Muon_test.json"
         self.form_widget.view.model.populate(fileName)
         for col in range(self.form_widget.view.model.columnCount()):
             self.form_widget.view.resizeColumnToContents(col)
@@ -435,6 +438,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
             self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
         self.form_widget.view.resizeColumnToContents(0)
         self.form_widget.fileEdit.setText('MaxSkript/PyScript_test1.py')
+
         ############################
         self.setStyleSheet("""
 
@@ -506,8 +510,14 @@ class MyMainWindow(QtWidgets.QMainWindow):
 
                 rows = self.form_widget.view.model.rowCount()
                 for i in range(rows):
+                    if self.form_widget.view.model.item(i, 0).child(0, 0).text() == "Sample":
+                        self.form_widget.view.openPersistentEditor(
+                            self.form_widget.view.model.item(i, 0).child(0, 1).index())
+                    self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
+
                     self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
                 self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName + "[*]")
+                self.form_widget.view.resizeColumnToContents(0)
 
             else:  # SANS Excel table file
                 # print(fileName.split(".")[1].upper())
@@ -624,8 +634,10 @@ def main():
     foo = MyMainWindow()
     foo.resize(700, 800)
     foo.setWindowTitle("Ma_xSkript [*]")
-    # foo.setWindowFilePath("fiel C:/Users/ktd43279/Documents/GitHub/PyScriptMaker/ScriptMaker_v0p71.py")
-    foo.setWindowIcon(QtGui.QIcon('MaxSkript/Icons/squareCogs.gif'))
+    scriptDir = os.path.dirname(os.path.realpath(__file__))
+    ico = 'squareCogs.gif'
+    icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
+    foo.setWindowIcon(QtGui.QIcon(icon_path))
 
     # Force the style to be the same on all OSs:
     app.setStyle("Fusion")
