@@ -1,4 +1,4 @@
-### This script was generated on 13/02/2022, at 00:06:21
+### This script was generated on 13/02/2022, at 18:27:02
 ### with ScriptMaker (c) Maximilian Skoda 2020 
 ### Enjoy and use at your own risk. 
 
@@ -66,8 +66,8 @@ def runscript(dry_run=False):
 
 	##### Sample 1
 	sample_1.subtitle="BamABCDE 8:2 POPC POPS + dOmpT SurA Inc H2O flush"
-	run_angle(sample_1, 0.35, count_uamps=40.0)
-	run_angle(sample_1, 0.65, count_uamps=60.0)
+	run_angle(sample_1, 0.3, count_uamps=40.0)
+	run_angle(sample_1, 0.7, count_uamps=60.0)
 	run_angle(sample_1, 1.5, count_uamps=130.0)
 
 	contrast_change(sample_1.valve, D2O, 1.5, 15.0, wait=True)

@@ -494,7 +494,7 @@ class ChangeContrast(ScriptActionClass.ActionClass):
         return [True]
 
     def summary(self):
-        return '{}, **{}**, {}, {}'.format(self.Sample, self.solvent, self.flow, self.volume)
+        return '{}, -->{}, {}, {}'.format(self.Sample, self.solvent, self.flow, self.volume)
 
     def stringLine(self, sampleNumber):
         if self.wait != 'False':

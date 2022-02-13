@@ -1,0 +1,259 @@
+{"Samples": [["S1 Si PyAu COOH-OEG-SAM", "37", "-2.09", "0.35-0.3498", "-0.2", "60", "0.035", "0", "1"],
+["S2 Si PyAu COOH-OEG-SAM", "214", "-2.555", "-0.094-0.3476", "0.0", "60", "0.035", "0", "2"],
+["S3", "300", "3", "3", "3", "3", "3", "3", "3"],
+["", "", "", "", "", "", "", "", ""],
+["", "", " ", " ", " ", " ", " ", " ", " "],
+["", "", " ", " ", " ", " ", " ", " ", " "],
+["", "", " ", " ", " ", " ", " ", " ", " "]],
+
+
+"Action":[
+{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "Subtitle",
+            "value": "BamABCDE 8:2 POPC POPS + dOmpT SurA Inc H2O"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.35",
+                "0.65",
+                "1.50"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "40.0",
+                "60.0",
+                "130.0"
+            ]
+        },
+        {
+            "label": "Options",
+            "value": []
+        }
+    ]
+},{
+    "ChangeContrast": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "solvent",
+            "value": "H2O"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        },
+        {
+            "label": "Wait",
+            "value": "True"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "Subtitle",
+            "value": "BamABCDE 8:2 POPC POPS + dOmpT SurA Inc H2O flush"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.30",
+                "0.70",
+                "1.50"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "40.0",
+                "60.0",
+                "130.0"
+            ]
+        },
+        {
+            "label": "Options",
+            "value": []
+        }
+    ]
+},{
+    "ChangeContrast": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "solvent",
+            "value": "D2O"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        },
+        {
+            "label": "Wait",
+            "value": "True"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "Subtitle",
+            "value": "BamABCDE 8:2 POPC POPS + dOmpT SurA Inc D2O flush"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.30",
+                "0.70",
+                "1.50"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "40.0",
+                "60.0",
+                "130.0"
+            ]
+        },
+        {
+            "label": "Options",
+            "value": []
+        }
+    ]
+},{
+    "ChangeContrast": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "solvent",
+            "value": "AuMW"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        },
+        {
+            "label": "Wait",
+            "value": "True"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "Subtitle",
+            "value": "BamABCDE 8:2 POPC POPS + dOmpT SurA Inc AuMW flush"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.30",
+                "0.70",
+                "1.50"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "40.0",
+                "60.0",
+                "130.0"
+            ]
+        },
+        {
+            "label": "Options",
+            "value": []
+        }
+    ]
+},{
+    "ChangeContrast": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "solvent",
+            "value": "SMW"
+        },
+        {
+            "label": "Flow",
+            "value": "1.5"
+        },
+        {
+            "label": "Volume",
+            "value": "15.0"
+        },
+        {
+            "label": "Wait",
+            "value": "True"
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "S1 Si PyAu COOH-OEG-SAM"
+        },
+        {
+            "label": "Subtitle",
+            "value": "BamABCDE 8:2 POPC POPS + dOmpT SurA Inc SMW flush"
+        },
+        {
+            "label": "Angles",
+            "value": [
+                "0.30",
+                "0.70",
+                "1.50"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "40.0",
+                "60.0",
+                "130.0"
+            ]
+        },
+        {
+            "label": "Options",
+            "value": []
+        }
+    ]
+}]
+}
