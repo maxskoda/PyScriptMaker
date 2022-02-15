@@ -85,7 +85,10 @@ class App(QtWidgets.QWidget):
         self.playButton = QtWidgets.QPushButton("", self)
         self.playButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.playButton.setShortcut('Ctrl+r')
-        self.playButton.setIcon(QtGui.QIcon('MaxSkript/Icons/play_icon.png'))
+        scriptDir = os.path.dirname(os.path.realpath(__file__))
+        ico = 'play_icon.png'
+        icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
+        self.playButton.setIcon(QtGui.QIcon(icon_path))
         self.playButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.playButton.clicked.connect(self.play_script)
         self.buttonLayout.addWidget(self.playButton)
@@ -93,7 +96,10 @@ class App(QtWidgets.QWidget):
         self.pauseButton = QtWidgets.QPushButton("", self)
         self.pauseButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.pauseButton.setShortcut('Ctrl+/')
-        self.pauseButton.setIcon(QtGui.QIcon('MaxSkript/Icons/pause_icon.png'))
+        scriptDir = os.path.dirname(os.path.realpath(__file__))
+        ico = 'pause_icon.png'
+        icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
+        self.pauseButton.setIcon(QtGui.QIcon(icon_path))
         self.pauseButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.pauseButton.clicked.connect(self.pause_script)
         self.buttonLayout.addWidget(self.pauseButton)
@@ -101,7 +107,10 @@ class App(QtWidgets.QWidget):
         self.stopButton = QtWidgets.QPushButton("", self)
         self.stopButton.setFont(QtGui.QFont(myFont, 12, QtGui.QFont.Black))
         self.stopButton.setShortcut('Ctrl+.')
-        self.stopButton.setIcon(QtGui.QIcon('MaxSkript/Icons/stop_icon.png'))
+        scriptDir = os.path.dirname(os.path.realpath(__file__))
+        ico = 'stop_icon.png'
+        icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
+        self.stopButton.setIcon(QtGui.QIcon(icon_path))
         self.stopButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.stopButton.clicked.connect(self.stop_script)
         self.buttonLayout.addWidget(self.stopButton)
@@ -139,7 +148,10 @@ class App(QtWidgets.QWidget):
         self.collapseButton = QtWidgets.QPushButton("", self)
         self.collapseButton.setShortcut('Ctrl+-')
         self.collapseButton.setToolTip("Ctrl+-")
-        self.collapseButton.setIcon(QtGui.QIcon('MaxSkript/Icons/collapse_all_icon.png'))
+        scriptDir = os.path.dirname(os.path.realpath(__file__))
+        ico = 'collapse_all_icon.png'
+        icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
+        self.collapseButton.setIcon(QtGui.QIcon(icon_path))
         self.collapseButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.collapseButton.clicked.connect(self.collapse_all)
 
@@ -147,7 +159,10 @@ class App(QtWidgets.QWidget):
         self.expandButton = QtWidgets.QPushButton("", self)
         self.expandButton.setShortcut('Ctrl++')
         self.expandButton.setToolTip("Ctrl++")
-        self.expandButton.setIcon(QtGui.QIcon('MaxSkript/Icons/expand_all_icon.png'))
+        scriptDir = os.path.dirname(os.path.realpath(__file__))
+        ico = 'expand_all_icon.png'
+        icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
+        self.expandButton.setIcon(QtGui.QIcon(icon_path))
         self.expandButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         self.expandButton.clicked.connect(self.expand_all)
 
@@ -310,12 +325,21 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.form_widget = App(self)
         self.setCentralWidget(self.form_widget)
 
+        self.autosaveTimer = QtCore.QTimer()
+        self.autosaveTimer.setInterval(60000)
+        self.autosaveTimer.timeout.connect(self.saveScript)
+
         openAct = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Open...', self)
         openAct.setShortcut('Ctrl+O')
         openAct.setStatusTip('Open script')
         openAct.triggered.connect(self.openScript)
 
-        saveAct = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Save as...', self)
+        saveAsAct = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Save as...', self)
+        saveAsAct.setShortcut('Ctrl+Shift+S')
+        saveAsAct.setStatusTip('Save script as')
+        saveAsAct.triggered.connect(self.saveScriptAs)
+
+        saveAct = QtWidgets.QAction(QtGui.QIcon('exit.png'), '&Save', self)
         saveAct.setShortcut('Ctrl+S')
         saveAct.setStatusTip('Save script')
         saveAct.triggered.connect(self.saveScript)
@@ -336,6 +360,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
         fileMenu = menubar.addMenu('&File')
         fileMenu.addAction(openAct)
         fileMenu.addAction(saveAct)
+        fileMenu.addAction(saveAsAct)
         fileMenu.addAction(exitAct)
 
         editMenu = menubar.addMenu('&Edit')
@@ -416,10 +441,10 @@ class MyMainWindow(QtWidgets.QMainWindow):
 
         # Open default file
         scriptDir = os.path.dirname(os.path.realpath(__file__))
-        fname = 'INTER_4Samples_2Contrasts_ChCon.json'
+        fname = 'INTER_4Samples_2Contrasts_inject.json'#'INTER_4Samples_2Contrasts_ChCon.json'
         fileName = scriptDir + os.path.sep + os.path.sep + fname
-        #fileName = "MaxSkript/INTER_4Samples_2Contrasts_ChCon.json"  # "Muon_test.json"
         self.form_widget.view.model.populate(fileName)
+        self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName)
         for col in range(self.form_widget.view.model.columnCount()):
             self.form_widget.view.resizeColumnToContents(col)
 
@@ -448,6 +473,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
             }
 
         """)
+        self.autosaveTimer.start()
 
     def click_box(self, state):
         if state == QtCore.Qt.Checked:
@@ -516,7 +542,7 @@ class MyMainWindow(QtWidgets.QMainWindow):
                     self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
 
                     self.form_widget.view.show_summary(self.form_widget.view.model.index(i, 0))
-                self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName + "[*]")
+                self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName)
                 self.form_widget.view.resizeColumnToContents(0)
 
             else:  # SANS Excel table file
@@ -573,9 +599,19 @@ class MyMainWindow(QtWidgets.QMainWindow):
                     self.form_widget.view.tableModel.layoutChanged.emit()
 
     def saveScript(self):
+        fileName = self.form_widget.parent().windowTitle().lstrip("Ma_xSkript - ")
+        if fileName:
+            print("Saving...", fileName)
+            self.saveScriptAs(fileName)
+        else:
+            print("Calling Save As...")
+            self.saveScriptAs()
+
+    def saveScriptAs(self, fileName=''):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getSaveFileName(self, "Save ScriptMaker state...", "", \
+        if not fileName:
+            fileName, _ = QFileDialog.getSaveFileName(self, "Save ScriptMaker state...", "", \
                                                   "Ma_xScript Files (*.json);;All Files (*)", options=options)
         if fileName:
             f = open(fileName, "w+")
@@ -608,7 +644,9 @@ class MyMainWindow(QtWidgets.QMainWindow):
         outString += "]\n}"
         f.write(outString)
         f.close()
+        self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName)
         print("Saved.")
+        self.autosaveTimer.start()
 
     def edit_subtitles(self):
         new_subtitle = self.getText()
@@ -633,7 +671,7 @@ def main():
     # app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
     foo = MyMainWindow()
     foo.resize(700, 800)
-    foo.setWindowTitle("Ma_xSkript [*]")
+    foo.setWindowTitle("Ma_xSkript - ")
     scriptDir = os.path.dirname(os.path.realpath(__file__))
     ico = 'squareCogs.gif'
     icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico

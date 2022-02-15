@@ -184,11 +184,12 @@ class RunAngles(ScriptActionClass.ActionClass):
 class RunAngles_SM(ScriptActionClass.ActionClass):
     action_type = 'multi'
 
-    def __init__(self, Sample="", Subtitle="", Angles=[0.7, 2.3], uAmps=[5, 20], options=''):
+    def __init__(self, Sample="", Subtitle="", Angles=[0.8, 2.3], uAmps=[5, 20], ah_angles=[1, 0], options=''):
         self.Sample = Sample  # model.item(row).child(0,1).text()
         self.Subtitle = Subtitle  # model.item(row).child(1,1).text()
         self.Angles = Angles  # model.item(row).child(2,1).text()
         self.uAmps = uAmps  # model.item(row).child(3,1).text()
+        self.ah_angles = ah_angles
         self.options = options
 
     def get_icon(self):
@@ -223,6 +224,8 @@ class RunAngles_SM(ScriptActionClass.ActionClass):
     def isValid(self):
         if len(self.Angles) != len(self.uAmps):
             return [False, "Number of Angles is not the same as number of uAmps or empty."]
+        elif len(self.Angles) != len(self.ah_angles):
+            return [False, "Number of Angles is not the same as number of autoheight entries or empty."]
         elif any(i > 5 for i in self.Angles):
             return [False, "One of the angles might be too high."]
         elif len(self.Angles) == 0:
@@ -526,8 +529,6 @@ class ChangeContrast(ScriptActionClass.ActionClass):
     def get_icon(self):
         return "contrast2.png"
 
-
-
 class ContrastChange(ScriptActionClass.ActionClass):
     def __init__(self, Sample="", concA=100, concB=0, concC=0, concD=0, Flow=1.5, Volume=15.0, wait=False):
         self.Sample = Sample #model.item(row).child(0,1).text()
@@ -593,7 +594,6 @@ class ContrastChange(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         return "Concentrations in % and need to add up to 100."
-
 
 class Transmission(ScriptActionClass.ActionClass):
     def __init__(self, s1vg=1.0, s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
@@ -669,18 +669,14 @@ class Transmission(ScriptActionClass.ActionClass):
     def toolTip(self):
         pass
 
-
 class GoToPressure(ScriptActionClass.ActionClass):
     def __init__(self, pressure=20.0, speed=15.0, hold=True, wait=True):
-        # self.Sample = "" # dummy
         self.pressure = pressure
         self.speed = speed # [cm^2/min]
         self.hold = hold
         self.wait = wait
 
-        
     def makeAction(self, node):
-        # self.Sample = node.child(0, 1).text()
         self.pressure = node.child(0, 1).text()
         self.speed = node.child(1, 1).text()
         self.hold = node.child(2, 1).text()
@@ -707,7 +703,12 @@ class GoToPressure(ScriptActionClass.ActionClass):
         return 0
 
     def makeJSON(self):
-        pass
+        rdict = {"GoToPressure": [{"label": "pressure", "value": str(self.pressure)},
+                                    {"label": "speed", "value": str(self.speed)},
+                                    {"label": "hold", "value": str(self.hold)},
+                                    {"label": "Wait", "value": str(self.wait)}]
+                 }
+        return json.dumps(rdict, indent=4)
 
     def toolTip(self):
         pass
@@ -745,7 +746,11 @@ class GoToArea(ScriptActionClass.ActionClass):
         return 0 #(tofloat(self.area) - 100) / tofloat(self.speed)
 
     def makeJSON(self):
-        pass
+        rdict = {"GoToArea": [{"label": "area", "value": str(self.area)},
+                                    {"label": "speed", "value": str(self.speed)},
+                                    {"label": "Wait", "value": str(self.wait)}]
+                 }
+        return json.dumps(rdict, indent=4)
 
     def toolTip(self):
         pass
