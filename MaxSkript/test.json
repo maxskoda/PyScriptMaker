@@ -34,19 +34,17 @@
         },
         {
             "label": "Options",
-            "value": [
-                "''"
-            ]
+            "value": []
         }
     ]
 },{
-    "ChangeContrast": [
+    "Inject": [
         {
             "label": "Sample",
             "value": "S1"
         },
         {
-            "label": "solvent",
+            "label": "Solution",
             "value": "H2O"
         },
         {
@@ -88,19 +86,17 @@
         },
         {
             "label": "Options",
-            "value": [
-                "''"
-            ]
+            "value": []
         }
     ]
 },{
-    "ChangeContrast": [
+    "Inject": [
         {
             "label": "Sample",
             "value": "S2"
         },
         {
-            "label": "solvent",
+            "label": "Solution",
             "value": "H2O"
         },
         {
@@ -142,19 +138,17 @@
         },
         {
             "label": "Options",
-            "value": [
-                "''"
-            ]
+            "value": []
         }
     ]
 },{
-    "ChangeContrast": [
+    "Inject": [
         {
             "label": "Sample",
             "value": "S3"
         },
         {
-            "label": "solvent",
+            "label": "Solution",
             "value": "H2O"
         },
         {
@@ -196,19 +190,17 @@
         },
         {
             "label": "Options",
-            "value": [
-                "''"
-            ]
+            "value": []
         }
     ]
 },{
-    "ChangeContrast": [
+    "Inject": [
         {
             "label": "Sample",
             "value": "S4"
         },
         {
-            "label": "solvent",
+            "label": "Solution",
             "value": "H2O"
         },
         {
@@ -250,9 +242,7 @@
         },
         {
             "label": "Options",
-            "value": [
-                "''"
-            ]
+            "value": []
         }
     ]
 },{
@@ -281,9 +271,7 @@
         },
         {
             "label": "Options",
-            "value": [
-                "''"
-            ]
+            "value": []
         }
     ]
 },{
@@ -312,9 +300,7 @@
         },
         {
             "label": "Options",
-            "value": [
-                "''"
-            ]
+            "value": []
         }
     ]
 },{
@@ -343,8 +329,31 @@
         },
         {
             "label": "Options",
+            "value": []
+        }
+    ]
+},{
+    "RunAngles": [
+        {
+            "label": "Sample",
+            "value": "['S1', ' S2']"
+        },
+        {
+            "label": "Subtitle",
+            "value": ""
+        },
+        {
+            "label": "Angles",
             "value": [
-                "''"
+                "0.7",
+                "2.3"
+            ]
+        },
+        {
+            "label": "uAmps",
+            "value": [
+                "5.0",
+                "31.0"
             ]
         }
     ]

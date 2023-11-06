@@ -28,7 +28,7 @@ class ActionClass(ABC):
         pass
 
     @abstractmethod
-    def calcTime(self, inst):
+    def calcTime(self, inst, current=0):
         pass
 
     @abstractmethod

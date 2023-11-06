@@ -153,6 +153,7 @@ class App(QtWidgets.QWidget):
         icon_path = scriptDir + os.path.sep + 'Icons' + os.path.sep + ico
         self.collapseButton.setIcon(QtGui.QIcon(icon_path))
         self.collapseButton.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        self.collapseButton.setCheckable(True)
         self.collapseButton.clicked.connect(self.collapse_all)
 
         # button to expand all tree items
@@ -281,7 +282,7 @@ class App(QtWidgets.QWidget):
         ## write out additional script lines
         text_lines = self.settings_tab.toPlainText().split('\n')
         for line in text_lines:
-            f.write("\t"+line+"\n")
+            f.write("\t" + line + "\n")
         f.write('\n')
         for row in range(self.view.model.rowCount()):
             it = self.view.model.item(row)
@@ -290,7 +291,7 @@ class App(QtWidgets.QWidget):
             tempAction = MyClass()
             tempAction.makeAction(it)
             # Check if sample entry exists for Action:
-            if it.child(0, 0).text() == "Sample":
+            if it.child(0, 0).text() == "Sample": #or it.child(0, 0).text() == "Samples":
                 sampleNumber = self.view.delegate.items.index(it.child(0, 1).text()) + 1
             else:
                 sampleNumber = -1
@@ -310,11 +311,10 @@ class App(QtWidgets.QWidget):
                 sampleDict = {}
                 for col in range(self.view.tableModel.columnCount(QModelIndex)):
                     sampleDict[self.view.tableModel.headerData(col, Qt.Horizontal, Qt.DisplayRole)] = \
-                    self.view.tableModel.getData()[row][col]
+                        self.view.tableModel.getData()[row][col]
                     # print(sampleDict)
                 samples.append(sampleDict)
         return samples
-
 
 
 class MyMainWindow(QtWidgets.QMainWindow):
@@ -411,10 +411,10 @@ class MyMainWindow(QtWidgets.QMainWindow):
         self.form_widget.mainLayout.addWidget(self.form_widget.tabs)
         self.form_widget.mainLayout.addWidget(self.b)
         # self.form_widget.mainLayout.addWidget(self.sampleTableGroupBox)
-        self.NRSamples.setWidget(self.sampleTable)#sampleTableGroupBox)
-        #self.sampleTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectColumns)
+        self.NRSamples.setWidget(self.sampleTable)  # sampleTableGroupBox)
+        # self.sampleTable.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectColumns)
         self.NRSamples.setFeatures(QtWidgets.QDockWidget.DockWidgetFloatable |
-                 QtWidgets.QDockWidget.DockWidgetMovable)
+                                   QtWidgets.QDockWidget.DockWidgetMovable)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.NRSamples)
 
         self.NRSamples.setContentsMargins(20, 20, 20, 20)
@@ -431,17 +431,16 @@ class MyMainWindow(QtWidgets.QMainWindow):
         #                    "border : 3px solid black;"
         #                    "}"
         #                    )
-        style ="QDockWidget::Widget{padding - left: 30px;}"
+        style = "QDockWidget::Widget{padding - left: 30px;}"
         style += "QProgressBar {border: 2px solid grey; border-radius: 5px; text-align: center;}"
         style += "QProgressBar::chunk {background-color: #CD96CD; width: 10px; margin: 0.5px;}"
 
         self.setStyleSheet(style)
         ##################################
 
-
         # Open default file
         scriptDir = os.path.dirname(os.path.realpath(__file__))
-        fname = 'INTER_4Samples_2Contrasts_inject.json'#'INTER_4Samples_2Contrasts_ChCon.json'
+        fname = 'INTER_4Samples_2Contrasts_inject.json'  # 'INTER_4Samples_2Contrasts_ChCon.json'
         fileName = scriptDir + os.path.sep + os.path.sep + fname
         self.form_widget.view.model.populate(fileName)
         self.form_widget.parent().setWindowTitle("Ma_xSkript - " + fileName)
@@ -499,7 +498,6 @@ class MyMainWindow(QtWidgets.QMainWindow):
 
     def on_removeLayer(self):
         pass
-
 
     def openScript(self):
         print("Opening...")
@@ -611,8 +609,8 @@ class MyMainWindow(QtWidgets.QMainWindow):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         if not fileName:
-            fileName, _ = QFileDialog.getSaveFileName(self, "Save ScriptMaker state...", "", \
-                                                  "Ma_xScript Files (*.json);;All Files (*)", options=options)
+            fileName, _ = QFileDialog.getSaveFileName(self, "Save ScriptMaker state...", "",
+                                                      "Ma_xScript Files (*.json);;All Files (*)", options=options)
         if fileName:
             f = open(fileName, "w+")
         else:
@@ -670,7 +668,7 @@ def main():
     # app.setStyle('Plastique')
     # app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
     foo = MyMainWindow()
-    foo.resize(700, 800)
+    foo.resize(700, 1500)
     foo.setWindowTitle("Ma_xSkript - ")
     scriptDir = os.path.dirname(os.path.realpath(__file__))
     ico = 'squareCogs.gif'

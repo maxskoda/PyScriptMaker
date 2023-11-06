@@ -21,10 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="aa2868dc-3f05-41ce-b2f7-b6f864290da2" name="Default Changelist" comment="Added a few script files.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaxSkript/Actions/NRActions.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Actions/NRActions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MaxSkript/Actions/NRActions_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Actions/NRActions_Python.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MaxSkript/INTER_4Samples_2Contrasts_ChCon.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/INTER_4Samples_2Contrasts_ChCon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaxSkript/Actions/ScriptActionClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/Actions/ScriptActionClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MaxSkript/PyScript_test1.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/PyScript_test1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71_Python.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/ScriptMaker_v0p71_Python.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaxSkript/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/test.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaxSkript/treeview.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxSkript/treeview.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,19 +45,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1Z2PEBh1jvF6HhtTPsVXJo8enbD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ktd43279\OneDrive - Science and Technology Facilities Council\Documents\PyScriptMaker\MaxSkript\Icons" />
@@ -67,7 +72,28 @@
       <recent name="C:\Users\ktd43279\Documents\GitHub\PyScriptMaker" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ScriptMaker_v0p71_Python">
+  <component name="RunManager" selected="Python.ScriptMaker_v0p71_Python (1)">
+    <configuration name="MultiCombo_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="PyScriptMaker" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MaxSkript" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MaxSkript/MultiCombo_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="ScriptMaker_v0p71_Python (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,27 +157,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="dragdrop_test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="PyScriptMaker" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dragdrop_test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="PyScriptMaker" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -175,11 +180,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ScriptMaker_v0p71_Python" />
         <item itemvalue="Python.ScriptMaker_v0p71_Python (1)" />
+        <item itemvalue="Python.MultiCombo_test" />
+        <item itemvalue="Python.ScriptMaker_v0p71_Python" />
         <item itemvalue="Python.tests" />
         <item itemvalue="Python.ScriptMaker_v0p71_SANS" />
-        <item itemvalue="Python.dragdrop_test" />
       </list>
     </recent_temporary>
   </component>
@@ -236,7 +241,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Sorted icon paths" />
@@ -244,81 +248,6 @@
     <MESSAGE value="Added GoToPressure and GoToArea" />
     <MESSAGE value="Added a few script files." />
     <option name="LAST_COMMIT_MESSAGE" value="Added a few script files." />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="4555" y="283" key="#xdebugger.evaluate" timestamp="1644272211104">
-      <screen x="3840" y="0" width="1920" height="1160" />
-    </state>
-    <state x="4555" y="283" key="#xdebugger.evaluate/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644272211104" />
-    <state width="677" height="466" key="DebuggerActiveHint" timestamp="1644276457020">
-      <screen x="3840" y="0" width="1920" height="1160" />
-    </state>
-    <state width="677" height="466" key="DebuggerActiveHint/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644276457020" />
-    <state x="550" y="216" key="FileChooserDialogImpl" timestamp="1643276669005">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state x="550" y="216" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1643276669005" />
-    <state width="1515" height="194" key="GridCell.Tab.0.bottom" timestamp="1644876627919">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state width="1515" height="205" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1644526651324" />
-    <state width="1900" height="205" key="GridCell.Tab.0.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644776688036" />
-    <state width="1515" height="194" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1644876627919" />
-    <state width="1515" height="194" key="GridCell.Tab.0.center" timestamp="1644876627919">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state width="1515" height="205" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1644526651324" />
-    <state width="1900" height="205" key="GridCell.Tab.0.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644776688036" />
-    <state width="1515" height="194" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1644876627919" />
-    <state width="1515" height="194" key="GridCell.Tab.0.left" timestamp="1644876627918">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state width="1515" height="205" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1644526651324" />
-    <state width="1900" height="205" key="GridCell.Tab.0.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644776688036" />
-    <state width="1515" height="194" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1644876627918" />
-    <state width="1515" height="194" key="GridCell.Tab.0.right" timestamp="1644876627919">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state width="1515" height="205" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1644526651324" />
-    <state width="1900" height="205" key="GridCell.Tab.0.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644776688036" />
-    <state width="1515" height="194" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1644876627919" />
-    <state width="1515" height="202" key="GridCell.Tab.1.bottom" timestamp="1644874227787">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state width="1900" height="270" key="GridCell.Tab.1.bottom/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644752677317" />
-    <state width="1515" height="202" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1644874227787" />
-    <state width="1515" height="202" key="GridCell.Tab.1.center" timestamp="1644874227787">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state width="1900" height="270" key="GridCell.Tab.1.center/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644752677317" />
-    <state width="1515" height="202" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1644874227787" />
-    <state width="1515" height="202" key="GridCell.Tab.1.left" timestamp="1644874227787">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state width="1900" height="270" key="GridCell.Tab.1.left/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644752677316" />
-    <state width="1515" height="202" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1644874227787" />
-    <state width="1515" height="202" key="GridCell.Tab.1.right" timestamp="1644874227787">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state width="1900" height="270" key="GridCell.Tab.1.right/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644752677317" />
-    <state width="1515" height="202" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1644874227787" />
-    <state x="4448" y="282" key="RollbackChangesDialog" timestamp="1644251435442">
-      <screen x="3840" y="0" width="1920" height="1160" />
-    </state>
-    <state x="4448" y="282" key="RollbackChangesDialog/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644251435442" />
-    <state x="279" y="106" key="SettingsEditor" timestamp="1644226634035">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state x="279" y="106" key="SettingsEditor/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1644226634035" />
-    <state x="4293" y="245" key="Vcs.Push.Dialog.v2" timestamp="1644777431290">
-      <screen x="3840" y="0" width="1920" height="1160" />
-    </state>
-    <state x="362" y="194" key="Vcs.Push.Dialog.v2/0.0.1536.920/3840.0.1920.1160@0.0.1536.920" timestamp="1644243118677" />
-    <state x="4293" y="245" key="Vcs.Push.Dialog.v2/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644777431290" />
-    <state x="4617" y="494" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1644255863226">
-      <screen x="3840" y="0" width="1920" height="1160" />
-    </state>
-    <state x="4617" y="494" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.920/3840.0.1920.1160@3840.0.1920.1160" timestamp="1644255863226" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

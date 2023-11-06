@@ -10,9 +10,10 @@ from datetime import datetime
 import PyQt5.QtCore
 import MaxSkript.Actions.ScriptActionClass as ScriptActionClass
 
-
 # instruments
 instruments = ["INTER", "SURF", "PolRef", "OffSpec", "CRISP"]
+
+
 # actions list items need to match method names (obsolete due to abstract class:
 # actions = ["RunAngles", "Inject", "ContrastChange", "Transmission", "GoToPressure", "SetJulabo"]
 
@@ -51,25 +52,37 @@ def writeHeader(samples, cols=[]):
                 "import sys\n" + \
                 "import os\n"
     outString += r'sys.path.insert(0, os.path.abspath(os.path.join(r"C:\\", "Instrument", "scripts")))'
-    outString += "\nfrom genie_python import genie as g\n"
-    outString += "from technique.reflectometry import SampleGenerator, run_angle, contrast_change, transmission\n\n\n"
+    outString += "\nfrom technique.reflectometry import *  # __all__ defined in __init__.py\n"
+    outString += "\nimport logging\n"
+
+    outString += "\ntry:"
+    outString += "\n\t    # pylint: disable=import-error"
+    outString += "\n\t    from genie_python import genie as g"
+    outString += "\nexcept ImportError:"
+    outString += "\n\t    from technique.reflectometry.mocks import g\n"
+    outString += "\nfrom technique.reflectometry import SampleGenerator, run_angle, contrast_change, transmission\n\n\n"
     outString += "def runscript(dry_run=False):\n"
 
+    outString += "\tDryRun.dry_run = dry_run\n"
+
     outString += "\tsample_generator = SampleGenerator(\n" + \
-                 "\t\t    translation = 400.0,\n" + \
-                 "\t\t height2_offset = 0.0,\n" + \
-                 "\t\t     phi_offset = 0.0,\n" + \
-                 "\t\t     psi_offset = 0.0,\n" + \
-                 "\t\t  height_offset = 0.0,\n" + \
-                 "\t\t     resolution = 0.03,\n" + \
-                 "\t\t      footprint = 60,\n" + \
-                 "\t\t          valve = 1)\n\n"
-    sampList=[]
+                 "\t\t   translation = 400.0,\n" + \
+                 "\t\theight2_offset = 0.0,\n" + \
+                 "\t\t    phi_offset = 0.0,\n" + \
+                 "\t\t    psi_offset = 0.0,\n" + \
+                 "\t\t height_offset = 0.0,\n" + \
+                 "\t\t    resolution = 0.03,\n" + \
+                 "\t\t     footprint = 60,\n" + \
+                 "\t\t         valve = 1,\n" + \
+                 "\t\t         hgaps = {'S1HG': 50.0, 'S2HG': 30.0, 'S3HG': 60.0},\n" + \
+                 "\t\t sample_length = 80)\n\n"
+    sampList = []
 
     for i, samp in enumerate(samples):
-        outString += "\tsample_" + str(i+1) + " = sample_generator.new_sample(title=" #samples[samp].get("Sample/Title")
+        outString += "\tsample_" + str(
+            i + 1) + " = sample_generator.new_sample(title="  # samples[samp].get("Sample/Title")
         outString += r'"' + samp.get("Sample/Title") + r'",' + "\n"
-        outString += "\t\t   translation = " + samp.get("Trans") +",\n"
+        outString += "\t\t   translation = " + samp.get("Trans") + ",\n"
         outString += "\t\t height_offset = " + samp.get("Height")
         if len(cols):
             if 3 in cols:
@@ -94,23 +107,26 @@ def writeHeader(samples, cols=[]):
 
         outString += ")\n\n"
 
-
     return outString
 
 
 def writeFooter(samples):
     ## for Python
-    outString = ""
+    outString = "\tif dry_run:\n" + \
+                "\t\tprint(\"=== Total time: \", str(int(DryRun.run_time / 60)) + \"h \" + str(int(DryRun.run_time % " \
+                "60)) + \"min ===\")\n" + \
+                "\t\treturn DryRun.run_time"
     return outString
 
 
 class RunAngles(ScriptActionClass.ActionClass):
     action_type = 'multi'
+
     def __init__(self, Sample="", Subtitle="", Angles=[0.7, 2.3], uAmps=[5, 20], options=''):
-        self.Sample = Sample #model.item(row).child(0,1).text()
-        self.Subtitle = Subtitle #model.item(row).child(1,1).text()
-        self.Angles = Angles #model.item(row).child(2,1).text()
-        self.uAmps = uAmps #model.item(row).child(3,1).text()
+        self.Sample = Sample  # model.item(row).child(0,1).text()
+        self.Subtitle = Subtitle  # model.item(row).child(1,1).text()
+        self.Angles = Angles  # model.item(row).child(2,1).text()
+        self.uAmps = uAmps  # model.item(row).child(3,1).text()
         self.options = options
 
     def get_icon(self):
@@ -137,11 +153,11 @@ class RunAngles(ScriptActionClass.ActionClass):
         degree = str(b'\xc2\xb0', 'utf8')
         res1 = dict(zip(self.Angles, self.uAmps))
         res = ''.join("({}{}: {}\u03BCAh) ".format(angle, degree, int(uamps)) for angle, uamps in res1.items())
-        outString = self.Sample + " " +\
-                    self.Subtitle + "\t|"\
-                    "\t" + str(res)
+        outString = self.Sample + " " + \
+                    self.Subtitle + "\t|" \
+                                    "\t" + str(res)
         return outString
-        
+
     def isValid(self):
         if len(self.Angles) != len(self.uAmps):
             return [False, "Number of Angles is not the same as number of uAmps or empty."]
@@ -153,26 +169,31 @@ class RunAngles(ScriptActionClass.ActionClass):
             return [False, "Valid options are: '', 'SM', 't', 'ah', 'solid'"]
         else:
             return [True, "All good!"]
-        
+
     def stringLine(self, sampleNumber):
         outString = "\t##### Sample " + str(sampleNumber) + "\n"
         outString += "\tsample_" + str(sampleNumber) + ".subtitle=" + "\"" + self.Subtitle + "\"\n"
-        
+
         for a in range(len(self.Angles)):
             outString += "\trun_angle(sample_" + str(sampleNumber) + ", " \
-                         + str(self.Angles[a]) + ", count_uamps=" + str(self.uAmps[a]) + ")\n"#", mode=\"NR\")\n"
+                         + str(self.Angles[a]) + ", count_uamps=" + str(self.uAmps[a]) + ")\n"  # ", mode=\"NR\")\n"
         return outString
-    
+
     def makeJSON(self):
-        rdict = {"RunAngles": [{ "label": "Sample", "value": str(self.Sample) },\
-                       { "label": "Subtitle", "value": str(self.Subtitle) },\
-                       { "label": "Angles", "value": ['{:.2f}'.format(x) for x in self.Angles]},\
-                       { "label": "uAmps", "value": ['{}'.format(x) for x in self.uAmps]}, \
-                       {"label": "Options", "value": [] if '' in self.options else ['{}'.format(x) for x in self.options]}]}
+        rdict = {"RunAngles": [{"label": "Sample", "value": str(self.Sample)},
+                               {"label": "Subtitle", "value": str(self.Subtitle)},
+                               {"label": "Angles", "value": ['{:.2f}'.format(x) for x in self.Angles]},
+                               {"label": "uAmps", "value": ['{}'.format(x) for x in self.uAmps]}, {"label": "Options",
+                                                                                                   "value": [] if '' in self.options else [
+                                                                                                       '{}'.format(x)
+                                                                                                       for x in
+                                                                                                       self.options]}]}
         return json.dumps(rdict, indent=4)
 
-    def calcTime(self, inst):
-        if inst.upper().upper() in ["INTER", "POLREF", "OFFSPEC"]:
+    def calcTime(self, inst, current):  # TODO: add actual beamcurrent as argument
+        if current:
+            return sum(self.uAmps) / tofloat(current) * 60
+        elif inst.upper().upper() in ["INTER", "POLREF", "OFFSPEC"]:
             return sum(self.uAmps) / 40.0 * 60
         else:
             return sum(self.uAmps) / 180.0 * 60
@@ -252,8 +273,10 @@ class RunAngles_SM(ScriptActionClass.ActionClass):
                                {"label": "Options", "value": ['{}'.format(x) for x in self.options]}]}
         return json.dumps(rdict, indent=4)
 
-    def calcTime(self, inst):
-        if inst.upper().upper() in ["INTER", "POLREF", "OFFSPEC"]:
+    def calcTime(self, inst, current):
+        if current:
+            return sum(self.uAmps) / tofloat(current) * 60
+        elif inst.upper().upper() in ["INTER", "POLREF", "OFFSPEC"]:
             return sum(self.uAmps) / 40.0 * 60
         else:
             return sum(self.uAmps) / 180.0 * 60
@@ -263,9 +286,9 @@ class RunAngles_SM(ScriptActionClass.ActionClass):
 
 
 class SampleLoop(ScriptActionClass.ActionClass):
-    def __init__(self, samples="S1, S2", Subtitle="", Angles=[0.7, 2.3], uAmps=[5, 20], contrastChange_to="H2O",
+    def __init__(self, Samples="S1, S2", Subtitle="", Angles=[0.7, 2.3], uAmps=[5, 20], contrastChange_to="H2O",
                  Flow=1.5, Volume=15.0, wait="False"):
-        self.samples = samples.split(",") # model.item(row).child(0,1).text()
+        self.Sample = Samples.split(",")  # model.item(row).child(0,1).text()
         self.Subtitle = Subtitle  # model.item(row).child(1,1).text()
         self.Angles = Angles  # model.item(row).child(2,1).text()
         self.uAmps = uAmps  # model.item(row).child(3,1).text()
@@ -275,7 +298,7 @@ class SampleLoop(ScriptActionClass.ActionClass):
         self.wait = wait
 
     def makeAction(self, node):
-        self.samples = node.child(0, 1).text().split(",")
+        self.Sample = node.child(0, 1).text().split(",")
         self.Subtitle = node.child(1, 1).text()
 
         tempAngles = node.child(2, 1).text().split(",")
@@ -294,9 +317,9 @@ class SampleLoop(ScriptActionClass.ActionClass):
         degree = str(b'\xc2\xb0', 'utf8')
         res1 = dict(zip(self.Angles, self.uAmps))
         res = ''.join("({}{}: {}\u03BCA) ".format(angle, degree, int(uamps)) for angle, uamps in res1.items())
-        outString = ''.join(self.samples) + " " + \
+        outString = ','.join(self.Sample) + " " + \
                     self.Subtitle + \
-                    "\t" + str(res) +\
+                    "\t" + str(res) + \
                     "->" + self.Inject
         return outString
 
@@ -310,8 +333,8 @@ class SampleLoop(ScriptActionClass.ActionClass):
         else:
             return [True, "All good!"]
 
-    def stringLine(self, sampleNumber):
-        outString = "\tsamplist = [" + ", ".join(self.samples) + "]\n"
+    def stringLine(self, sampleNumber):  # TODO: Numbering of sample objects not ok...meybe need multiselction listbox
+        outString = "\tsamplist = [" + ", ".join(self.Sample) + "]\n"
         outString += "\tfor samp in ['sample_' + s for s in samplist]:\n"
         # outString = "##### Sample " + str(sampleNumber) + "\n"
         outString += "\t\tsamp.subtitle = \"" + self.Subtitle + "\"\n"
@@ -321,8 +344,8 @@ class SampleLoop(ScriptActionClass.ActionClass):
                          + str(self.Angles[a]) + ", count_uamps=" + str(self.uAmps[a]) + ", mode=\"NR\")\n"
 
         # Change the contrast:
-        outString += "\t\tinject:wait(samp, \"" + self.Inject + \
-                    "\", " + str(self.flow) + ", " + str(self.volume) + ")\n"
+        outString += "\t\tinject(samp, " + self.Inject + ", flow=" + str(self.flow) + \
+                     ", volume=" + str(self.volume) + ", wait=" + str(self.wait) + ")\n"
 
         return outString
 
@@ -333,14 +356,18 @@ class SampleLoop(ScriptActionClass.ActionClass):
                                {"label": "uAmps", "value": ['{}'.format(x) for x in self.uAmps]}]}
         return json.dumps(rdict, indent=4)
 
-    def calcTime(self, inst):
-        if inst.upper() in ["INTER", "POLREF", "OFFSPEC"]:
-            return sum(self.uAmps) * len(self.samples) / 40.0 * 60
+    def calcTime(self, inst, current):
+        if current:
+            print(self.Sample)
+            return sum(self.uAmps) * len(self.Sample) / tofloat(current) * 60
+        elif inst.upper() in ["INTER", "POLREF", "OFFSPEC"]:
+            return sum(self.uAmps) * len(self.Sample) / 40.0 * 60
         else:
-            return sum(self.uAmps) * len(self.samples) / 180.0 * 60
+            return sum(self.uAmps) * len(self.Sample) / 180.0 * 60
 
     def toolTip(self):
         return "Number of Angles and uAmps entries need to be the same."
+
 
 #
 # class run_angle_polref(ScriptActionClass.ActionClass):
@@ -414,9 +441,9 @@ class SampleLoop(ScriptActionClass.ActionClass):
 #         return "Number of Angles and uAmps entries need to be the same."
 
 
-class Inject(ScriptActionClass.ActionClass):
+class Inject(ScriptActionClass.ActionClass):  # TODO: Need to link contrast lists form Settings tab to valid solvents!
     def __init__(self, Sample="", Solution="D2O", Flow=1.5, Volume=15.0, wait="False"):
-        self.Sample = Sample #model.item(row).child(0,1).text()
+        self.Sample = Sample  # model.item(row).child(0,1).text()
         self.solution = Solution
         self.flow = tofloat(Flow)
         self.volume = tofloat(Volume)
@@ -424,7 +451,7 @@ class Inject(ScriptActionClass.ActionClass):
 
     def get_icon(self):
         return "inject.png"
-        
+
     def makeAction(self, node):
         self.Sample = node.child(0, 1).text()
         self.solution = node.child(1, 1).text()
@@ -439,7 +466,7 @@ class Inject(ScriptActionClass.ActionClass):
             return [True, "All good!"]
         else:
             return [False, "Requested liquid not valid. Must be D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B"]
-        
+
     def summary(self):
         if self.wait == 'False':
             w = 'continue'
@@ -447,31 +474,30 @@ class Inject(ScriptActionClass.ActionClass):
             w = 'wait'
 
         return '{}, {}, {}, {} -> {}'.format(self.Sample, self.solution, self.flow, self.volume, w)
-        
+
     def stringLine(self, sampleNumber):
-        ### needs string for 'wait'
         if self.wait != 'False':
-            outString = "\tinject:wait(sample_" + str(sampleNumber) + ", \"" + self.solution + \
-                        "\", " + str(self.flow) + ", " + str(self.volume) + ")\n"
+            outString = "\tinject(sample_" + str(sampleNumber) + ", " + self.solution + \
+                        ", flow=" + str(self.flow) + ", volume=" + str(self.volume) + ", wait=True)\n"
         else:
-            outString = "\tinject(sample_" + str(sampleNumber) + ", \"" + self.solution + \
-                        "\", " + str(self.flow) + ", " + str(self.volume) + ")\n"
+            outString = "\tinject(sample_" + str(sampleNumber) + ", " + self.solution + \
+                        ", flow=" + str(self.flow) + ", volume=" + str(self.volume) + ")\n"
         return outString
-    
+
     def makeJSON(self):
-        rdict = {"Inject": [{ "label": "Sample", "value": str(self.Sample) },\
-                   { "label": "Solution", "value": str(self.solution)},\
-                   { "label": "Flow", "value": str(self.flow)},\
-                   { "label": "Volume", "value": str(self.volume)},\
-                   { "label": "Wait", "value": str(self.wait)}]
-            }
+        rdict = {"Inject": [{"label": "Sample", "value": str(self.Sample)}, \
+                            {"label": "Solution", "value": str(self.solution)}, \
+                            {"label": "Flow", "value": str(self.flow)}, \
+                            {"label": "Volume", "value": str(self.volume)}, \
+                            {"label": "Wait", "value": str(self.wait)}]
+                 }
         return json.dumps(rdict, indent=4)
 
-    def calcTime(self, inst):
+    def calcTime(self, inst, current):
         if self.wait == 'False':
             return 0
         else:
-            return self.volume/self.flow
+            return self.volume / self.flow
 
     def toolTip(self):
         return "Valid input: D2O, H2O, SMW, SiCM, SYRINGE_A, SYRINGE_B. HPLC: A - D2O, B - H2O"
@@ -517,11 +543,11 @@ class ChangeContrast(ScriptActionClass.ActionClass):
                  }
         return json.dumps(rdict, indent=4)
 
-    def calcTime(self, inst):
+    def calcTime(self, inst, current):
         if self.wait == 'False':
             return 0
         else:
-            return self.volume/self.flow
+            return self.volume / self.flow
 
     def toolTip(self):
         return "Concentrations in % and need to add up to 100."
@@ -529,9 +555,10 @@ class ChangeContrast(ScriptActionClass.ActionClass):
     def get_icon(self):
         return "contrast2.png"
 
+
 class ContrastChange(ScriptActionClass.ActionClass):
     def __init__(self, Sample="", concA=100, concB=0, concC=0, concD=0, Flow=1.5, Volume=15.0, wait=False):
-        self.Sample = Sample #model.item(row).child(0,1).text()
+        self.Sample = Sample  # model.item(row).child(0,1).text()
         self.concA = concA
         self.concB = concB
         self.concC = concC
@@ -539,15 +566,15 @@ class ContrastChange(ScriptActionClass.ActionClass):
         self.flow = tofloat(Flow)
         self.volume = tofloat(Volume)
         self.wait = wait
-        
+
     def makeAction(self, node):
-        self.Sample = node.child(0,1).text()
-        self.concA = node.child(1,1).text()
-        self.concB = node.child(2,1).text()
-        self.concC = node.child(3,1).text()
-        self.concD = node.child(4,1).text()
-        self.flow = tofloat(node.child(5,1).text())
-        self.volume = tofloat(node.child(6,1).text())
+        self.Sample = node.child(0, 1).text()
+        self.concA = node.child(1, 1).text()
+        self.concB = node.child(2, 1).text()
+        self.concC = node.child(3, 1).text()
+        self.concD = node.child(4, 1).text()
+        self.flow = tofloat(node.child(5, 1).text())
+        self.volume = tofloat(node.child(6, 1).text())
         self.wait = node.child(7, 1).text()
         return self
 
@@ -559,46 +586,49 @@ class ContrastChange(ScriptActionClass.ActionClass):
                 return [False, "Concentrations do not add up to 100!"]
         else:
             return [False, "Please enter numbers."]
-        
-    def summary(self):    
+
+    def summary(self):
         return '{}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.concA, self.concB, self.concC, self.concD,
                                                    self.flow, self.volume)
-        
+
     def stringLine(self, sampleNumber):
         if self.wait != 'False':
             outString = "\tcontrast_change(sample_" + str(sampleNumber) + ".valve, " + \
-                        "[" + self.concA + "," + self.concB + "," + self.concC + "," + self.concD + "]"\
-                        ", " + str(self.flow) + ", " + str(self.volume) + ")\n"
+                        "[" + self.concA + "," + self.concB + "," + self.concC + "," + self.concD + "]" + \
+                        ", " + str(self.flow) + ", " + str(self.volume) + ", wait=True" + ")\n"
         else:
             outString = "\tcontrast_change(sample_" + str(sampleNumber) + ".valve, " + \
-                        "[" + self.concA + "," + self.concB + "," + self.concC + "," + self.concD + "]" \
-                        ", " + str(self.flow) + ", " + str(self.volume) + "wait=True" + ")\n"
+                        "[" + self.concA + "," + self.concB + "," + self.concC + "," + self.concD + "]" + \
+                        ", " + str(self.flow) + ", " + str(self.volume) + ")\n"
         return outString
-    
+
     def makeJSON(self):
-        rdict = {"ContrastChange": [{ "label": "Sample", "value": str(self.Sample) },\
-                   { "label": "concA", "value": str(self.concA)},\
-                   { "label": "concB", "value": str(self.concB)},\
-                   { "label": "concC", "value": str(self.concC)},\
-                   { "label": "concD", "value": str(self.concD)},\
-                   { "label": "Flow", "value": str(self.flow)},\
-                   { "label": "Volume", "value": str(self.volume)}]
-            }
+        rdict = {"ContrastChange": [{"label": "Sample", "value": str(self.Sample)},
+                                    {"label": "concA", "value": str(self.concA)},
+                                    {"label": "concB", "value": str(self.concB)},
+                                    {"label": "concC", "value": str(self.concC)},
+                                    {"label": "concD", "value": str(self.concD)},
+                                    {"label": "Flow", "value": str(self.flow)},
+                                    {"label": "Volume", "value": str(self.volume)},
+                                    {"label": "Wait", "value": str(self.wait)}]
+                 }
         return json.dumps(rdict, indent=4)
 
-    def calcTime(self, inst):
+    def calcTime(self, inst, current):
         if self.wait == 'False':
             return 0
         else:
-            return self.volume/self.flow
+            return round(self.volume / self.flow, 2)
 
     def toolTip(self):
         return "Concentrations in % and need to add up to 100."
 
-class Transmission(ScriptActionClass.ActionClass):
-    def __init__(self, s1vg=1.0, s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0, height_offset=5, sm_angle=0.75):
-        self.Sample = Sample 
-        self.Subtitle = Subtitle 
+
+class Transmission(ScriptActionClass.ActionClass):  # TODO sample naming gives sample_<name in table>
+    def __init__(self, s1vg=1.0, s2vg=0.5, s1hg=50, s2hg=30, Sample="", Subtitle="", uAmps=20, s4hg=53.0,
+                 height_offset=5, sm_angle=0.75):
+        self.Sample = Sample
+        self.Subtitle = Subtitle
         self.s1vg = tofloat(s1vg)
         self.s2vg = s2vg
         self.s1hg = s1hg
@@ -628,9 +658,10 @@ class Transmission(ScriptActionClass.ActionClass):
         # outString = self.Sample + " " +\
         #             self.Subtitle + " " +\
         #             self.s1vg + " "
-                    
-        return '{}, {}, {}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.Subtitle, self.uAmps, self.s1vg, self.s2vg, self.s1hg, self.s2hg, self.height_offset, self.sm_angle)
-        
+
+        return '{}, {}, {}, {}, {}, {}, {}, {}, {}'.format(self.Sample, self.Subtitle, self.uAmps, self.s1vg, self.s2vg,
+                                                           self.s1hg, self.s2hg, self.height_offset, self.sm_angle)
+
     def isValid(self):
         for attr in self.__dict__:
             if attr == "NaN" or attr == "nan":
@@ -639,29 +670,32 @@ class Transmission(ScriptActionClass.ActionClass):
         return [True]
 
     def makeJSON(self):
-        rdict = {"Transmission": [{ "label": "Sample", "value": str(self.Sample) },\
-                       { "label": "Subtitle", "value": str(self.Subtitle) },\
-                       { "label": "uAmps", "value": str(self.uAmps)},\
-                       { "label": "s1vg", "value": str(self.s1vg)},\
-                       { "label": "s2vg", "value": str(self.s1vg)},\
-                       { "label": "s1hg", "value": str(self.s1vg)},\
-                       { "label": "s1hg", "value": str(self.s1vg)},\
-                       { "label": "height_offset", "value": str(self.height_offset)},\
-                       { "label": "sm_angle", "value": str(self.sm_angle)}]}
+        rdict = {"Transmission": [{"label": "Sample", "value": str(self.Sample)}, \
+                                  {"label": "Subtitle", "value": str(self.Subtitle)}, \
+                                  {"label": "uAmps", "value": str(self.uAmps)}, \
+                                  {"label": "s1vg", "value": str(self.s1vg)}, \
+                                  {"label": "s2vg", "value": str(self.s1vg)}, \
+                                  {"label": "s1hg", "value": str(self.s1vg)}, \
+                                  {"label": "s1hg", "value": str(self.s1vg)}, \
+                                  {"label": "height_offset", "value": str(self.height_offset)}, \
+                                  {"label": "sm_angle", "value": str(self.sm_angle)}]}
         return json.dumps(rdict, indent=4)
-        
+
     def stringLine(self, sampleNumber):
-        outString = "\ttransmission(sample_" + self.Sample + ", \"" + self.Subtitle + "\", " + str(self.uAmps) + "," + str(self.s1vg) + "," + str(self.s2vg) +\
-                                                "," + str(self.s1hg) + "," + str(self.s2hg) + "," + str(self.s4hg)
+        outString = "\ttransmission(sample_" + self.Sample + ", \"" + self.Subtitle + "\", " + str(
+            self.uAmps) + "," + str(self.s1vg) + "," + str(self.s2vg) + \
+                    "," + str(self.s1hg) + "," + str(self.s2hg) + "," + str(self.s4hg)
         if str(self.height_offset) != "":
             outString += "," + str(self.height_offset)
         if str(self.sm_angle) != "":
             outString += "," + str(self.sm_angle)
-                                                
-        return outString+")\n"
 
-    def calcTime(self, inst):
-        if inst.upper() in ["INTER", "POLREF", "OFFSPEC"]:
+        return outString + ")\n"
+
+    def calcTime(self, inst, current):
+        if current:
+            return sum(self.uAmps) / tofloat(current) * 60
+        elif inst.upper() in ["INTER", "POLREF", "OFFSPEC"]:
             return self.uAmps / 40.0 * 60
         else:
             return self.uAmps / 180.0 * 60
@@ -669,10 +703,11 @@ class Transmission(ScriptActionClass.ActionClass):
     def toolTip(self):
         pass
 
+
 class GoToPressure(ScriptActionClass.ActionClass):
     def __init__(self, pressure=20.0, speed=15.0, hold=True, wait=True):
         self.pressure = pressure
-        self.speed = speed # [cm^2/min]
+        self.speed = speed  # [cm^2/min]
         self.hold = hold
         self.wait = wait
 
@@ -685,10 +720,10 @@ class GoToPressure(ScriptActionClass.ActionClass):
 
     def isValid(self):
         return [True]
-        
+
     def summary(self):
         return 'p={} mN,  speed={} cm\u00b2/min'.format(self.pressure, self.speed)
-        
+
     def stringLine(self, sampleNumber):
         outString = "\tgo_to_pressure(" + str(self.pressure) + ", " + str(self.speed)
         if self.hold == 'False':
@@ -698,15 +733,15 @@ class GoToPressure(ScriptActionClass.ActionClass):
         outString += ")\n"
         return outString
 
-    def calcTime(self, inst):
+    def calcTime(self, inst, current):
         # NEED TO THINK ABOUT HOW TO ESTIMATE TIME!!!!
         return 0
 
     def makeJSON(self):
         rdict = {"GoToPressure": [{"label": "pressure", "value": str(self.pressure)},
-                                    {"label": "speed", "value": str(self.speed)},
-                                    {"label": "hold", "value": str(self.hold)},
-                                    {"label": "Wait", "value": str(self.wait)}]
+                                  {"label": "speed", "value": str(self.speed)},
+                                  {"label": "hold", "value": str(self.hold)},
+                                  {"label": "Wait", "value": str(self.wait)}]
                  }
         return json.dumps(rdict, indent=4)
 
@@ -741,14 +776,14 @@ class GoToArea(ScriptActionClass.ActionClass):
         outString += ")\n"
         return outString
 
-    def calcTime(self, inst):
+    def calcTime(self, inst, current):
         # assuming a minimum area of 100 (but really need current value):
-        return 0 #(tofloat(self.area) - 100) / tofloat(self.speed)
+        return 0  # (tofloat(self.area) - 100) / tofloat(self.speed)
 
     def makeJSON(self):
         rdict = {"GoToArea": [{"label": "area", "value": str(self.area)},
-                                    {"label": "speed", "value": str(self.speed)},
-                                    {"label": "Wait", "value": str(self.wait)}]
+                              {"label": "speed", "value": str(self.speed)},
+                              {"label": "Wait", "value": str(self.wait)}]
                  }
         return json.dumps(rdict, indent=4)
 
@@ -795,7 +830,7 @@ class SetJulabo(ScriptActionClass.ActionClass):
                         " highLimit=" + str(self.highLimit) + ")\n"
         return outString
 
-    def calcTime(self, inst):
+    def calcTime(self, inst, current):
         # NEED TO THINJK ABOUT HOW TO ESTIMATE TIME
         return 0
 
@@ -804,6 +839,7 @@ class SetJulabo(ScriptActionClass.ActionClass):
 
     def toolTip(self):
         pass
+
 
 #
 # class HystLoop(ScriptActionClass.ActionClass):
@@ -898,27 +934,27 @@ class SetJulabo(ScriptActionClass.ActionClass):
 class IterRegistry(type):
     def __iter__(cls):
         return iter(cls._registry)
-    
-        
+
+
 class NRsample(object):
     __metaclass__ = IterRegistry
     _registry = []
-    
+
     def __init__(self, row=[]):
         self._registry.append(self)
-        
-        self.title = 'Title' #row[0]
-        self.translation = 'trans' #row[1]
-        self.height = 'height' #row[2]
-        self.phi_offset = 'phi_offset' #row[3]
-        self.psi = 'psi' #row[4]
-        self.footprint = 'footprint' #row[5]
-        self.resolution = 'resolution' #row[6]
-        self.coarse_noMirror = 'coarse_noMirror' #row[7]
-        self.switch_pos = 'switch_pos' #row[8]
-        #sampleNumber += 1
-        
-    #sampleNumber=0
+
+        self.title = 'Title'  # row[0]
+        self.translation = 'trans'  # row[1]
+        self.height = 'height'  # row[2]
+        self.phi_offset = 'phi_offset'  # row[3]
+        self.psi = 'psi'  # row[4]
+        self.footprint = 'footprint'  # row[5]
+        self.resolution = 'resolution'  # row[6]
+        self.coarse_noMirror = 'coarse_noMirror'  # row[7]
+        self.switch_pos = 'switch_pos'  # row[8]
+        # sampleNumber += 1
+
+    # sampleNumber=0
 
 
 if __name__ == '__main__':

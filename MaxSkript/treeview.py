@@ -26,10 +26,10 @@ class Tree(QtWidgets.QTreeView):
         #                         ["S2", "21", "22", "23", "24"],
         #                         ["S3", "31", "32", "33", "34"], ])
 
-        self.sampleTable = [["S1", "100", "1", "1", "1", "1", "1", "1", "1"],
-                            ["S2", "200", "2", "2", "2", "2", "2", "2", "2"],
-                            ["S3", "300", "3", "3", "3", "3", "3", "3", "3"],
-                            ["S4", "400", "4", "4", "4", "4", "4", "4", "4"],
+        self.sampleTable = [["S1", "100", "1", "1", "1", "60", "0.035", "0.0", "1"],
+                            ["S2", "200", "2", "2", "2", "60", "0.035", "0.0", "2"],
+                            ["S3", "300", "3", "3", "3", "60", "0.035", "0.0", "3"],
+                            ["S4", "400", "4", "4", "4", "60", "0.035", "0.0", "4"],
                             ["", "", " ", " ", " ", " ", " ", " ", " "],
                             ["", "", " ", " ", " ", " ", " ", " ", " "],
                             ["", "", " ", " ", " ", " ", " ", " ", " "]]
@@ -85,7 +85,7 @@ class Tree(QtWidgets.QTreeView):
         self.menu = QtWidgets.QMenu()
         self.sub_menu = QtWidgets.QMenu("Insert Action")
         self.menu.addMenu(self.sub_menu)
-        # actions = NRActions.actions
+
         actions = [cls.__name__ for cls in NRActions.ScriptActionClass.ActionClass.__subclasses__()]
         for name in actions:
             shortcut = "Ctrl+" + name[0].lower()
@@ -108,6 +108,7 @@ class Tree(QtWidgets.QTreeView):
 
             self.totalTime = 0.0
             global myActions
+            current = self.parent().parent().parent().beam_current_edit.text()
             for row in range(self.model.rowCount()):
                 try:
                     it = self.model.getRootItem(row, 0)
@@ -123,7 +124,8 @@ class Tree(QtWidgets.QTreeView):
                     # logging.warning("makeAction method undefined in "+tempAction.__repr__)
                     print("makeAction method undefined in ", tempAction, err)
                 try:
-                    self.rtime = tempAction.calcTime(self.parent().parent().parent().instrumentSelector.currentText())
+                    self.rtime = round(tempAction.calcTime(self.parent().parent().parent().instrumentSelector.currentText(),
+                                                           current), 2)
                     # if old_minutes > 0:
                     #     time_percent = float(self.rtime)/(old_minutes+float(self.rtime)) * 100
                     # else:
@@ -156,6 +158,7 @@ class Tree(QtWidgets.QTreeView):
 
         colors = ["black", "red", "blue", "green", "orange", "darkviolet", "salmon", "lavender"]
 
+        current = self.parent().parent().parent().beam_current_edit.text()
         clName = it.text()
         MyClass = getattr(importlib.import_module(myActions), clName)
         # Instantiate the class (pass arguments to the constructor, if needed)
@@ -174,7 +177,7 @@ class Tree(QtWidgets.QTreeView):
         self.model.invisibleRootItem().child(index.row(), 1).setText(tempAction.summary())
         self.resizeColumnToContents(1)
         try:
-            self.rtime = tempAction.calcTime(self.parent().parent().parent().instrumentSelector.currentText())
+            self.rtime = tempAction.calcTime(self.parent().parent().parent().instrumentSelector.currentText(), current)
             self.model.item(index.row(), 4).setData(self.rtime, QtCore.Qt.UserRole + 1000)
         except AttributeError:
             pass
